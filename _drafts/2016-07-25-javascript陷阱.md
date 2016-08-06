@@ -1,0 +1,20 @@
+# jQuery像一盘做好的菜,而JavaScript就是涩口的原材料
+
+## for-in语句在使用getElementsByTagName枚举时会将item和namedItem方法也枚举出来，所以在处理DOM的类数组对象时，使用简单的for循环语句能够正确的枚举出对象，不使用for-in的原因有二：
+1. 顺序不能保证
+2. 继承的属性可能被枚举出来
+
+http://stackoverflow.com/questions/3056172/javascript-getelementsbytagname-broken-firefox
+
+
+## ""和" "不同，前者是空字符串，后者不是
+
+## 时间处理程序只会添加到调用on()方法是已经存在的元素上，所以通过ajax更新内容之后，不会触发之前的事件，所以需要使用事件委托
+
+## JavaScript snippets
+```js
+document.querySelector('button').addEventListener('click', function(evt) {
+  this.textContent = this.textContent === 'hide' ? 'show' : 'hide';
+  document.querySelector('html').classList.toggle('loading');
+}, false);
+```

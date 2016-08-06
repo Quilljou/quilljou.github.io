@@ -1,0 +1,248 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul {
+    list-style: none;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+// preset
+// mixin start
+@mixin circle($d,$bg) {
+    width: $d;
+    height: $d;
+    border-radius: 50%;
+    background: $bg;
+}
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px;
+
+    & > div {
+        margin: 30px auto;
+        width: 100px;
+    }
+}
+.spinner {
+    @include circle(100px, #eee);
+    border: 10px solid #eee;
+    border-top-color: tomato;
+    animation: spin 3s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*loading part*/
+.loading {
+    @include circle(100px, red);
+    border: 10px dotted tomato;
+    position: relative;
+    padding: 10px;
+    .dot {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        @for $i from 1 through 12 {
+            &:nth-child(#{$i}) {
+                background: rgba(0,0,0,$i);
+                animation-name: loading;
+                animation-duration: 3s;
+                animation-timing-function: linear;
+                animation-delay: 250ms * $i - 250ms;
+                animation-fill-mode: backwards;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+}
+@keyframes loading {
+    0% {
+        transform-origin: 30px 30px;
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform-origin: 30px 30px;
+        transform: rotate(360deg) scale(0.5);
+    }
+}
+// style-3 part
+.style-3 {
+    @include circle(100px, #eee);
+    border: 50px solid transparent;
+    border-top-color: tomato;
+    border-bottom-color: tomato;
+    animation: spin 3s linear infinite;
+}
+
+// style-4
+.style-4 {
+    @include circle(100px, #eee);
+    border: 50px double transparent;
+    border-top-color: tomato;
+    border-bottom-color: tomato;
+    animation: spin 3s linear infinite;
+}
+
+// style-4
+.style-4 {
+    @include circle(100px, #eee);
+    border: 50px double transparent;
+    border-top-color: tomato;
+    border-bottom-color: tomato;
+    animation: spin 3s linear infinite;
+}
+
+// style-5
+.style-5 {
+    @include circle(100px, #eee);
+    border: 10px double transparent;
+    border-top-color: tomato;
+    border-bottom-color: tomato;
+    animation: spin 3s linear infinite;
+    &:after {
+        content: '';
+        @include circle(20px, tomato);
+        position: absolute;
+        top: calc(50% - 10px);
+        left: calc(50% - 10px);
+    }
+}
+
+
+// style-6
+.style-6 {
+    @include circle(100px, #eee);
+    border: 10px double transparent;
+    border-top-color: tomato;
+    border-bottom-color: tomato;
+    animation: spin 3s linear infinite;
+    &:after {
+        content: '';
+        @include circle(30px, #eee);
+        position: absolute;
+        border:10px double transparent;
+        border-left-color: tomato;
+        border-right-color: tomato;
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+    }
+}
+
+
+// style-7
+$colors: (
+  blue: #4285F4,
+  red: #EA4335,
+  yellow: #FBBC05,
+  green: #34A853
+);
+.style-7 {
+    [class*="circle"] {
+        @include circle(10px,transparent);
+        // margin: 3px;
+    }
+    $num: 0;
+    $delay: 50ms;
+    $time: 3s;
+    @each $color,$value in $colors {
+        $num: $num + 1;
+        span:nth-child( #{$num} ) {
+            background: $value;
+            animation: google-loading $time linear infinite;
+            animation-delay: $num * $delay  - $delay;
+        }
+    }
+    // give them color
+    span {
+        display: inline-block;
+    }
+
+}
+
+$high: 5px;
+@keyframes google-loading {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY($high);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-$high);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+// style-8
+.style-8 {
+    $num: 0;
+    $delay: 600ms;
+    $time: 3s;
+    @each $color,$value in $colors {
+        $num: $num + 1;
+        span:nth-child( #{$num} ) {
+            background: $value;
+            animation: google-loading $time linear infinite;
+            animation-delay: $num * $delay  - $delay;
+        }
+    }
+    // give them color
+    span {
+        display: inline-block;
+    }
+
+}
+
+$high: 5px;
+@keyframes google-loading {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY($high);
+    }
+    // 50% {
+    //     transform: translateY(0);
+    // }
+    // 75% {
+    //     transform: translateY(-$high);
+    // }
+    100% {
+        transform: translateY(0);
+    }
+}

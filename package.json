@@ -1,0 +1,28 @@
+{
+  "name": "quilljou.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quilljou/quilljou.github.io"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Quilljou/quilljou.github.io/issues"
+  },
+  "homepage": "https://github.com/Quilljou/quilljou.github.io#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "browser-sync": "^2.13.0",
+    "eslint": "^3.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.3.2",
+    "node-sass": "^3.8.0"
+  }
+}

@@ -1,0 +1,31 @@
+// output: index.html
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title 函数接收并弹出
+    style.
+        .container {
+            width: 200px;
+            margin: 0 auto;
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+        }
+body
+    .container#container
+        input(type="text" value="广州市")    
+        input(type="text" value="番禺区")    
+        input(type="button" value="传参")
+    script.
+        window.onload = function(){
+            var btn = document.getElementById('container').lastElementChild;
+            console.log(btn);
+            btn.onclick = function(event){
+                alert(this.parentNode.firstElementChild.value);
+                alert(this.previousElementSibling.value);
+            }
+        }

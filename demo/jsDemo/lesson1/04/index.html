@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>用循环将三个DIV变成红色</title>
+  <style>
+    .container {
+        width: 250px;
+        margin: 0 auto;
+    }
+    input {
+        display: block;
+        margin: 10px auto;
+    }
+    .boxs {
+        width: 100%;
+    }
+    .boxs div {
+        box-sizing: border-box;
+        margin-left: -3px;
+        width: 33.33%;
+        height: 80px;
+        background: black;
+        display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input id="btn" type="button" value="点击将DIV变成红色"/>
+    <div class="boxs">
+      <div></div>
+      <div>           </div>
+      <div>           </div>
+    </div>
+  </div>
+  <script>
+    window.onload = function() {
+        var btn = document.getElementById('btn');
+        btn.onclick = function(){
+            var boxs = document.querySelectorAll('.boxs div');
+            for(var i = 0,len = boxs.length; i < len; i++){
+                changeStyle(boxs[i],'backgroundColor','red');
+            }
+        }
+        
+        function changeStyle(ele,attr,value) {
+            ele.style[attr] = value;
+        }
+    }
+  </script>
+</body>

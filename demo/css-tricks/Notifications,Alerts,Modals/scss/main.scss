@@ -31,6 +31,8 @@ html {
     height: auto;
 }
 body {
+    max-width: 1368px;
+    margin: 0 auto;
     height: 100%;
     padding: 50px;
     background: linear-gradient(to bottom right,rgb(236, 89, 26),rgb(207, 192, 57)) no-repeat;
@@ -140,6 +142,7 @@ li.js-clicked {
     background: linear-gradient(to bottom right,rgb(207, 192, 57),rgb(236, 89, 26)) no-repeat;
     padding-top: 100px;
     text-align: center;
+    position: relative;
     & > a {
         color: snow;
         text-transform: uppercase;
@@ -160,6 +163,7 @@ li.js-clicked {
     }
     .dialog-overlay,
     .dialog-wrapper {
+        z-index: 9999;
         width: 100%;
         height: 100%;
         top: 0;
@@ -168,17 +172,16 @@ li.js-clicked {
     .dialog-wrapper {
         position: fixed;
         display: none;
-        justify-content: center;
-        align-items: center;
     }
     .dialog-overlay {
         position: absolute;
-        z-index: 1;
+        z-index: 9999;
         background: rgba(#141614, 0.79);
         opacity: 0;
         transition: all 1s ease-in;
     }
     .dialog-content {
+        z-index: 9999;
         box-shadow: 1px 1px 20px rgba(0,0,0,0.5),-1px -1px 20px rgba(0,0,0,0.5);
         position: absolute;
         top: calc(50% - 150px);
@@ -229,6 +232,7 @@ li.js-clicked {
         transform: scale(1);
     }
 }
+
 // item2 js class
 .show-dialog {
     display: flex !important;
@@ -236,6 +240,7 @@ li.js-clicked {
         opacity: 1 !important;
     }
 }
+
 // item3 part
 .item3 {
     background: #111;
@@ -255,6 +260,7 @@ li.js-clicked {
         width: 400px;
         height: 4px;
         position: relative;
+        z-index: 0;
         &:after {
             content: '';
             background: white;
@@ -280,6 +286,7 @@ li.js-clicked {
     height: 300px;
     background: linear-gradient(to right top,rgb(75, 193, 40),rgb(187, 186, 19));
     position: relative;
+    z-index: 0;
     // from menu-toggle folder
     .toggle-1 {
         position: absolute;
@@ -388,5 +395,22 @@ li.js-clicked {
             transform: translateX(0);
             transition: transform 300ms ease-in-out;
         }
+    }
+}
+
+.item5 {
+    background: linear-gradient(to right bottom,rgb(249, 96, 148),rgb(44, 149, 152));
+    display: flex;
+    align-items: center;
+    .nav {
+        width: 80%;
+        margin: 0 auto;
+    }
+    ul {
+        width: 100%;
+    }
+    li {
+        width: 25%;
+        display: inline-block;
     }
 }

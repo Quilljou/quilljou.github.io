@@ -18,3 +18,10 @@ document.querySelector('button').addEventListener('click', function(evt) {
   document.querySelector('html').classList.toggle('loading');
 }, false);
 ```
+
+## HTMLcollection只包含元素节点，而Nodelist可包含任意节点
+
+
+## 元素节点的offsetHeight和offsetWidth是只读的
+
+## JQ可以一次绑定多个事件，当时原生js不可以

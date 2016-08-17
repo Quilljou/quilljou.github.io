@@ -1,0 +1,134 @@
+// output: index.html
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title 简易万年历
+    style.
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            list-style: none;
+        }
+        .container {
+            width: 350px;
+            margin: 0 auto;
+            background: #ccc;
+            height: auto;
+            padding: 10px;
+        }
+        .monthes ul {
+            margin-right: -10px;
+            overflow: hidden;
+        }
+        .monthes li{
+            box-sizing: border-box;
+            width: 80px;
+            background: #444;
+            color: #fff;
+            float:  left;
+            height: 80px;
+            margin: 0 10px 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        .monthes li span {
+            display: block;
+            margin: 15px auto;
+        }
+        .detail {
+            clear: left;
+        }
+        .detail {
+            background: #ddd;
+        }
+        .hide  {
+            display: none;
+        }
+        .current {
+            display: initial;
+        }
+        .monthes .initial {
+            background: snow;
+            color: rgb(228, 98, 207);
+            border: 1px solid #111;
+        }
+body
+    .container
+        .monthes
+            ul
+                li <span>1</span> JAN
+                li <span>2</span> FER
+                li <span>3</span> MAR
+                li <span>4</span> APR
+                li <span>5</span> MAY
+                li.initial <span>6</span> JUN
+                li <span>7</span> JUL
+                li <span>8</span> AUG
+                li <span>9</span> SEP
+                li <span>1</span>0 OCT
+                li <span>1</span>1 NOV
+                li <span>1</span>2 DEC
+        .detail
+            ul
+                li.hide
+                    h4 1月节日
+                    p 元旦：1月1日至3日放假三天。
+                li.hide
+                    h4 2月节日
+                    p 春节：2月2日至8日放假7天。
+                li.hide
+                    h4 3月节日
+                    p 妇女节：3月8日妇女节，与我无关。
+                li.hide
+                    h4 4月节日
+                    p 清明节：4月3日至5日放假3天
+                li.hide
+                    h4 5月节日
+                    p 劳动节：4月30日至5月2日放假3天。
+                li.hide.current
+                    h4 6月节日
+                    p 端午节：6月4日至6日放假3天。
+                li.hide
+                    h4 7月节日
+                    p 小暑：7月7日小暑。不放假。
+                li.hide
+                    h4 8月节日
+                    p 七夕节：8月6日七夕节。不放假。
+                li.hide
+                    h4 9月节日
+                    p 中秋节：9月10日至12日放假3天。
+                li.hide
+                    h4 10月节日
+                    p 国庆节：10月1日至7日放假7天。
+                li.hide
+                    h4 11月节日
+                    p 立冬：11月8日立冬。不放假。
+                li.hide
+                    h4 12月节日
+                    p 艾滋病日:12月1日<br/>废除奴隶制国际日:12月2日。
+    
+    script.
+        window.onload = function() {
+            var monthes = document.querySelectorAll('.monthes li'); //取得月份的nodelist
+            var detail = document.querySelectorAll('.detail li');  //取得详细说明的nodelist
+            
+            monthes.forEach(function(item,index,array){
+                item.onmouseenter = function(event) {
+                    array.forEach(function(it,ind,arr) {
+                        it.className='';  /*1.移除默认的6月份的高亮，2.下一次进入的时候移除上一次的mouseenter状态*/
+                    });
+                    this.classList.add('initial');  /*为进入的月份高亮*/
+                    
+                    detail[5].classList.remove('current'); /*移除默认的6月份的信息*/
+                    detail.forEach(function(a){
+                        a.classList.add('hide');    /*下一次mouseenter，为所有的项目加上hide，隐藏所有*/
+                    })
+                    detail[index].classList.remove('hide');  /*移除隐藏，显示信息*/
+                }
+            });
+        }

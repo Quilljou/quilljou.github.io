@@ -3,12 +3,18 @@ window.onload = function() {
 	var carousel = document.getElementById('carousel');
 	var defaultDuration = getAttr('#carousel','animationDuration');
 
-	var degree = 0;
 	btns[0].onclick = prev;
+	var degree = 0;
 	function prev(){
 		degree += 40;
-		carousel.style.transform = 'rotateY(' + degree + 'deg) translateZ(288px)';
-		console.log(degree);
+		carousel.style.cssText = 'transform : rotateY(' + degree + 'deg);animation: none';
+	}
+
+	btns[1].onclick = next;
+	var degree = 0;
+	function next(){
+		degree -= 40;
+		carousel.style.cssText = 'transform : rotateY(' + degree + 'deg);animation: none';
 	}
 
 	btns[2].onclick = stop;

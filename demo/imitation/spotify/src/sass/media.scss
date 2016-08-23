@@ -1,20 +1,32 @@
-// smaller than 1200px
+/* smaller than 1200px*/
 @media (max-width:1200px) {
       .wrap {
            width: 990px;
       }
 
-    //   devices part
+    /*   devices part*/
     .devices-container {
         .platform {
             .type{
                 width: 60%;
                 height: 70px;
-                flex-direction: column;
-                justify-content: space-between;
+                -webkit-flex-direction: column;
+                   -moz-box-orient: vertical;
+                   -moz-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
+                -webkit-justify-content: space-between;
+                   -moz-box-pack: justify;
+                    -ms-flex-pack: justify;
+                        justify-content: space-between;
                 ul {
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: space-around;
+                    -webkit-justify-content: space-around;
+                        -ms-flex-pack: distribute;
+                            justify-content: space-around;
                 }
             }
         }
@@ -22,12 +34,12 @@
   }
 
 
-// smaller than 992px
+/* smaller than 992px*/
 @media (max-width: 992px) {
    .wrap {
        width: 768px;
    }
-   // feature part
+   /* feature part*/
    .features {
        height: 1178px;
    }
@@ -50,23 +62,36 @@
     }
 
 
-    // .footer part
+    /* .footer part*/
     .footer {
         height: 597px;
     }
     .footer-nav {
         height: 80%;
-        flex-wrap: wrap;
-        align-content: space-around;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        -webkit-align-content: space-around;
+            -ms-flex-line-pack: distribute;
+                align-content: space-around;
         .logo {
-            flex: 1 1 100%;
+            -webkit-flex: 1 1 100%;
+               -moz-box-flex: 1;
+                -ms-flex: 1 1 100%;
+                    flex: 1 1 100%;
             width: 100%;
         }
         .company,.company,.communities,.useful-links {
-        flex: 0 1 33%;
+        -webkit-flex: 0 1 33%;
+           -moz-box-flex: 0;
+            -ms-flex: 0 1 33%;
+                flex: 0 1 33%;
         }
         .social {
-            flex: 0 1 100%;
+            -webkit-flex: 0 1 100%;
+               -moz-box-flex: 0;
+                -ms-flex: 0 1 100%;
+                    flex: 0 1 100%;
             margin-right: 100%;
         }
     }
@@ -77,7 +102,7 @@
     }
 }
 
-// smaller than 768px
+/* smaller than 768px*/
 @media (max-width: 769px) {
    .wrap {
        width: 100%;
@@ -86,10 +111,19 @@
        height: 1440px;
    }
    .features-container {
-       flex-direction: column;
-       justify-content: space-around;
+       -webkit-flex-direction: column;
+          -moz-box-orient: vertical;
+          -moz-box-direction: normal;
+           -ms-flex-direction: column;
+               flex-direction: column;
+       -webkit-justify-content: space-around;
+           -ms-flex-pack: distribute;
+               justify-content: space-around;
        .ablums {
-           order: 1;
+           -webkit-order: 1;
+              -moz-box-ordinal-group: 2;
+               -ms-flex-order: 1;
+                   order: 1;
            margin: 0 auto;
            width: 95%;
            margin-bottom: 100px;
@@ -106,12 +140,16 @@
        }
    }
 
-    // function  part
+    /* function  part*/
     .function {
         height: 1120px;
     }
     .function-container {
-        flex-direction: column;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         .easy {
             width: 90%;
         }
@@ -121,10 +159,14 @@
                 width: 179px;
                 height: 365px;
                 background-size: cover;
-                transform: none;
+                -webkit-transform: none;
+                    -ms-transform: none;
+                        transform: none;
             }
             .iphone-1 {
-                transform: rotate(30deg) translate(50px,60px);
+                -webkit-transform: rotate(30deg) translate(50px,60px);
+                    -ms-transform: rotate(30deg) translate(50px,60px);
+                        transform: rotate(30deg) translate(50px,60px);
                 img{
                     width: 88%;
                     top: 40px;
@@ -132,7 +174,9 @@
                 }
             }
             .iphone-2 {
-                transform: rotate(30deg) translate(255px,-130px);
+                -webkit-transform: rotate(30deg) translate(255px,-130px);
+                    -ms-transform: rotate(30deg) translate(255px,-130px);
+                        transform: rotate(30deg) translate(255px,-130px);
                 img{
                     width: 88%;
                     top: 40px;
@@ -140,7 +184,9 @@
                 }
             }
             .iphone-3 {
-                transform: rotate(30deg) translate(255px,260px);
+                -webkit-transform: rotate(30deg) translate(255px,260px);
+                    -ms-transform: rotate(30deg) translate(255px,260px);
+                        transform: rotate(30deg) translate(255px,260px);
                 img{
                     width: 88%;
                     top: 40px;
@@ -148,7 +194,9 @@
                 }
             }
             .iphone-4 {
-                transform: rotate(30deg) translate(455px,100px);
+                -webkit-transform: rotate(30deg) translate(455px,100px);
+                    -ms-transform: rotate(30deg) translate(455px,100px);
+                        transform: rotate(30deg) translate(455px,100px);
                 img{
                     width: 88%;
                     top: 40px;
@@ -159,26 +207,45 @@
     }
 
 
-   // footer part
+   /* footer part*/
    .footer-nav {
        .company,.comunities {
-           flex: 1 1 50%;
+           -webkit-flex: 1 1 50%;
+              -moz-box-flex: 1;
+               -ms-flex: 1 1 50%;
+                   flex: 1 1 50%;
        }
        .useful-links {
-           flex: 0 1 100%;
+           -webkit-flex: 0 1 100%;
+              -moz-box-flex: 0;
+               -ms-flex: 0 1 100%;
+                   flex: 0 1 100%;
+           display: -webkit-flex;
+           display: -moz-box;
+           display: -ms-flexbox;
            display: flex;
-           flex-direction: column;
+           -webkit-flex-direction: column;
+              -moz-box-orient: vertical;
+              -moz-box-direction: normal;
+               -ms-flex-direction: column;
+                   flex-direction: column;
        }
    }
 
 
-   // devices part
+   /* devices part*/
    .devices-container {
        .platform {
            .type{
                width: 85%;
-               justify-content: space-around;
-               flex-direction: row;
+               -webkit-justify-content: space-around;
+                   -ms-flex-pack: distribute;
+                       justify-content: space-around;
+               -webkit-flex-direction: row;
+                  -moz-box-orient: horizontal;
+                  -moz-box-direction: normal;
+                   -ms-flex-direction: row;
+                       flex-direction: row;
                ul{
                    display: block;
                }
@@ -188,10 +255,10 @@
                .gap {
                    visibility: hidden;
                }
-            //    ul {
-            //        display: flex;
-            //        justify-content: space-around;
-            //    }
+            /*    ul {*/
+            /*        display: flex;*/
+            /*        justify-content: space-around;*/
+            /*    }*/
            }
        }
    }

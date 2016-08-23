@@ -22,6 +22,7 @@
     "eslint": "^3.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-sass": "^2.3.2",
     "node-sass": "^3.8.0"
   }

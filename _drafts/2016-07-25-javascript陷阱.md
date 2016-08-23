@@ -25,3 +25,5 @@ document.querySelector('button').addEventListener('click', function(evt) {
 ## 元素节点的offsetHeight和offsetWidth是只读的
 
 ## JQ可以一次绑定多个事件，当时原生js不可以
+
+##  所有的迭代方法不适用于NodeList

@@ -1,0 +1,65 @@
+
+
+
+
+// **************************************
+//* About Global Variables
+// **************************************
+$default-bg: #000
+
+
+
+
+
+// **************************************
+//* About Shape
+// **************************************
+
+// square
+@mixin square($d, $bg: $default-bg)
+    width: $d
+    height: $d
+    background-color: $default-bg
+
+
+@mixin rect($long, $width, $bg: $default-bg)
+    width: $long
+    height: $width
+    background-color: $bg
+
+
+// circle
+@mixin circle($d,$bg: $default-bg)
+    width: $d
+    height: $d
+    border-radius: 50%
+    background-color: $default-bg
+
+
+
+
+
+
+
+// **************************************
+//* About Position
+// **************************************
+
+// margin center
+@mixin center
+    margin: 0 auto
+
+
+// abosolute position center
+@mixin abscenter
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+
+
+// flex position center
+@mixin flexcenter
+    display: flex
+    align-items: center
+    justify-content: center

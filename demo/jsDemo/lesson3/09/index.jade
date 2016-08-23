@@ -1,0 +1,99 @@
+// output: index.html
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 倒计时时钟
+        style.
+            body {
+                text-align: center;
+            }
+            .countdown {
+                background: #111;
+                width: 300px;
+                height: 120px;
+                color: snow;
+                margin: 0 auto;
+                padding: 20px 0;
+            }
+            span {
+                margin: 5px;
+            }
+            input[type="text"]{
+                width: 30px;
+                color: #111;
+                padding: 5px;
+            }
+            input[type="button"]{
+                width: 85%;
+                margin: 0 auto;
+                height: 40px;
+                color: snow;
+                background: linear-gradient(to bottom,rgb(201, 212, 198),rgb(52, 147, 23), rgb(31, 221, 38) ,rgb(35, 124, 8));
+                margin-top: 40px;
+                font-size: 1.2em;
+                cursor: pointer;
+                display: block;
+                box-shadow: 0px 0px 0px 2px black,0px 0px 0px 4px #3c3838;
+                border-radius: 8px;
+                border: none;
+            }
+            .cancel {
+                background: linear-gradient(to bottom,rgb(222, 197, 201),rgb(187, 36, 63),rgb(193, 7, 7),rgb(160, 45,66)) !important;                
+            }
+    body
+        .countdown
+            input(type="text")
+            span 分钟
+            input(type="text")
+            span　秒
+            input(type="button" value="启动")
+        script.
+            window.onload = function(){
+                var inputs = document.getElementsByTagName('input');
+                var deadline = Date.now() + 100 * 1000;
+                
+                inputs[2].onclick = function(){
+                    this.classList.toggle('cancel');
+                    this.value = this.value == '启动' ? '取消' : '取消';
+                    initial(deadline);
+                }
+                
+
+                var renderFirst = initial(deadline);
+                renderFirst()
+                
+                function initial(endtime){
+                    
+                    function render(endtime){
+                        var t = getTimeRemaining(endtime);
+                        inputs[0].value = t.minute;
+                        inputs[1].value = t.second;
+                        if(t.total <= 0){
+                            clearInterval(count);
+                        }
+                    }
+                    
+                    var count = setInterval(render,1000);
+                    return render();
+                }
+
+                function getTimeRemaining(endtime){
+                    var t = endtime - Date.now()
+                    var minute = Math.floor( t / 1000 / 60 % 60);
+                    var second = Math.floor( t / 1000  % 60);
+                    return {
+                        total : t,
+                        second : second,
+                        minute : minute
+                    }
+                }
+                
+                function format(a) {
+                    return a < 10 ? '0' + a : a ; 
+                }
+            }
+            
+            

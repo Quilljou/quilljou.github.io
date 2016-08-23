@@ -42,6 +42,10 @@
 
 ## clac()计算top值，使其居中，锁区的值应该是calc(50% -height/2)
 
-## 使用inline-block注意子元素之间的留白
+## 使用inline-block注意子元素之间的留白,100%分成两份50%，一行容不下这两份
 
 ## 对于设置了absolute后的元素使用top，left进行定位，注意这个距离是使用离容器的最外那条边框来计算的
+
+## display:flex影响最近的text-align
+
+## transform的百分比单位是基于本身的尺寸，而不是父元素的尺寸

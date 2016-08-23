@@ -1,7 +1,8 @@
 *,
 *:before,
 *:after {
-    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
 }
 h1,h2,h3,h4,h5,h6,p,body,html,ul {
     margin: 0;
@@ -76,8 +77,14 @@ a {
         height: 80px;
         width: 100%;
         .container {
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-between;
+            -webkit-justify-content: space-between;
+               -moz-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
             width: 100%;
             height: 100%;
             .logo {
@@ -89,22 +96,49 @@ a {
                 }
             }
             .navbar {
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
                 display: flex;
-                justify-content: space-between;
+                -webkit-justify-content: space-between;
+                   -moz-box-pack: justify;
+                    -ms-flex-pack: justify;
+                        justify-content: space-between;
                 width: 580px;
                 margin: 0;
                 .nav {
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: space-between;
-                    flex: 3;
-                    align-items: center;
+                    -webkit-justify-content: space-between;
+                       -moz-box-pack: justify;
+                        -ms-flex-pack: justify;
+                            justify-content: space-between;
+                    -webkit-flex: 3;
+                       -moz-box-flex: 3;
+                        -ms-flex: 3;
+                            flex: 3;
+                    -webkit-align-items: center;
+                       -moz-box-align: center;
+                        -ms-flex-align: center;
+                            align-items: center;
                     li {
                         width: 20%;
                         height: 100%;
                         a {
+                            display: -webkit-flex;
+                            display: -moz-box;
+                            display: -ms-flexbox;
                             display: flex;
-                            align-items: center;
-                            justify-content: center;
+                            -webkit-align-items: center;
+                               -moz-box-align: center;
+                                -ms-flex-align: center;
+                                    align-items: center;
+                            -webkit-justify-content: center;
+                               -moz-box-pack: center;
+                                -ms-flex-pack: center;
+                                    justify-content: center;
                             width:100%;
                             height: 100%;
                         }
@@ -120,13 +154,24 @@ a {
                 }
                 .user {
                     margin-left: 10px;
-                    flex: 1;
+                    -webkit-flex: 1;
+                       -moz-box-flex: 1;
+                        -ms-flex: 1;
+                            flex: 1;
                     height: 100%;
                     width: 100%;
                     color: rgba(#fff,0.8);
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: space-around;
-                    align-items: center;
+                    -webkit-justify-content: space-around;
+                        -ms-flex-pack: distribute;
+                            justify-content: space-around;
+                    -webkit-align-items: center;
+                       -moz-box-align: center;
+                        -ms-flex-align: center;
+                            align-items: center;
                     .user-icon {
                         display: inline-block;
                         border: 1px solid rgba(#fff,0.8);
@@ -187,17 +232,31 @@ a {
     z-index: -1;
     @at-root .features-container {
         /* at-root is for lowr its priority when media queries*/
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
         height: 100%;
         width: 100%;
-        justify-content: space-between;
-        align-items: center;
+        -webkit-justify-content: space-between;
+           -moz-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-align-items: center;
+           -moz-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         .ablums {
             width: 555px;
             height: 555px;
             background: #ccc;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
             display: flex;
-            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
             box-shadow: 2px 2px 15px rgba(0,0,0,0.1),-2px -2px 15px rgba(0,0,0,0.1);
             .ablum {
                 width: 50%;
@@ -249,16 +308,32 @@ a {
     height: 825px;
     background: linear-gradient(50deg,rgba(#ff4169,0.7),rgba(#7c26f8,0.7));
     @at-root .function-container {
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-align-items: center;
+           -moz-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         height: 100%;
-        // position: relative;
+        /* position: relative;*/
         .easy {
             width: 30%;
             height: 100%;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            -webkit-flex-direction: column;
+               -moz-box-orient: vertical;
+               -moz-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+            -webkit-justify-content: center;
+               -moz-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
             color: #fff;
             h2 {
                 font-size: 2.5em;
@@ -288,7 +363,9 @@ a {
                 /* background-size: cover;*/
             }
             .iphone-1 {
-                transform: translate(220px,-170px) rotate(30deg);
+                -webkit-transform: translate(220px,-170px) rotate(30deg);
+                    -ms-transform: translate(220px,-170px) rotate(30deg);
+                        transform: translate(220px,-170px) rotate(30deg);
                 img {
                     position: absolute;
                     top: 70px;
@@ -296,7 +373,9 @@ a {
                 }
             }
             .iphone-2 {
-                transform: translate(660px,-150px) rotate(30deg);
+                -webkit-transform: translate(660px,-150px) rotate(30deg);
+                    -ms-transform: translate(660px,-150px) rotate(30deg);
+                        transform: translate(660px,-150px) rotate(30deg);
                 img {
                     position: absolute;
                     top: 74px;
@@ -306,7 +385,9 @@ a {
                 }
             }
             .iphone-3 {
-                transform: translate(280px,520px) rotate(30deg);
+                -webkit-transform: translate(280px,520px) rotate(30deg);
+                    -ms-transform: translate(280px,520px) rotate(30deg);
+                        transform: translate(280px,520px) rotate(30deg);
                 img {
                     position: absolute;
                     top: 76px;
@@ -315,7 +396,9 @@ a {
                 }
             }
             .iphone-4 {
-                transform: translate(850px,310px) rotate(30deg);
+                -webkit-transform: translate(850px,310px) rotate(30deg);
+                    -ms-transform: translate(850px,310px) rotate(30deg);
+                        transform: translate(850px,310px) rotate(30deg);
                 img {
                     position: absolute;
                     top: 76px;
@@ -337,9 +420,19 @@ a {
     position: relative;
     @at-root .devices-container {
         height: 100%;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-justify-content: center;
+           -moz-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         width: 100%;
         .devices-img{
             width: 98%;
@@ -358,8 +451,14 @@ a {
             .type {
                 width: 80%;
                 margin: 0 auto;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
                 display: flex;
-                justify-content: center;
+                -webkit-justify-content: center;
+                   -moz-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
                     ul,li {
                         display:
                         inline-block;
@@ -387,9 +486,15 @@ a {
     overflow: hidden;
     .purchase-container{
         position: relative;
+        display:-webkit-flex;
+        display:-moz-box;
+        display:-ms-flexbox;
         display:flex;
         height: 100%;
-        align-items: center;
+        -webkit-align-items: center;
+           -moz-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
     .green{
         color: $hover-green;
@@ -416,15 +521,24 @@ a {
         padding: 25px 0 20px 0;
     }
     .get-music {
-        flex: 0 0 60%;
+        -webkit-flex: 0 0 60%;
+           -moz-box-flex: 0;
+            -ms-flex: 0 0 60%;
+                flex: 0 0 60%;
     }
      h1 {
         font-size: 85px;
     }
     .money{
         font-weight: bold;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
+        -webkit-justify-content: space-between;
+           -moz-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         font-size: 40px;
     }
     .benefits {
@@ -435,9 +549,18 @@ a {
         }
     }
     .get-button {
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-justify-content: center;
+           -moz-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-align-items: center;
+           -moz-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         width: 250px;
         height: 40px;
         border-radius: 20px;
@@ -469,35 +592,71 @@ a {
     @at-root .footer-container {
         padding: 1em;
         height: 100%;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-around;
-        flex-direction: column;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         @at-root .footer-nav {
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
             display: flex;
             .logo {
-                flex: 1;
+                -webkit-flex: 1;
+                   -moz-box-flex: 1;
+                    -ms-flex: 1;
+                        flex: 1;
                 display:inline-block;
                 img {
                     width: 130px;
                 }
             }
             .company,.communities,.useful-links {
-                flex: 1;
+                -webkit-flex: 1;
+                   -moz-box-flex: 1;
+                    -ms-flex: 1;
+                        flex: 1;
 
             }
             .social {
-                flex:2;
+                -webkit-flex:2;
+                   -moz-box-flex:2;
+                    -ms-flex:2;
+                        flex:2;
                 ul {
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: flex-end;
+                    -webkit-justify-content: flex-end;
+                       -moz-box-pack: end;
+                        -ms-flex-pack: end;
+                            justify-content: flex-end;
                 }
                 li {
                     padding-right: 15px;
                 }
                 a {
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    -webkit-justify-content: center;
+                       -moz-box-pack: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    -webkit-align-items: center;
+                       -moz-box-align: center;
+                        -ms-flex-align: center;
+                            align-items: center;
                     @include circle(50px);
                     background: #2E2F33;
                     text-align: center;
@@ -522,16 +681,31 @@ a {
         }
         @at-root .copyright {
             margin-bottom: 2em;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-between;
+            -webkit-justify-content: space-between;
+               -moz-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
             font-size: 0.7em;
             color: rgba(#fff,0.7);
             .law {
                 margin-left: 17%;
                 ul {
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
+                    -webkit-justify-content: space-between;
+                       -moz-box-pack: justify;
+                        -ms-flex-pack: justify;
+                            justify-content: space-between;
+                    -webkit-align-items: flex-end;
+                       -moz-box-align: end;
+                        -ms-flex-align: end;
+                            align-items: flex-end;
                     height: 100%;
                 }
                 li {

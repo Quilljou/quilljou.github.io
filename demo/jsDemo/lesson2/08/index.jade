@@ -117,6 +117,8 @@ body
             var monthes = document.querySelectorAll('.monthes li'); //取得月份的nodelist
             var detail = document.querySelectorAll('.detail li');  //取得详细说明的nodelist
             
+            NodeList.prototype.forEach = Array.prototype.forEach;
+            //- 将NodeList转换成Array
             monthes.forEach(function(item,index,array){
                 item.onmouseenter = function(event) {
                     array.forEach(function(it,ind,arr) {

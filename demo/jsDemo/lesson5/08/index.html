@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>DIV闪烁</title>
+    <style>
+      body {
+          
+      }                
+      .box {
+          width: 200px;
+          height: 200px;
+          background: red;
+          text-align: center;
+          line-height: 200px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          color: snow;
+          letter-spacing: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">点我我就闪</div>
+    <script>
+      window.onload = function() 
+      {
+          var box = document.getElementsByTagName('div')[0];
+          box.onclick = function()
+          {
+              num = 0;
+              var intervalId = setInterval(flicker,100);
+              
+              function flicker()
+              {
+                  box.style.display = num++ % 2  ? 'none' : 'block';
+                  if(num >= 9) 
+                  {
+                      box.style.display == 'block'
+                      clearInterval(intervalId);
+                  }
+              }
+          }
+          
+      }
+    </script>
+  </body>
+</html>

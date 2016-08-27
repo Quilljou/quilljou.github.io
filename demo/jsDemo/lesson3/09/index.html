@@ -53,35 +53,42 @@
     <script>
       window.onload = function(){
           var inputs = document.getElementsByTagName('input');
-          var deadline = Date.now() + 100 * 1000;
+          var cancel = true;
           
           inputs[2].onclick = function(){
               this.classList.toggle('cancel');
               this.value = this.value == '启动' ? '取消' : '取消';
-              initial(deadline);
-          }
-          
-      
-          var renderFirst = initial(deadline);
-          renderFirst()
-          
-          function initial(endtime){
               
-              function render(endtime){
-                  var t = getTimeRemaining(endtime);
-                  inputs[0].value = t.minute;
-                  inputs[1].value = t.second;
-                  if(t.total <= 0){
-                      clearInterval(count);
-                  }
+              var deadline = Date.now() + 5 * 1000;
+              if(cancel == true){
+                  render(deadline);
+                  var countdown  = setInterval(function(){
+                      render(deadline,countdown);
+                  },1000);
+                  cancel = false;                
+              }else {
+                  
               }
               
-              var count = setInterval(render,1000);
-              return render();
           }
-      
+          
+          var initialTime = Date.now() + 100 * 1000;
+          render(initialTime)
+          
+          
+          function render(endtime,timer) {
+              var t = getTimeRemaining(endtime);
+              inputs[0].value = format(t.minute);
+              inputs[1].value = format(t.second);
+              if( t.total <= 1000 ){
+                  clearInterval(timer)
+              }
+          }
+          
+          
+          // 取得剩余时间，且每次会刷新
           function getTimeRemaining(endtime){
-              var t = endtime - Date.now()
+              var t = endtime - Date.now();
               var minute = Math.floor( t / 1000 / 60 % 60);
               var second = Math.floor( t / 1000  % 60);
               return {

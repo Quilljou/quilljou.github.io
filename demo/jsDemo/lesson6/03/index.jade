@@ -1,0 +1,59 @@
+//output: index.html
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title 自定义多级右键菜单
+    style.
+
+body
+    h1 自定义右键菜单，请在页面点击右键查看效果。
+    ul.level-1
+        li <strong>JavaScript 学习</strong>
+        li 第一课
+            ul.level-2
+                li 网页特效原理分
+                li 响应用户操作
+                li 提示框效果
+                li 事件驱动
+                li 元素属性操作
+        li  第二课
+            ul.level-2
+                li 改变网页背景颜色
+                li 函数传参
+                li 高重用性函数的编写
+                li 126邮箱全选效果
+                li 循环及遍历操作
+        li 第三课
+            ul.level-2
+                li JavaScript组成
+                    ul.level-3
+                        li ECMAScrip
+                        li DOM
+                        li BOM
+                        li JavaScript兼容性来源
+                li JavaScript出现的位置、优缺点
+                li  变量、类型、typeof、数据类型转换、变量作用域
+                li 闭包
+                    ul.level-3
+                        li 什么是闭包
+                        li 简单应用
+                        li 闭包缺点
+                li 运算符
+                li 程序流程控制
+                li 定时器的使用
+                    ul.level-3
+                        li setInterval
+                        li setTimeout
+    script.
+        window.onload = function() {
+            document.oncontextmenu = function(event) {
+                //- event.preventDefault();
+                menu.style.display = 'inline-block';
+                menu.style.left = event.clientX + 'px';
+                menu.style.top = event.clientY + 'px';
+                
+            }
+        }

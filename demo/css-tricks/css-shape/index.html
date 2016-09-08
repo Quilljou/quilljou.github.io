@@ -203,8 +203,103 @@
                 </code>
             </pre>
         </div>
-        .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code
-        .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code
+        <div class="shape">
+            <h2>半圆(border-radius实现)</h2>
+            <div class="br-semi-circle">
+            </div>
+            <pre class="code"><code>
+    .br-semi-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50% / 100% 100% 0 0;
+        background: $shape;
+    }
+            </code></pre>
+        </div>
+         <div class="shape">
+             <h2>四分之一圆</h2>
+             <div class="half-circle"></div>
+             <pre class="code"><code>
+     .half-circle {
+         width: 100px;
+         height: 100px;
+         background: $shape;
+         border-radius: 100% 0 0 0;
+     }
+             </code></pre>
+         </div>
+         <div class="shape">
+             <h2>平行四边形（含内容）</h2>
+             <div class="content-parallelogram"><P>平行四边形</P></div>
+             <pre class="code"><code>
+     .content-parallelogram {
+         width: 200px;
+         height: 100px;
+         text-align: center;
+         color: snow;
+         padding: 20px 10px;
+         position: relative;
+         margin-left: 40px;
+
+         p {
+             z-index: 1;
+             position: relative;
+         }
+
+         &:after {
+             content: '';
+             background: $shape;
+             position: absolute;
+             top: 0; left: 0; right: 0; bottom: 0;
+             transform: skew(-45deg);
+         }
+     }
+             </code></pre>
+         </div>
+         <div class="shape">
+             <h2>菱形图片</h2>
+             <div class="diamond-1">
+                 <img src="http://placehold.it/100/100">
+             </div>
+             <div class="diamond-2">
+                 <img src="http://placehold.it/100/100">
+             </div>
+             <pre class="code"><code>
+     .diamond-1 {
+         overflow: hidden;
+         width: 100px;
+         height: 100px;
+         transform: rotate(45deg);
+         margin-bottom: 20px;
+
+         img {
+             transform: rotate(-45deg) scale(1.42);
+         }
+     }
+             </code></pre>
+         </div>
+         <div class="shape">
+             <h2>直角切角</h2>
+             <div class="triangle-cut"></div>
+             <pre class="code"><code></code></pre>
+         </div>
+         <div class="shape">
+             <h2>弧形切角</h2>
+             <div class="radial-cut"></div>
+             <pre class="code"><code></code></pre>
+         </div>
+         <div class="shape">
+             <h2>梯形(含内容)</h2>
+             <div class="content-trapezoid"></div>
+             <pre class="code"><code></code></pre>
+         </div>
+         <div class="shape">
+             <h2>饼图</h2>
+             <div class="pie-1"></div>
+             <div class="pie-2"></div>
+             <pre class="code"><code></code></pre>
+         </div>
+         .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code
         .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code
         .shape>h2{}+div[class=""]+pre.code>code .shape>h2{}+div[class=""]+pre.code>code
     </main>

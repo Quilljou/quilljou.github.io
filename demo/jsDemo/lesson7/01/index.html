@@ -23,19 +23,18 @@
           border-radius: 5px;
           height: 200px;
           position: relative;
+          overflow: hidden;
       }
       .imgs {
-          position: relative;
-          width: 100%;
-          height: 100%;
-      }
-      .imgs > li {
-          //- display: none;
-          opacity: 0;
           position: absolute;
           width: 100%;
           height: 100%;
-          transition: opacity 1s;
+          transition: transform 1s ease-in-out;
+      }
+      .imgs > li {
+          //- position: relative;
+          width: 100%;
+          height: 100%;
       }
       img {
           width: 100%;
@@ -58,15 +57,13 @@
           text-align: center;
           cursor: pointer;
       }
-      .initial {
-          opacity: 1 !important;
-      }
+      
     </style>
   </head>
   <body>
     <div class="slide">
       <ul class="imgs">
-        <li class="initial"><img src="img/01.jpg"/></li>
+        <li><img src="img/01.jpg"/></li>
         <li><img src="img/02.jpg"/></li>
         <li><img src="img/03.jpg"/></li>
         <li><img src="img/04.jpg"/></li>
@@ -85,15 +82,15 @@
           var btns = document.querySelectorAll('.control li');
           var imgs = document.querySelectorAll('.imgs li');
           var control  = document.querySelector('.control');
+          var index = 0;
+          var play = null; 
           var order = true;
-          
+          var translate = 0;
           
           (function initial(){
               btns[0].style.background = 'red';
               NodeList.prototype.forEach = Array.prototype.forEach;
           })()
-          var index = 0;
-          var play = null; 
           
           btns.forEach(function(item,ind){
               item.onmouseenter = function(){
@@ -102,34 +99,34 @@
           })
           
           
-          
           function show(i){
-              index = i;   
-              for(var j = 0; j < imgs.length; j++){
-                  imgs[j].classList.remove('initial');
-                  imgs[j].style.cssText = 'opacity: 0';
-                  btns[j].style.background = 'orange';
+              index = i;
+              for(var k =0; k < imgs.length; k++) {
+                  btns[k].style.background = "orange";
               }
               btns[i].style.background = 'red';
-              imgs[i].style.cssText = 'opacity: 1';
+              translate = -(index * 100);
+              imgs[i].parentNode.style.transform = 'translateY('+ translate +'%)'
           }
+      
           
           function autoPlay(){
               play = setInterval(function(){
-                  if(order == true) {
+                  if(order){
                       index++;
-                      if(index >= 4){
+                      show(index);
+                      if(index>=4){
                           order = false;
                       }
                   }else {
-                      index--;
-                      if(index <= 0){
-                          order = true;
+                      index--
+                      show(index);
+                      if(index<=0){
+                          order= true;
                       }
                   }
-                  show(index);
-              },2000);
-          }    
+              },2000)
+          }
           
           autoPlay();
           

@@ -1,0 +1,74 @@
+// output: index.html
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 自动轮播广告(面型对象版)
+        style.
+            body {
+                background: #111;
+            }
+            #box {
+                position: relative;
+                border: 10px solid snow;
+                border-radius: 10px;
+                width: 490px;
+                height: 170px;
+                margin: 0 auto;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                vertical-align: top;
+            }
+            li {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            span {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                background: orange;
+                text-align: center;
+                border-radius: 50%;
+                cursor: pointer;
+                margin-left: 5px;
+                color: snow;                
+            }
+            .control {
+                position: absolute;
+                bottom: 5px;
+                right: 10px;
+            }
+    body
+        #box
+            .list
+                ul
+                    li
+                        img(src="img/01.jpg")
+                    li
+                        img(src="img/02.jpg")
+                    li
+                        img(src="img/03.jpg")
+                    li
+                        img(src="img/04.jpg")
+                    li
+                        img(src="img/05.jpg")        
+            .control
+                span 1
+                span 2
+                span 3
+                span 4
+                span 5                
+        script.
+                

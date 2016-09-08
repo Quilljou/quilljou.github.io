@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <script src="moment.js"></script>
+    <title>iPhone手机解锁效果</title>
+    <style>
+      body {
+          background: #BBBCBD;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";                
+      }
+      .wrap {
+          width: 400px;
+          color: snow;
+          height: 674px;
+          //- height: 600px;
+          margin: 0 auto;
+          //- background: tomato;
+          overflow: hidden;
+          position: relative;
+      }
+      .top > div {
+          display: inline-block;
+      }
+      .top {
+          width: 100%;
+          height: 25px;
+          background: #010101;
+          line-height: 25px;
+          position: relative;
+      }
+      .signal {
+          margin: 0 7px;
+      }
+      .signal span{
+          background: #BEBEBE;
+          display: inline-block;
+          width: 3px;
+          margin: 0 0.5px;
+      }
+      .signal span:first-child{
+          height: 4px;
+      }
+      .signal span:nth-child(2){
+          height: 6px;
+      }
+      .signal span:nth-child(3){
+          height: 8px;
+      }
+      .signal span:nth-child(4){
+          height: 10px;
+      }
+      .signal span:last-child{
+          height: 12px;
+      }
+      .wifi {
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          border: 6px solid transparent;
+          border-top-color: #BEBEBE;
+          margin-left: 8px;
+          vertical-align: bottom;
+      }
+      .wifi:after,.wifi:before {
+          content: '';
+          border-radius: 50%;
+          border: 3px solid transparent;
+          border-top-color: #BEBEBE;
+          background: transparent; 
+          position: absolute;               
+      }
+      .wifi:before {
+          width: 16px;
+          height: 16px;
+          margin: -11px 0 0 -11px;
+      }
+      .wifi:after {
+          width: 24px;
+          height: 24px;
+          margin: -16.5px 0 0 -15px;
+      }
+      .tiny-lock {
+          width: 12px;
+          height: 9px;
+          background: #BEBEBE;
+          vertical-align: middle;
+          transform: rotate(180deg) translateX(-50%);
+          position: absolute;
+          left: 50%;
+          //- top: 40%;
+          margin-top: 12px;
+      }
+      .tiny-lock:after {
+          content:'';
+          height: 12.5px;
+          width: 6px;
+          background: transparent;
+          border: 2px solid #BEBEBE;
+          margin-left: 1px;
+          position: absolute;
+          border-radius: 35%;
+      }
+      .percentage {
+          position: absolute;
+          right: 34px;
+      }
+      .clock {
+          width: 15px;
+          height: 15px;
+          background: #BEBEBE;
+          border-radius: 50%;
+          margin-top: 5px;
+          position: absolute;
+          right: 80px;
+      
+      }
+      .clock:after,.clock:before {
+          content: '';
+          width: 2px;
+          border-radius: 2px;
+          position: absolute;
+          background: #010101;
+          top: 50%;
+      }
+      .clock:after {
+          height: 6px;
+          left: 50%;
+          margin-top: -5px;
+      }
+      .clock:before {
+          height: 4px;
+          left: 50%;
+          transform-origin: top center;
+          transform: rotate(90deg);
+      }
+      .tiny-battery {
+          width: 20px;
+          height: 8px;
+          border: 1px solid #BEBEBE;
+          padding: 1px;
+          background: #BEBEBE;
+          position: absolute;
+          background-clip: content-box;
+          right: 5px;
+          top: 6px;
+      }
+      .tiny-battery:after {
+          content:'';
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          border-radius: 50%;
+          background: transparent;
+          border: 2px solid transparent;
+          border-left-color: #BEBEBE;
+          border-top-color: #BEBEBE;
+          transform: rotate(135deg);
+          left: 100%;
+          margin-top: 1px;
+          margin-left: -2px;
+      }
+      .time {
+          height: 115px;
+          background: linear-gradient(to bottom,#464646,#1C1C1C),linear-gradient(to bottom,#010101,#000);
+          //- background-color: #010101;
+          background-size: 100% 55px,100% 100%;
+          background-repeat: no-repeat;
+          padding: 10px;
+      }
+      h1,p {
+          text-align: center;
+          margin: 0;
+      }
+      p {
+          font-size: 20px;
+      }
+      h1 {
+          font-size: 70px;
+      }
+      .battery {
+          background: #010101;
+          height: 380px;
+          border-top: 4px solid #111111; 
+          text-align: center;
+          position: relative;
+      }
+      .box {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          height: 110px;
+          width: 200px;
+          margin-left: -100px;
+          margin-top: -50px;
+      }
+      .box > div {
+          display: inline-block;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          vertical-align: top;
+      }
+      .box .middle {
+          width: 100%;
+          z-index: 1;
+          background: green;
+          background: linear-gradient(to bottom,#00EA3E 10%,#75F793 12%,#75F793,#00D74D 50%,#00B623 0,#00B623 60%,#00D339 66%,#00D339 80%,#6AF8AC 88%,#6AF8AC,#0DF261)
+      }
+      .box .left {
+          width: 10px;
+          background: red;
+          transform:translateX(-100%);
+          background: linear-gradient(to bottom,#8AA2A4 3%,#406049 12%,#F5F5FF 15%,#F5F5FF,#67907E 50%,#004517 0,#004517,#65897D 85%,#395F46 95%,#395F46);
+      }
+      .box .right {
+          width: 10px;
+          background: red;
+          left: 100%;
+          background: linear-gradient(to bottom,#8AA2A4 6%,#406049 12%,#F5F5FF 15%,#F5F5FF,#67907E 50%,#14181B 0,#14181B,#0B0F12 85%,#5C656C 95%,#0A0F13)
+      }
+      .box .top {
+          height: 40px;
+          background: pink;
+          width: 10px;
+          left: 100%;
+          top: 50%;
+          transform:translate(100%,-50%);
+          background: linear-gradient(to bottom,#1C2329 5%,#E6EAED 6%,#E6EAED,#070705 85%,#343D42 95%,#161A1B)
+      }
+      .lock {
+          height: 130px;
+          background-color: #010101;
+          background-image: linear-gradient(to bottom,#464646,#1C1C1C);
+          background-size: 100% 65px;
+          background-repeat: no-repeat;
+          position: relative;
+      }
+      .sink {
+          height: 60px;
+          width: 300px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          border-radius: 10px;
+          background: linear-gradient(to bottom,#060606,#272727);
+          padding: 3px 6px;
+      }
+      .slider {
+          height: 100%;
+          width: 88px;
+          border-radius: 10px;
+          background: tomato;
+          background: linear-gradient(to bottom,#F7F7F7,#A2A2A2);
+          padding: 20px 22px;
+          box-sizing: border-box;
+          cursor: pointer;
+      }
+      .slider .arrow {
+          width: 32px;
+          height: 18px;
+          background: #B6B6B6;
+          position: relative;
+      }
+      .slider .arrow:after {
+          position: absolute;
+          content: '';
+          border-left: 20px solid #B6B6B6;
+          border-top: 15px solid transparent;
+          border-bottom: 15px solid transparent;
+          position: absolute;
+          left: 100%;
+          top: -6px;
+      }
+      .wallpaper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          //- width: 100%;
+          //- height: 100%;
+          background: tomato;
+          background: url('img/20160105_000733000_iOS.jpg') center center no-repeat;
+          background-size: 100% 100%;
+          z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="iphone">
+        <div class="top">
+          <div class="signal"><span></span><span></span><span></span><span></span><span></span></div>AT&T
+          <div class="wifi"></div>
+          <div class="tiny-lock"></div>
+          <div class="clock"></div><span class="percentage">100%</span>
+          <div class="tiny-battery"></div>
+        </div>
+        <div class="time">
+          <h1>11:11</h1>
+          <p>Saturday,Decemeber 12</p>
+        </div>
+        <div class="battery">
+          <div class="box">
+            <div class="left"></div>
+            <div class="middle"></div>
+            <div class="right"></div>
+            <div class="top"></div>
+          </div>
+        </div>
+        <div class="lock">
+          <div class="sink">
+            <div class="slider">
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wallpaper">        There should is  a iPhone home wallpaer.If not, Perhaps the imghost network error</div>
+    </div>
+    <script>
+      window.onload = function() {
+          var g = {
+              slider : document.querySelector('.slider'),
+              sink : document.querySelector('.sink'),
+              startX : 0,
+              clicked : false,
+              iphone : document.querySelector('.iphone'),
+              time: document.querySelector('.time h1') ,
+              date: document.querySelector('.time p')
+              //- computedStyle : document.defaultView.getComputedStyle(this.sink,null)
+          }
+          //- console.log(g.sink);
+          //- console.log(g.computedStyle.padding);
+          g.slider.onmousedown = capture;
+          g.slider.ontouchstart = capture;
+          
+          function capture(event) {
+              g.startX = event.clientX;
+              g.clicked = true;
+          }
+          
+          
+          g.slider.onmousemove = move;
+          g.slider.ontouchmove = move;
+          
+          function move(event) {
+              var sinkWidth = g.sink.offsetWidth;
+              var padding = 6;
+              var max = sinkWidth - g.slider.offsetWidth - padding * 2;
+              if(g.clicked) {
+                  var diff = event.clientX - g.startX;
+                  if(diff < 0 ) {
+                      g.slider.style.marginLeft = '0';
+                  }else if(diff >= max) {
+                      g.slider.style.marginLeft = max + 'px';
+                  }else {
+                      g.slider.style.marginLeft = diff + 'px';
+                  }
+              }
+          }
+          
+          g.slider.onmouseup = release;
+          g.slider.ontouchend = release;
+          
+          function release(event) {
+              g.clicked = false;
+              var sinkWidth = g.sink.offsetWidth;
+              var padding = 6;
+              var max = sinkWidth - g.slider.offsetWidth - padding * 2;
+              var diff = event.clientX - g.startX;
+              if(diff <= max /2) {
+                  g.slider.style.marginLeft = '0';
+              }else {
+                  g.slider.style.marginLeft = max + 'px';
+                  setTimeout(function(){
+                      g.iphone.style.display = 'none';
+                  },300)
+              }
+          }
+          
+          
+          //moment.js
+          function render(){
+              var time = moment().format('HH:mm');
+              var date = moment().format('dddd,MMMM DD');
+              g.date.innerHTML = date;
+              g.time.innerHTML = time;
+          }
+          
+          render()
+          setInterval(render,1000);
+      }
+    </script>
+  </body>
+</html>

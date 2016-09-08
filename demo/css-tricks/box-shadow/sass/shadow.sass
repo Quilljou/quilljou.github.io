@@ -1,4 +1,4 @@
-// output
+// compressed ../css/shadow.min.css
 html
     background: radial-gradient(#999,#ccc)
 
@@ -70,3 +70,17 @@ html
 
 .shadow-5
     box-shadow: 21px 0 24px -12px #777, -21px 0 10px -12px #777,inset 0px 0px 40px #777
+
+.shadow-6
+    position: relative
+
+.shadow-6:after
+    content: ''
+    position: absolute
+    top: 0
+    bottom: 1em
+    left: 1em
+    right: 1em
+    border-radius: 50%
+    box-shadow: 0 2em 1em #777
+    z-index: -1

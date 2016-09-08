@@ -27,3 +27,22 @@ document.querySelector('button').addEventListener('click', function(evt) {
 ## JQ可以一次绑定多个事件，当时原生js不可以
 
 ##  所有的迭代方法不适用于NodeList
+将nodeList转换成Array的两种方法
+
+```js
+[].forEach.call(document.getElementsByTagName('div'),function(ele,index,array){})
+
+NodeList.prototype.forEach = Array.prototype.forEach;
+//deprecated
+//Extending existing DOM functionality through prototypes is often considered bad practice as this can lead to masses of issues.
+```
+## 不要使用for in迭代数组，它用对象的属性名来迭代
+
+## NodeList包含任何节点类型,而HTMLCollection只包含元素节点
+console.log(NodeList instanceof HTMLCollection);
+
+## Element.getBoundingClientRect()
+返回一个对象，包含着这个元素的大小尺寸:widht,height，和相对于viewport的位置:top,left,right,bottom
+
+
+## pageX,pageY相对于可滚动的页面,clientX,clientY相对于viewport

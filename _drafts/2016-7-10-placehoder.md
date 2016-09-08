@@ -38,7 +38,7 @@
 ##一个icon居中的方法，text-align，line-height设置为容器的高度，
 
 
-## 在reset后，因为html和body都没有了高度，linear-gradient不能被用在html和body上，究其原因，里呢爱人-gradient是background-image的值，但是的background-color可以实现。background的范围是盒模型中的content和padding
+## 在reset后，因为html和body都没有了高度，linear-gradient不能被用在html和body上，究其原因，linear-gradient是background-image的值，但是的background-color可以实现。background的范围是盒模型中的content和padding
 
 ## clac()计算top值，使其居中，锁区的值应该是calc(50% -height/2)
 
@@ -49,3 +49,17 @@
 ## display:flex影响最近的text-align
 
 ## transform的百分比单位是基于本身的尺寸，而不是父元素的尺寸
+
+## background-position: right 20px bottom 10px;　　偏移量前面指定关键字，精确定位背景图片
+
+## outline-offset 描边的偏移量，可以为负值
+
+## background-origin: 默认值是padding-box,这样边框才不会遮挡住图片．可以设置为content-box,这样在加上padding,就可以很好的实现背景图片的定位，还可以和background-position复用实现更加适合的背景定位
+
+## background-image的定位background-position基于background-origin，默认是padding-box。而background-color在默认border之下的，因为切割background的边框默认是border-box，这是通过background-clip实现的，可以设置为padding-box，这样background-color就不再border之下了;那有时候设置了background-image为linear-gradient我们会发现它居然也在border之下，这是为什么呢，不是background-origin默认是padding-box吗，按理说渐变应该不再border之下，这是因为background-repeat默认设置为repeat，这样background-image就会覆盖整个元素
+》》》》》》
+## background
+background-clip限制所有的背景，包括image和color
+background-color基于background-clip，默认值border-box
+background-image在norepeat的情况下基于background-clip的前提下基于background-origin;
+如果有background-repeat：repeat则就会把background-image平铺到整个background-color区域

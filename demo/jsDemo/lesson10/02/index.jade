@@ -5,7 +5,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title 自动轮播广告(面型对象版)
+        title 自动轮播广告(面向对象版)
         style.
             body {
                 background: #111;
@@ -17,6 +17,7 @@ html(lang="en")
                 width: 490px;
                 height: 170px;
                 margin: 0 auto;
+                overflow: hidden;
             }
             img {
                 width: 100%;
@@ -32,6 +33,7 @@ html(lang="en")
                 list-style: none;
                 margin: 0;
                 padding: 0;
+                transition: all 0.5s;
             }
             span {
                 display: inline-block;
@@ -50,6 +52,9 @@ html(lang="en")
                 bottom: 5px;
                 right: 10px;
             }
+            .playing {
+                background: red;
+            }
     body
         #box
             .list
@@ -65,10 +70,77 @@ html(lang="en")
                     li
                         img(src="img/05.jpg")        
             .control
-                span 1
-                span 2
-                span 3
-                span 4
-                span 5                
         script.
-                
+            var AutoPlay = function(id) {
+                this.initialize(id);
+            }    
+            //- 自动播放
+            
+            AutoPlay.prototype = {
+                initialize : function(id) {
+                    var that = this;
+                    this.box = document.getElementById(id);
+                    this.ul = document.getElementsByTagName('ul')[0];
+                    this.imgs = document.getElementsByTagName('li');
+                    this.control = document.querySelector('.control')
+                    this.createButton();
+                    this.controls = document.querySelectorAll('.control span');
+                    this.now  = 0;
+                    this.timer = null;
+                    this.height = this.imgs[0].offsetHeight;
+                    this.autoPlay();
+                    this.control.onmouseover = function(){
+                        clearInterval(that.timer);
+                    };
+                    this.control.onmouseout = function(){
+                        that.autoPlay();
+                    }
+                    for(var i = 0; i < this.imgs.length; i++) {
+                        this.controls[i].index = i;
+                        that.controls[i].onmouseover = function(){
+                            var height = this.index * that.height;
+                            that.ul.style.transform = 'translateY(-' + height +'px)';
+                            for(var i = 0;i <= that.imgs.length - 1; i++) {
+                                that.controls[i].className = '';
+                            }
+                            that.controls[this.index].className = 'playing';
+                            that.now = this.index;
+                        };
+                    }
+                },
+                autoPlay : function() {
+                    var that = this;
+                    var play = function(){
+                        var height = (that.now) * that.height;
+                        that.ul.style.transform = 'translateY(-' + height +'px)';
+                        for(var i = 0;i <= that.imgs.length - 1; i++) {
+                            that.controls[i].className = '';
+                        }
+                        that.controls[that.now].className = 'playing';
+                        
+                        that.now++;
+                        if(that.now >= that.imgs.length) {
+                            that.now = 0;
+                        }
+                    }
+                    play()
+                    clearInterval(this.timer)
+                    this.timer = setInterval(play,3000);
+                },
+                createButton : function(){
+                    var frag = document.createDocumentFragment();
+                    for(var i = 0;i < this.imgs.length;i++) {
+                        var btn = document.createElement('span');
+                        btn.innerHTML = i + 1;
+                        if(i === 0){
+                            btn.className = 'playing';
+                        }
+                        frag.appendChild(btn);
+                    }
+                    this.control.appendChild(frag);
+                }
+            }
+            
+            window.onload = function() {
+                new AutoPlay('box');
+            }

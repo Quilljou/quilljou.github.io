@@ -30,4 +30,9 @@ ps:音量的范围在0～1之间
 * muted=true 静音
 * muted=false  恢复音量
 
-### 优雅降级
+
+paused属性
+duration
+currentTime
+
+timeupdate事件

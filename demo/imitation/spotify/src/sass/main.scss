@@ -17,13 +17,16 @@ ul {
 }
 body {
 font-family: 'Open Sans',"Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+
+// mobile device tap
+-webkit-tap-highlight-color: transparent;
 }
 /* preset*/
 
 
 
 /* variable*/
-$linear:  linear-gradient(50deg,rgba(#ff4169,0.7),rgba(#7c26f8,0.7));
+$linear:  linear-gradient(50deg,rgba(#ff4169,1),rgba(#7c26f8,1));
 $hover-green: #A6E3D9;
 $purple: #7C25F8;
 
@@ -53,7 +56,7 @@ a {
     height: auto;
     background: url(../img/bg-albums.png) repeat;
     background-attachment: fixed;
-    z-index: -99;
+    // z-index: -99;
     position: relative;
 }
 
@@ -64,13 +67,47 @@ a {
     width: 1150px;
 }
 
+.hidden {
+    display: none !important;
+}
+
+.btn-scroll-down {
+    position: absolute;
+    top: 0;
+    margin-top: -25px;
+    height: 50px;
+    width: 50px;
+    background: #fff;
+    border-radius: 50%;
+    // z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 1px 6px -1px rgba(0,0,0,0.7);
+    transition: all 300ms ease-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+    svg {
+        width: 30px;
+        height: 25px;
+        fill: $hover-green;
+        &:last-of-type {
+            margin-top: -15px;
+        }
+    }
+
+}
+
+
 
 
 /* nav bar part*/
    nav {
        color: #fff;
        position: fixed;
-       z-index: 9999;
+       z-index: 1000;
        left: 0;
        top: 0;
         background: rgba(#000,0.6);
@@ -85,12 +122,11 @@ a {
                -moz-box-pack: justify;
                 -ms-flex-pack: justify;
                     justify-content: space-between;
+            align-items: center;
             width: 100%;
             height: 100%;
             .logo {
-                display:inline-block;
-                margin-top: 20px;
-                margin-bottom: 20px;
+                z-index: 11;
                 img {
                     width: 130px;
                 }
@@ -105,6 +141,7 @@ a {
                     -ms-flex-pack: justify;
                         justify-content: space-between;
                 width: 580px;
+                height: 100%;
                 margin: 0;
                 .nav {
                     display: -webkit-flex;
@@ -123,9 +160,14 @@ a {
                        -moz-box-align: center;
                         -ms-flex-align: center;
                             align-items: center;
+                            height: 100%;
                     li {
-                        width: 20%;
+                        width: 18%;
                         height: 100%;
+                        cursor: pointer;
+                        &:hover {
+                            color: $hover-green;
+                        }
                         a {
                             display: -webkit-flex;
                             display: -moz-box;
@@ -160,6 +202,7 @@ a {
                             flex: 1;
                     height: 100%;
                     width: 100%;
+                    position: relative;
                     color: rgba(#fff,0.8);
                     display: -webkit-flex;
                     display: -moz-box;
@@ -175,6 +218,7 @@ a {
                     .user-icon {
                         display: inline-block;
                         border: 1px solid rgba(#fff,0.8);
+                        cursor: pointer;
                         @include circle(38px);
                         position: relative;
                         svg {
@@ -187,15 +231,8 @@ a {
                                 fill: rgba(#fff,0.8);
                             }
                         }
-                    }
-                    .user-toggle {
-                        font-size: 1.4em;
-                        margin-left: -2px;
-                        margin-top: -7px;
-                    }
-                    &:hover {
-                        color: $hover-green;
-                        .user-icon {
+
+                        &:hover {
                             border-color: $hover-green;
                             svg {
                                 path {
@@ -203,10 +240,84 @@ a {
                                 }
                             }
                         }
+
+                    }
+                    .user-toggle {
+                        font-size: 1.4em;
+                        cursor: pointer;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                    }
+                    .navbar-toggle {
+                        margin-left: 15px;
+                        position: relative;
+                        cursor: pointer;
+                        z-index: 11;
+                        height: 20px;
+                        width: 25px;
+                        display: none;
+                        span {
+                            transform-origin: 70% 50%;
+                            display: block;
+                            transition: all 100ms linear;
+                            content: '';
+                            position: absolute;
+                            width: 100%;
+                            background: #fff;
+                            height: 3px;
+                        }
+                        .bar-1 {
+                            top: 16px;
+                        }
+                        .bar-3{
+                            top: 8px;
+                        }
+                    }
+                    .nav-toggle-opened {
+                        .bar-2 {
+                            display: none;
+                        }
+                        .bar-1 {
+                            transform: rotate(45deg);
+                        }
+                        .bar-3 {
+                            transform: rotate(-45deg);
+                        }
                     }
                 }
                 .more {
-                    display: none;
+                    background: #fff;
+                    box-shadow: 0 0 20px #111;
+                    width: 150px;
+                    padding: 20px;
+                    text-align: center;
+                    position: absolute;
+                    color: #111;
+                    right: 0;
+                    margin-right: -20px;
+                    top: 100%;
+                    &:after {
+                        content:'';
+                        bottom: 100%;
+                        position: absolute;
+                        right: 0;
+                        margin-right: 16px;
+                        border-bottom: 20px solid #fff;
+                        border-left: 18px solid transparent;
+                        border-right: 18px solid transparent;
+
+                    }
+                    li {
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 0.9em;
+                        cursor: pointer;
+                        &:hover {
+                            color: $hover-green;
+                        }
+                    }
                 }
             }
         }
@@ -220,6 +331,139 @@ a {
     background: url(../img/noise.png),$linear repeat;
     width: 100%;
     text-align: center;
+    .header-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .carousel {
+        width: 100%;
+        height: 70%;
+        position: relative;
+        overflow: hidden;
+    }
+    .carousel-container {
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 100%;
+        width: 400%;
+        overflow: hidden;
+        display: flex;
+        transition: all 1s;
+    }
+    .item {
+        // position: absolute;
+        height: 100%;
+        width: 25%;
+        display: flex;
+        // top: 0;
+        // left: 0;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h1 {
+            color: #fff;
+            font-size: 101px;
+            margin-top: -40px;
+            margin-bottom: 50px;
+        }
+    }
+    h1.smaller-text {
+        font-size: 95px;
+    }
+    .btn-group {
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .item-btn {
+        background: $purple;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        width: 240px;
+        color: #fff;
+        // text-align: center;
+        cursor:pointer;
+        &:hover {
+            background: #301dcd;
+        }
+    }
+    .white-btn {
+        margin-left: 30px;
+        border: 1px solid #fff;
+        background: transparent;
+        width: 280px;
+        transition: all 300ms linear;
+        &:hover {
+            background: #fff;
+            color: #111;
+        }
+    }
+    .active {
+        display: flex;
+    }
+    // .dir-control {
+        // height: 100%;
+    // }
+    .left,.right {
+        width: 80px;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .left {
+        left: 0;
+    }
+    .right {
+        right: 0;
+
+    }
+
+    svg {
+        width: 80px;
+        height: 80px;
+        path {fill: #fff;}
+    }
+    p {
+        font-size: 20px;
+        color: $hover-green;
+        display: inline-block;
+        border-bottom: 1px solid $hover-green;
+        cursor: pointer;
+    }
+    .btn-control {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+            background: #C1C3C6;
+            cursor: pointer;
+        }
+        span.active-btn {
+            background: #fff;
+            border: 2px solid #fff;
+            box-sizing: content-box;
+            padding: 2px;
+            background-clip: content-box;
+        }
+
+    }
 
 }
 
@@ -229,9 +473,13 @@ a {
     width: 100%;
     background: #fff;
     position: relative;
-    z-index: -1;
+    // z-index: -1;
+    .features-scroll-down {
+        left: 50%;
+    }
     @at-root .features-container {
         /* at-root is for lowr its priority when media queries*/
+        overflow: hidden;
         display: -webkit-flex;
         display: -moz-box;
         display: -ms-flexbox;
@@ -279,6 +527,59 @@ a {
             }
 
         }
+        .music-overlay {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            // display: none;
+            justify-content: center;
+            align-items: center;
+            svg {
+                width: 110px;
+                height: 110px;
+            }
+            .progress {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 7px;
+                transition: width 0.1s linear;
+                // width: 100%;
+                background: #2EBD59;
+            }
+            .full-track {
+                color: #fff;
+                width: 100%;
+                height: 100%;
+                // text-align: center;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                h2 {
+                    text-align: center;
+                    margin-bottom: 10px;
+                    font-weight: normal;
+                }
+                a {
+                    text-align: center;
+                    padding: 10px;
+                    height: 42px;
+                    width: 160px;
+                    border-radius: 20px;
+                    border: 1px solid #fff;
+                    display: inline-block;
+                    transition: all 200ms ease-in;
+                    &:hover {
+                        background: #fff;
+                        color: #111;
+                    }
+                }
+            }
+        }
         .what-on{
             margin-top: -4em;
             width: 42%;
@@ -306,7 +607,7 @@ a {
 .function {
     position: relative;
     height: 825px;
-    background: linear-gradient(50deg,rgba(#ff4169,0.7),rgba(#7c26f8,0.7));
+    background: $linear;
     @at-root .function-container {
         display: -webkit-flex;
         display: -moz-box;
@@ -351,8 +652,11 @@ a {
 
         .iphones {
             height: 100%;
-            width: 100%;
-            position: relative;;
+            width: 60%;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            // overflow-x: hidden;
             .iphone {
                 height: 775px;
                 width: 400px;
@@ -448,24 +752,16 @@ a {
                 font-size: 2.1em;
                 margin: 2em 0;
             }
-            .type {
-                width: 80%;
-                margin: 0 auto;
-                display: -webkit-flex;
-                display: -moz-box;
-                display: -ms-flexbox;
+            .type  {
                 display: flex;
-                -webkit-justify-content: center;
-                   -moz-box-pack: center;
-                    -ms-flex-pack: center;
-                        justify-content: center;
-                    ul,li {
-                        display:
-                        inline-block;
-                    }
-                    li {
-                        margin: 0 5px;
-                    }
+                justify-content: center;
+            }
+            ul {
+                display: flex;
+
+                li {
+                    margin:  0 5px;
+                }
             }
             a {
                 text-decoration: underline;
@@ -483,7 +779,17 @@ a {
     width: 100%;
     background: $linear;
     color: #fff;
-    overflow: hidden;
+    position: relative;
+    .purchase-scroll-down{
+        // z-index: 1;
+        left: 9%;
+
+    }
+    .hack-scroll-down  {
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
     .purchase-container{
         position: relative;
         display:-webkit-flex;
@@ -515,6 +821,7 @@ a {
         bottom: 20px;
         text-align: center;
         font-size: 12px;
+        left: 0;
     }
     .border-bottom {
         border-bottom: 1px solid #fff;
@@ -726,6 +1033,61 @@ a {
                     margin-left: 10px;
                     height: 1.5em;
                 }
+            }
+        }
+    }
+}
+
+
+.navbar-right{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,.5);
+    top: 0;
+    .navbar-right-cotent {
+        height: 100%;
+        width: 60%;
+        right: 0;
+        position: absolute;
+        background: #000;
+        color: #fff;
+        padding: 50px 30px;
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        overflow-y: scroll;
+        .nav {
+            font-size: 35px;
+            font-weight: bold;
+            li {
+                margin-bottom: 20px;
+            }
+        }
+        li:hover {
+            color: $hover-green;
+        }
+        .divider {
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            margin: 40px 0;
+        }
+        .user {
+            font-weight: bold;
+            opacity: 0.8;
+            font-size: 25px;
+            li {
+                margin-bottom: 20px;
+            }
+        }
+        .logo {
+            bottom: 0;
+            position: absolute;
+            transform: translateY(-100%);
+            img {
+                width: 100px;
             }
         }
     }

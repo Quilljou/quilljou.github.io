@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>拼图游戏</title>
+    <style>
+      body {
+          background: #ccc;
+          text-align: center;
+      }
+      ul {
+          list-item: none;
+      }
+      li {
+          display: inline-block;
+          margin: 5px;
+          border-radius: 5px;
+          overflow: hidden;
+          opacity: 0.5;                
+      }
+      .selected {
+          opacity: 1;
+      }
+      .img-container {
+          width: 600px;
+          height: 600px;
+          background-color: #ddd;
+          margin: 20px auto;
+          
+      }
+      .img-container img {
+          width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="selectImg">
+      <ul>
+        <li class="selected"><img src="img/girl0/girl.jpg" alt=""/></li>
+        <li><img src="img/girl1/girl.jpg" alt=""/></li>
+        <li><img src="img/girl2/girl.jpg" alt=""/></li>
+      </ul>
+    </div>
+    <input id="startBtn" type="button" value="开始游戏"/>
+    <div id="imgContainer" class="img-container"><img src="img/girl0/girl.jpg" alt=""/></div>
+    <script>
+      window.onload = function() {
+          var imgBox = document.getElementById('selectImg');
+          var imgsToSelect = imgBox.getElementsByTagName('li');
+          var imgContainer = document.getElementById('imgContainer');
+          var button = document.getElementById('startBtn');
+          var imgTarget = imgContainer.getElementsByTagName('img')[0];
+          
+          imgBox.onclick = function(event) {
+              
+              for(var i = 0; i <imgsToSelect.length; i++){ imgsToSelect[i].classList.remove('selected')};
+              event.target.parentNode.classList.add('selected');
+              
+              
+              //- if(imgContainer.childNodes[0]) {
+              //-     imgContainer.removeChild(imgContainer.firstChild);
+              //- }
+              var thisSrc = event.target.src;
+              imgTarget.src = thisSrc;
+              //- img.container.style.background    
+          }
+          
+          
+          
+          
+          button.onclick = function() {
+              
+              Math.random();
+          }
+          
+          
+          function cutImgUp(img) {
+              var numColsToCut = 3;
+              var numRowsToCut = 3;
+              for(var x = 0; x < numColsToCut; ++x) {
+                  for(var y = 0; y < numRowsToCut; ++y) {
+                      var canvas = document.createElement('canvas');
+                      var cxt = canvas.getContext('2d');
+                      cxt.drawImage(imgTarget,)
+                  }
+              }
+          }
+          
+          
+      }
+    </script>
+  </body>
+</html>

@@ -15,7 +15,8 @@ gulp.task('sass', function() {
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
-            baseDir: './dist/'
+            baseDir: './dist/',
+            open: "external"
         },
     })
 });

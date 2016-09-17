@@ -14,6 +14,7 @@ window.onload = function() {
         }
         screenCount++;
     }
+
     function launchIntoFullscreen(element) {
         if (element.requestFullscreen) {
             element.requestFullscreen();
@@ -76,7 +77,6 @@ window.onload = function() {
     }
 
     volumePercentage = 100 * video.volume;
-    console.log(volumePercentage);
     volumeGo.style.height = volumePercentage +'%';
 
 
@@ -87,7 +87,6 @@ window.onload = function() {
     var t = setInterval(function () {
     if(video.readyState > 0) {
         var duration = video.duration;
-        console.log(duration);
         clearInterval(t);
     }
 }, 500);

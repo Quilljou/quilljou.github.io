@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>模仿苹果任务栏</title>
+    <style>
+      ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+      }
+      li {
+          display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><img src="img/mac1.png"/></li>
+      <li><img src="img/mac2.png"/></li>
+      <li><img src="img/mac3.png"/></li>
+      <li><img src="img/mac4.png"/></li>
+      <li><img src="img/mac5.png"/></li>
+      <li><img src="img/mac6.png"/></li>
+      <li><img src="img/mac7.png"/></li>
+      <li><img src="img/mac8.png"/></li>
+    </ul>
+    <script>
+      window.onload = function() {
+          var ul = document.getElementsByTagName('ul')[0];
+          console.log(ul);
+          var aImg = document.getElementsByTagName("img");
+          var aWidth = [];
+          var i = 0;
+          //保存原宽度, 并设置当前宽度
+          for (i = 0; i < aImg.length; i++) {
+              aWidth.push(aImg[i].offsetWidth);
+              aImg[i].width = parseInt(aImg[i].offsetWidth / 2);
+          }
+          //鼠标移动事件
+          document.onmousemove = function(event) {
+              var event = event || window.event;
+              for (i = 0; i < aImg.length; i++) {
+                  var a = event.clientX - aImg[i].offsetLeft - aImg[i].offsetWidth / 2;
+                  var b = event.clientY - aImg[i].offsetTop - ul.offsetTop - aImg[i].offsetHeight / 2;
+                  var iScale = 1 - Math.sqrt(a * a + b * b) / 300;
+                  console.log(iScale);
+                  if (iScale < 0.5) iScale = 0.5;
+                  aImg[i].width = aWidth[i] * iScale
+              }
+          };
+      }
+    </script>
+  </body>
+</html>

@@ -140,6 +140,7 @@
             flex: 0 0 80%;
             h1 {
                 font-size: 40px;
+                margin: -40px 0 20px 0;
             }
             h1 br {
                 display: none;
@@ -252,20 +253,19 @@
         height: 1120px;
     }
     .function-container {
-        -webkit-flex-direction: column;
-           -moz-box-orient: vertical;
-           -moz-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-                align-items: center;
+        flex-direction: column;
         .easy {
             height: 50%;
             width: 90%;
         }
         .iphones {
-            height: 50%;
+            // width: 100%;
+            overflow: hidden;
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            // overflow: hidden;
+            height: 50%;
             .iphone {
                 width: 179px;
                 height: 365px;
@@ -385,6 +385,10 @@
 
 // for mobile devices,smaller than iphone 6s plus
 @media (max-width: 450px) {
+
+    .header,.function,.purchase {
+        background: url(../img/bg-albums.png) repeat, linear-gradient(50deg, #ff4169 0, #7c26f8 100%) repeat;
+    }
     nav {
         height: 52px;
     }

@@ -17,16 +17,79 @@ window.onload = function() {
         }
     }
 
+        // fadeup animation
+       var fadeUpObjs = document.querySelectorAll('.willFadeUp');
+       console.log(fadeUpObjs);
+
+        window.onscroll = function() {
+            for(var i = 0; i < fadeUpObjs.length; i++ ) {
+            var scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
+
+                if(getOffsetY(fadeUpObjs[i]) <= scrollTarget.scrollTop + window.innerHeight + fadeUpObjs[i].clientHeight / 2) {
+                    //距离页面上端的高度 小于 滚动的高度 + 窗口的高度 + 自身的高度的时候开始fade
+                    fadeUpObjs[i].classList.add('fadeUp');
+                }
+            }
+        }
+
+        function getOffsetY(ele){
+            var current = ele;
+            var offsetY = 0;
+            while(current.offsetParent !== null) {
+                offsetY += current.offsetTop;
+                current = current.offsetParent;
+            }
+            return offsetY;
+        }
+
+
+
+
+    //album resize
+    square();
+    function square() {
+        var ablums = document.getElementById('ablums');
+        var features = document.getElementById('features');
+        if (window.innerWidth <= 768) {
+            ablumsWidth = ablums.offsetWidth;
+            ablums.style.height = ablumsWidth + "px";
+        }
+        if (window.innerWidth <= 500) {
+            features.style.height = '1178px';
+        }
+    }
+    window.addEventListener('resize', square, false);
+
+
     // scroll down btn
 
     for(var m = 0; m < g.scrollDown.length; m++) {
         g.scrollDown[m].onclick = function() {
-            scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
+            // scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
             // for firefox and chrome
-            console.log(this.parentNode.tagName.toLowerCase());
-            scrollTarget.scrollTop = this.parentNode.tagName.toLowerCase() === 'section'?this.parentNode.offsetTop:this.parentNode.parentNode.offsetTop;
+            var targetEle = this.parentNode.tagName.toLowerCase() === 'section'?this.parentNode:this.parentNode.parentNode;
+            scrollTo(targetEle,400);
         }
     }
+
+
+    function scrollTo(targetEle,duration){
+        var scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
+        if(duration<=0) {return};
+            var perTick = scrollTarget.scrollTop > targetEle.offsetTop ?scrollTarget.scrollTop - targetEle.offsetTop:targetEle.offsetTop - scrollTarget.scrollTop;
+            perTick = perTick / duration * 10;
+
+            setTimeout(function(){
+                if(scrollTarget.scrollTop === targetEle.offsetTop ) return;
+                if(scrollTarget.scrollTop > targetEle.offsetTop) {
+                    scrollTarget.scrollTop -= perTick;
+                }else {
+                    scrollTarget.scrollTop += perTick;
+                }
+                scrollTo(targetEle,duration-10)
+            },10)
+    }
+
 
     //ablum part
     for(var m = 0; m < g.ablums.length; m++) {
@@ -53,10 +116,11 @@ window.onload = function() {
     for(var z = 0; z < g.btnPlay.length; z++) {
         g.btnPlay[z].onclick = function() {
             var music = this.parentNode.getElementsByTagName('audio')[0];
-            var paths = this.getElementsByTagName('path');
+            var paths = this.querySelectorAll('.play-pause');
             var progress = this.parentNode.querySelector('#progress');
+            console.log(paths);
 
-            // switch paly and pause button
+            // switch paly and pause butto
             for(var i = 0;i < paths.length;i++) {paths[i].classList.toggle('hidden')};
 
             // play and pause

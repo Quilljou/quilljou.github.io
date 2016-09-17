@@ -5,8 +5,8 @@ var plumber = require('gulp-plumber');
 
 gulp.task('sass', function() {
     return gulp.src('src/sass/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('dist/css'))
+        .pipe(sass({outputStyle: 'compressed'}).on('error',sass.logError))
+        .pipe(gulp.dest('./dist/css/'))
         .pipe(browserSync.reload({
             stream: true
         }))

@@ -26,7 +26,8 @@ font-family: 'Open Sans',"Helvetica Neue", Helvetica, STHeiTi, sans-serif;
 
 
 /* variable*/
-$linear:  linear-gradient(50deg,rgba(#ff4169,0.7) 0,rgba(#7c26f8,0.7) 100%);
+// $linear:  url(../img/bg-albums.png) repeat, linear-gradient(50deg, rgba(255, 65, 105, 1) 0, rgba(124, 38, 248, 1) 100%) repeat;
+$linear: url(../img/noise.png);
 $hover-green: #A6E3D9;
 $purple: #7C25F8;
 
@@ -54,8 +55,9 @@ a {
 .bg-main {
     width: 100%;
     height: auto;
-    background: url(../img/bg-albums.png) repeat;
+    background: url(../img/bg-albums.png) repeat, linear-gradient(50deg, rgba(255, 65, 105, 1) 0, rgba(124, 38, 248, 1) 100%) repeat;
     background-attachment: fixed;
+    background-position: center center;
     // z-index: -99;
     position: relative;
 }
@@ -67,9 +69,29 @@ a {
     width: 1150px;
 }
 
+
+
+// fadeup animtion
+@keyframes fadeUp {
+    0% {
+        transform: translate3d(0,35px,0);
+    }
+    100% {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+.fadeUp {
+    animation: fadeUp 1s ease-in forwards;
+}
+.willFadeUp {
+    opacity: 0;
+}
 .hidden {
     display: none !important;
 }
+
+
 
 .btn-scroll-down {
     position: absolute;
@@ -227,17 +249,13 @@ a {
                             position: absolute;
                             top: 10%;
                             left: 15%;
-                            path {
-                                fill: rgba(#fff,0.8);
-                            }
+                            fill: rgba(#fff,0.8);
                         }
 
                         &:hover {
                             border-color: $hover-green;
                             svg {
-                                path {
-                                    fill: $hover-green;
-                                }
+                                fill: $hover-green;
                             }
                         }
 
@@ -328,7 +346,7 @@ a {
 /* header part*/
 .header {
     height: 760px;
-    background: url(../img/noise.png),$linear repeat;
+    background: $linear;
     width: 100%;
     text-align: center;
     .header-container {
@@ -368,7 +386,7 @@ a {
         align-items: center;
         h1 {
             color: #fff;
-            font-size: 101px;
+            font-size:90px;
             margin-top: -40px;
             margin-bottom: 50px;
         }
@@ -536,9 +554,17 @@ a {
             // display: none;
             justify-content: center;
             align-items: center;
+            .btn-holder {
+                @include circle(110px);
+                border: 2px solid #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
             svg {
-                width: 110px;
-                height: 110px;
+                width: 80%;
+                height: 80%;
+                fill: #fff;
             }
             .progress {
                 position: absolute;
@@ -617,6 +643,7 @@ a {
            -moz-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
+        justify-content: space-between;
         height: 100%;
         /* position: relative;*/
         .easy {
@@ -643,10 +670,11 @@ a {
             h3 {
                 color: #9BF0E1;
                 font-size: 2em;
-                margin: 0.4em 0;
+                margin: 0.5em 0;
             }
             p {
                 margin: 0.8em 0;
+                line-height: 120%;
             }
         }
 
@@ -967,8 +995,16 @@ a {
                     @include circle(50px);
                     background: #2E2F33;
                     text-align: center;
-                    font-size: 28px;
                 }
+                svg {
+                    width: 50%;
+                    height: 50px;
+                    fill : #fff;
+                    &:hover {
+                        fill: $hover-green;
+                    }
+                }
+
             }
             h3 {
                 color:rgba(#fff,0.8);
@@ -1042,11 +1078,13 @@ a {
 .navbar-right{
     position: fixed;
     height: 100%;
+    height: 100vh;
     width: 100%;
     z-index: 10;
     background: rgba(0,0,0,.5);
     top: 0;
     .navbar-right-cotent {
+        overflow: scroll;
         height: 100%;
         width: 60%;
         right: 0;
@@ -1056,8 +1094,6 @@ a {
         padding: 50px 30px;
         display: flex;
         flex-direction: column;
-        // justify-content: space-between;
-        overflow-y: scroll;
         .nav {
             font-size: 35px;
             font-weight: bold;

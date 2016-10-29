@@ -1,0 +1,559 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="A hackable text editor for the 21st Century">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atom 使用备忘">
+<meta property="og:url" content="https://quilljou.github.io/2016/10/29/Atom简明用法/index.html">
+<meta property="og:site_name" content="Quill's Blog">
+<meta property="og:description" content="A hackable text editor for the 21st Century">
+<meta property="og:updated_time" content="2016-10-29T05:33:37.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atom 使用备忘">
+<meta name="twitter:description" content="A hackable text editor for the 21st Century">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://quilljou.github.io/2016/10/29/Atom简明用法/"/>
+
+
+  <title> Atom 使用备忘 | Quill's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Quill's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Atom 使用备忘
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T11:49:14+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="由于sublime-text在ubuntu下无法输入中文始终没有最好的解决办法，所以转战atom-等待sublime解决好问题在回归，atom由gituhub开发，它的slogan是"><a href="#由于sublime-text在ubuntu下无法输入中文始终没有最好的解决办法，所以转战atom-等待sublime解决好问题在回归，atom由gituhub开发，它的slogan是" class="headerlink" title="由于sublime text在ubuntu下无法输入中文始终没有最好的解决办法，所以转战atom,等待sublime解决好问题在回归，atom由gituhub开发，它的slogan是"></a>由于sublime text在ubuntu下无法输入中文始终没有最好的解决办法，所以转战atom,等待sublime解决好问题在回归，atom由gituhub开发，它的slogan是</h4><blockquote>
+<p>A hackable text editor<br>for the 21st Century</p>
+</blockquote>
+<h2 id="安装atom"><a href="#安装atom" class="headerlink" title="安装atom"></a>安装atom</h2><p><a href="https://atom.io/" target="_blank" rel="external">atom官网</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/atom</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install atom</div></pre></td></tr></table></figure>
+<h2 id="atom的扩展包"><a href="#atom的扩展包" class="headerlink" title="atom的扩展包"></a>atom的扩展包</h2><p>├── api-docs@0.0.6<br>├── atom-autocomplete-php@0.19.4<br>├── atom-beautify@0.29.13<br>├── atom-bootstrap3@1.2.12<br>├── atom-html-preview@0.1.22<br>├── atom-jade@0.3.0<br>├── atom-jinja2@0.5.0<br>├── atom-live-server@1.2.5<br>├── atom-ternjs@0.15.0<br>├── autocomplete@0.47.0<br>├── autocomplete-clang@0.10.0<br>├── autocomplete-paths@1.0.2<br>├── autocomplete-python@1.8.7<br>├── autoprefixer@3.3.0<br>├── blade-snippets@0.2.0<br>├── block-comment-plus@0.4.0<br>├── build@0.65.0<br>├── busy@0.7.0<br>├── color-picker@2.2.2<br>├── css-snippets@1.1.0<br>├── emmet@2.4.3<br>├── file-icons@1.7.22<br>├── git-control@0.8.2<br>├── git-time-machine@1.5.3<br>├── highlight-selected@0.11.2<br>├── jade-autocompile@0.8.3<br>├── jade-beautify@0.1.5<br>├── jquery-snippets@11.0.0<br>├── language-blade@0.26.2<br>├── language-ini@1.16.0<br>├── language-pug@0.0.19<br>├── language-svg@0.9.0<br>├── language-twig@1.6.3<br>├── language-vue@0.19.0<br>├── less-than-slash@0.16.0<br>├── linter@1.11.18<br>├── linter-eslint@8.0.0<br>├── linter-gcc@0.6.15<br>├── linter-php@1.3.1<br>├── livestyle-atom@0.2.7<br>├── minimap@4.25.5<br>├── monokai-seti@0.7.0<br>├── node-debugger@1.9.1<br>├── open-in-browsers@0.0.19<br>├── php-server@0.7.0<br>├── pigments@0.37.0<br>├── platformio-ide@1.6.0<br>├── platformio-ide-terminal@2.2.0<br>├── python-debugger@0.1.0<br>├── python-indent@1.0.0<br>├── python-tools@0.6.8<br>├── sass-autocompile@0.13.1<br>├── script@3.10.1<br>├── seti-syntax@1.0.1<br>├── seti-ui@1.3.2<br>├── source-preview-pug@0.2.0<br>├── svg-preview@0.10.0<br>├── terminal-plus@0.14.5<br>├── todo-show@1.7.0<br>├── tool-bar@1.0.1<br>├── vue-autocomplete@0.1.1<br>└── vue-snippets@0.6.0</p>
+<p>└── (empty)</p>
+<h2 id="atom-sippets"><a href="#atom-sippets" class="headerlink" title="atom sippets"></a>atom sippets</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&apos;.source.coffee&apos;:</div><div class="line">  &apos;Console log&apos;:</div><div class="line">    &apos;prefix&apos;: &apos;log&apos;</div><div class="line">    &apos;body&apos;: &apos;console.log $1&apos;</div></pre></td></tr></table></figure>
+<p>atom使用cson来定义snippet，scope可以参见snipppet,多行代码使用<code>&#39;&#39;&#39;code line here&#39;&#39;&#39;</code></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://codeforgeek.com/2014/09/install-atom-editor-ubuntu-14-04/" target="_blank" rel="external">https://codeforgeek.com/2014/09/install-atom-editor-ubuntu-14-04/</a></li>
+<li><p>placeholder</p>
+</li>
+<li><p>各种语言的scope</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">ActionScript: source.actionscript.2</div><div class="line">AppleScript: source.applescript</div><div class="line">ASP: source.asp</div><div class="line">Batch FIle: source.dosbatch</div><div class="line">C#: source.cs</div><div class="line">C++: source.c++</div><div class="line">Clojure: source.clojure</div><div class="line">CoffeeScript: source.coffee</div><div class="line">CSS: source.css</div><div class="line">D: source.d</div><div class="line">Diff: source.diff</div><div class="line">Erlang: source.erlang</div><div class="line">Go: source.go</div><div class="line">GraphViz: source.dot</div><div class="line">Groovy: source.groovy</div><div class="line">Haskell: source.haskell</div><div class="line">HTML: text.html(.basic)</div><div class="line">JSP: text.html.jsp</div><div class="line">Java: source.java</div><div class="line">Java Properties: source.java-props</div><div class="line">Java Doc: text.html.javadoc</div><div class="line">JSON: source.json</div><div class="line">Javascript: source.js</div><div class="line">BibTex: source.bibtex</div><div class="line">Latex Log: text.log.latex</div><div class="line">Latex Memoir: text.tex.latex.memoir</div><div class="line">Latex: text.tex.latex</div><div class="line">LESS: source.css.less</div><div class="line">TeX: text.tex</div><div class="line">Lisp: source.lisp</div><div class="line">Lua: source.lua</div><div class="line">MakeFile: source.makefile</div><div class="line">Markdown: text.html.markdown</div><div class="line">Multi Markdown: text.html.markdown.multimarkdown</div><div class="line">Matlab: source.matlab</div><div class="line">Objective-C: source.objc</div><div class="line">Objective-C++: source.objc++</div><div class="line">OCaml campl4: source.camlp4.ocaml</div><div class="line">OCaml: source.ocaml</div><div class="line">OCamllex: source.ocamllex</div><div class="line">Perl: source.perl</div><div class="line">PHP: source.php</div><div class="line">Regular Expression(python): source.regexp.python</div><div class="line">Python: source.python</div><div class="line">R Console: source.r-console</div><div class="line">R: source.r</div><div class="line">Ruby on Rails: source.ruby.rails</div><div class="line">Ruby HAML: text.haml</div><div class="line">SQL(Ruby): source.sql.ruby</div><div class="line">Regular Expression: source.regexp</div><div class="line">RestructuredText: text.restructuredtext</div><div class="line">Ruby: source.ruby</div><div class="line">SASS: source.sass</div><div class="line">Scala: source.scala</div><div class="line">Shell Script: source.shell</div><div class="line">SQL: source.sql</div><div class="line">Stylus: source.stylus</div><div class="line">TCL: source.tcl</div><div class="line">HTML(TCL): text.html.tcl</div><div class="line">Plain text: text.plain</div><div class="line">Textile: text.html.textile</div><div class="line">XML: text.xml</div><div class="line">XSL: text.xml.xsl</div><div class="line">YAML: source.yaml</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/JavaScript变量，作用域和内存问题/" rel="next" title="变量，作用域和内存问题">
+                <i class="fa fa-chevron-left"></i> 变量，作用域和内存问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/29/关于style弹出层的思考/" rel="prev" title="Considerations about styling a modal">
+                Considerations about styling a modal <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Quill Jou" />
+          <p class="site-author-name" itemprop="name">Quill Jou</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#由于sublime-text在ubuntu下无法输入中文始终没有最好的解决办法，所以转战atom-等待sublime解决好问题在回归，atom由gituhub开发，它的slogan是"><span class="nav-number">1.</span> <span class="nav-text">由于sublime text在ubuntu下无法输入中文始终没有最好的解决办法，所以转战atom,等待sublime解决好问题在回归，atom由gituhub开发，它的slogan是</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装atom"><span class="nav-number"></span> <span class="nav-text">安装atom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atom的扩展包"><span class="nav-number"></span> <span class="nav-text">atom的扩展包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atom-sippets"><span class="nav-number"></span> <span class="nav-text">atom sippets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quill Jou</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

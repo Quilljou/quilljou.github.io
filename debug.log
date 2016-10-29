@@ -1,0 +1,371 @@
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Hexo version: \u001b[35m3.2.2\u001b[39m","time":"2016-10-29T02:58:34.884Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Working directory: \u001b[35m~/my-code/quilljou.github.io/\u001b[39m","time":"2016-10-29T02:58:34.890Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Config loaded: \u001b[35m~/my-code/quilljou.github.io/_config.yml\u001b[39m","time":"2016-10-29T02:58:35.082Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/merge-configs.js\u001b[39m","time":"2016-10-29T02:58:35.112Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/tags/center-quote.js\u001b[39m","time":"2016-10-29T02:58:35.114Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/tags/full-image.js\u001b[39m","time":"2016-10-29T02:58:35.117Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/tags/group-pictures.js\u001b[39m","time":"2016-10-29T02:58:35.121Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-archive\u001b[39m","time":"2016-10-29T02:58:35.128Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-category\u001b[39m","time":"2016-10-29T02:58:35.131Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-index\u001b[39m","time":"2016-10-29T02:58:35.138Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-tag\u001b[39m","time":"2016-10-29T02:58:35.143Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-ejs\u001b[39m","time":"2016-10-29T02:58:35.151Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-stylus\u001b[39m","time":"2016-10-29T02:58:35.159Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-marked\u001b[39m","time":"2016-10-29T02:58:35.172Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-server\u001b[39m","time":"2016-10-29T02:58:35.290Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Loading database.","time":"2016-10-29T02:58:35.316Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":30,"msg":"Start processing","time":"2016-10-29T02:58:35.402Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35m_posts/hello-world.md\u001b[39m","time":"2016-10-29T02:58:35.645Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Theme config loaded.","time":"2016-10-29T02:58:35.737Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35m_config.yml\u001b[39m","time":"2016-10-29T02:58:35.738Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/css/main.styl\u001b[39m","time":"2016-10-29T02:58:35.751Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/avatar.gif\u001b[39m","time":"2016-10-29T02:58:35.752Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc-nd.svg\u001b[39m","time":"2016-10-29T02:58:35.753Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc-sa.svg\u001b[39m","time":"2016-10-29T02:58:35.754Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc.svg\u001b[39m","time":"2016-10-29T02:58:35.755Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nd.svg\u001b[39m","time":"2016-10-29T02:58:35.756Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-sa.svg\u001b[39m","time":"2016-10-29T02:58:35.757Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by.svg\u001b[39m","time":"2016-10-29T02:58:35.758Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/cc-zero.svg\u001b[39m","time":"2016-10-29T02:58:35.759Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/loading.gif\u001b[39m","time":"2016-10-29T02:58:35.761Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/placeholder.gif\u001b[39m","time":"2016-10-29T02:58:35.763Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/quote-l.svg\u001b[39m","time":"2016-10-29T02:58:35.764Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/quote-r.svg\u001b[39m","time":"2016-10-29T02:58:35.764Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/images/searchicon.png\u001b[39m","time":"2016-10-29T02:58:35.766Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_layout.swig\u001b[39m","time":"2016-10-29T02:58:36.176Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/archive.swig\u001b[39m","time":"2016-10-29T02:58:36.177Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/category.swig\u001b[39m","time":"2016-10-29T02:58:36.177Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/index.swig\u001b[39m","time":"2016-10-29T02:58:36.177Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/page.swig\u001b[39m","time":"2016-10-29T02:58:36.177Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/post.swig\u001b[39m","time":"2016-10-29T02:58:36.178Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/schedule.swig\u001b[39m","time":"2016-10-29T02:58:36.178Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/tag.swig\u001b[39m","time":"2016-10-29T02:58:36.178Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/de.yml\u001b[39m","time":"2016-10-29T02:58:36.183Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/default.yml\u001b[39m","time":"2016-10-29T02:58:36.183Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/en.yml\u001b[39m","time":"2016-10-29T02:58:36.183Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/fr-FR.yml\u001b[39m","time":"2016-10-29T02:58:36.184Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/id.yml\u001b[39m","time":"2016-10-29T02:58:36.184Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/ja.yml\u001b[39m","time":"2016-10-29T02:58:36.184Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/ko.yml\u001b[39m","time":"2016-10-29T02:58:36.185Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/pt-BR.yml\u001b[39m","time":"2016-10-29T02:58:36.185Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/pt.yml\u001b[39m","time":"2016-10-29T02:58:36.185Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/ru.yml\u001b[39m","time":"2016-10-29T02:58:36.185Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-Hans.yml\u001b[39m","time":"2016-10-29T02:58:36.185Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-hk.yml\u001b[39m","time":"2016-10-29T02:58:36.186Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-tw.yml\u001b[39m","time":"2016-10-29T02:58:36.186Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/affix.js\u001b[39m","time":"2016-10-29T02:58:36.203Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/bootstrap.js\u001b[39m","time":"2016-10-29T02:58:36.204Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/hook-duoshuo.js\u001b[39m","time":"2016-10-29T02:58:36.204Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/motion.js\u001b[39m","time":"2016-10-29T02:58:36.205Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/post-details.js\u001b[39m","time":"2016-10-29T02:58:36.208Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/scrollspy.js\u001b[39m","time":"2016-10-29T02:58:36.209Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/utils.js\u001b[39m","time":"2016-10-29T02:58:36.210Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/LICENSE\u001b[39m","time":"2016-10-29T02:58:36.219Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/README.md\u001b[39m","time":"2016-10-29T02:58:36.220Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/bower.json\u001b[39m","time":"2016-10-29T02:58:36.221Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/HELP-US-OUT.txt\u001b[39m","time":"2016-10-29T02:58:36.222Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/bower.json\u001b[39m","time":"2016-10-29T02:58:36.223Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/CONTRIBUTING.md\u001b[39m","time":"2016-10-29T02:58:36.224Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/README.md\u001b[39m","time":"2016-10-29T02:58:36.227Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/bower.json\u001b[39m","time":"2016-10-29T02:58:36.228Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/jquery.lazyload.js\u001b[39m","time":"2016-10-29T02:58:36.230Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/jquery.scrollstop.js\u001b[39m","time":"2016-10-29T02:58:36.230Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/bower.json\u001b[39m","time":"2016-10-29T02:58:36.233Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.min.js\u001b[39m","time":"2016-10-29T02:58:36.234Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.ui.js\u001b[39m","time":"2016-10-29T02:58:36.234Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.ui.min.js\u001b[39m","time":"2016-10-29T02:58:36.235Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery/index.js\u001b[39m","time":"2016-10-29T02:58:36.292Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post-collapse.swig\u001b[39m","time":"2016-10-29T02:58:36.378Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post.swig\u001b[39m","time":"2016-10-29T02:58:36.378Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/reward.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/sidebar.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/wechat-subscriber.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/comments.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/duoshuo-hot-articles.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/footer.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/header.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/pagination.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search.swig\u001b[39m","time":"2016-10-29T02:58:36.379Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/baidu-push.swig\u001b[39m","time":"2016-10-29T02:58:36.380Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/boostrap.swig\u001b[39m","time":"2016-10-29T02:58:36.380Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/commons.swig\u001b[39m","time":"2016-10-29T02:58:36.380Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/vendors.swig\u001b[39m","time":"2016-10-29T02:58:36.380Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/js/src/schemes/pisces.js\u001b[39m","time":"2016-10-29T02:58:36.387Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/blank.gif\u001b[39m","time":"2016-10-29T02:58:36.388Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_loading.gif\u001b[39m","time":"2016-10-29T02:58:36.390Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_loading@2x.gif\u001b[39m","time":"2016-10-29T02:58:36.391Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_overlay.png\u001b[39m","time":"2016-10-29T02:58:36.392Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_sprite.png\u001b[39m","time":"2016-10-29T02:58:36.393Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_sprite@2x.png\u001b[39m","time":"2016-10-29T02:58:36.394Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/jquery.fancybox.css\u001b[39m","time":"2016-10-29T02:58:36.394Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/jquery.fancybox.js\u001b[39m","time":"2016-10-29T02:58:36.395Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/jquery.fancybox.pack.js\u001b[39m","time":"2016-10-29T02:58:36.395Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/lib/fastclick.js\u001b[39m","time":"2016-10-29T02:58:36.396Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/lib/fastclick.min.js\u001b[39m","time":"2016-10-29T02:58:36.396Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/css/font-awesome.css\u001b[39m","time":"2016-10-29T02:58:36.397Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/css/font-awesome.css.map\u001b[39m","time":"2016-10-29T02:58:36.398Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/css/font-awesome.min.css\u001b[39m","time":"2016-10-29T02:58:36.399Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.woff2\u001b[39m","time":"2016-10-29T02:58:36.399Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/ua-parser-js/dist/ua-parser.min.js\u001b[39m","time":"2016-10-29T02:58:36.400Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/ua-parser-js/dist/ua-parser.pack.js\u001b[39m","time":"2016-10-29T02:58:36.400Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/mist.swig\u001b[39m","time":"2016-10-29T02:58:36.405Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/muse.swig\u001b[39m","time":"2016-10-29T02:58:36.405Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/FontAwesome.otf\u001b[39m","time":"2016-10-29T02:58:36.406Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.eot\u001b[39m","time":"2016-10-29T02:58:36.407Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.woff\u001b[39m","time":"2016-10-29T02:58:36.407Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.js\u001b[39m","time":"2016-10-29T02:58:36.407Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head/external-fonts.swig\u001b[39m","time":"2016-10-29T02:58:36.438Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/localsearch.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/swiftype.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/tinysou.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/add-this.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/baidushare.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/duoshuo_share.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/jiathis.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/pages/post-details.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/pisces.swig\u001b[39m","time":"2016-10-29T02:58:36.439Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics.swig\u001b[39m","time":"2016-10-29T02:58:36.440Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/comments.swig\u001b[39m","time":"2016-10-29T02:58:36.440Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/lean-analytics.swig\u001b[39m","time":"2016-10-29T02:58:36.440Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/localsearch.swig\u001b[39m","time":"2016-10-29T02:58:36.440Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/mathjax.swig\u001b[39m","time":"2016-10-29T02:58:36.440Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/schedule.swig\u001b[39m","time":"2016-10-29T02:58:36.441Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/tinysou.swig\u001b[39m","time":"2016-10-29T02:58:36.441Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/fancybox_buttons.png\u001b[39m","time":"2016-10-29T02:58:36.457Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-buttons.css\u001b[39m","time":"2016-10-29T02:58:36.459Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-buttons.js\u001b[39m","time":"2016-10-29T02:58:36.460Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-media.js\u001b[39m","time":"2016-10-29T02:58:36.460Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-thumbs.css\u001b[39m","time":"2016-10-29T02:58:36.461Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-thumbs.js\u001b[39m","time":"2016-10-29T02:58:36.462Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.ttf\u001b[39m","time":"2016-10-29T02:58:36.463Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/baidu-analytics.swig\u001b[39m","time":"2016-10-29T02:58:36.483Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/busuanzi-counter.swig\u001b[39m","time":"2016-10-29T02:58:36.483Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/cnzz-analytics.swig\u001b[39m","time":"2016-10-29T02:58:36.483Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/facebook-sdk.swig\u001b[39m","time":"2016-10-29T02:58:36.483Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/tencent-analytics.swig\u001b[39m","time":"2016-10-29T02:58:36.484Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/comments/disqus.swig\u001b[39m","time":"2016-10-29T02:58:36.484Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/comments/duoshuo.swig\u001b[39m","time":"2016-10-29T02:58:36.484Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/google-analytics.swig\u001b[39m","time":"2016-10-29T02:58:36.485Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.svg\u001b[39m","time":"2016-10-29T02:58:36.488Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T02:58:37.035Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T02:58:37.035Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T02:58:37.035Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T02:58:37.035Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T02:58:37.036Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T02:58:37.036Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T02:58:37.044Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":30,"msg":"Hexo is running at \u001b[4mhttp://localhost:4000/\u001b[24m. Press Ctrl+C to stop.","time":"2016-10-29T02:58:37.057Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Database saved","time":"2016-10-29T02:58:37.117Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T02:58:43.435Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T02:58:52.524Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T02:58:55.671Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering archive: \u001b[35marchives/index.html\u001b[39m","time":"2016-10-29T02:59:04.138Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T02:59:18.393Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:02:30.133Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering archive: \u001b[35marchives/index.html\u001b[39m","time":"2016-10-29T03:02:33.767Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Theme config loaded.","time":"2016-10-29T03:04:00.574Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35m_config.yml\u001b[39m","time":"2016-10-29T03:04:00.575Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T03:04:00.697Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T03:04:00.697Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T03:04:00.697Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T03:04:00.698Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T03:04:00.698Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T03:04:00.698Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T03:04:00.702Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:04:14.569Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Theme config loaded.","time":"2016-10-29T03:04:53.394Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35m_config.yml\u001b[39m","time":"2016-10-29T03:04:53.395Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T03:04:53.513Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T03:04:53.513Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T03:04:53.514Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T03:04:53.514Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T03:04:53.514Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T03:04:53.514Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T03:04:53.516Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:12:58.271Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:16:01.030Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-Hans.yml\u001b[39m","time":"2016-10-29T03:18:19.956Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T03:18:20.072Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T03:18:20.072Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T03:18:20.073Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T03:18:20.073Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T03:18:20.073Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T03:18:20.073Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T03:18:20.077Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:18:25.748Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Theme config loaded.","time":"2016-10-29T03:18:49.690Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Processed: \u001b[35m_config.yml\u001b[39m","time":"2016-10-29T03:18:49.690Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T03:18:49.807Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T03:18:49.808Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T03:18:49.808Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T03:18:49.808Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T03:18:49.808Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T03:18:49.809Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T03:18:49.814Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:18:51.935Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:19:41.603Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:21:07.972Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:21:12.841Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":30,"msg":"Farewell","time":"2016-10-29T03:21:19.829Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":18928,"level":20,"msg":"Database saved","time":"2016-10-29T03:21:19.871Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Hexo version: \u001b[35m3.2.2\u001b[39m","time":"2016-10-29T03:21:25.194Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Working directory: \u001b[35m~/my-code/quilljou.github.io/\u001b[39m","time":"2016-10-29T03:21:25.200Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Config loaded: \u001b[35m~/my-code/quilljou.github.io/_config.yml\u001b[39m","time":"2016-10-29T03:21:25.374Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/merge-configs.js\u001b[39m","time":"2016-10-29T03:21:25.393Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/tags/center-quote.js\u001b[39m","time":"2016-10-29T03:21:25.393Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/tags/full-image.js\u001b[39m","time":"2016-10-29T03:21:25.395Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Script loaded: \u001b[35mthemes/next/scripts/tags/group-pictures.js\u001b[39m","time":"2016-10-29T03:21:25.397Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-archive\u001b[39m","time":"2016-10-29T03:21:25.403Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-category\u001b[39m","time":"2016-10-29T03:21:25.406Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-index\u001b[39m","time":"2016-10-29T03:21:25.410Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-tag\u001b[39m","time":"2016-10-29T03:21:25.413Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-ejs\u001b[39m","time":"2016-10-29T03:21:25.421Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-stylus\u001b[39m","time":"2016-10-29T03:21:25.426Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-marked\u001b[39m","time":"2016-10-29T03:21:25.441Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-server\u001b[39m","time":"2016-10-29T03:21:25.592Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Loading database.","time":"2016-10-29T03:21:25.605Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":30,"msg":"Start processing","time":"2016-10-29T03:21:25.700Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35m_posts/hello-world.md\u001b[39m","time":"2016-10-29T03:21:25.908Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Theme config loaded.","time":"2016-10-29T03:21:26.034Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35m_config.yml\u001b[39m","time":"2016-10-29T03:21:26.045Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/css/main.styl\u001b[39m","time":"2016-10-29T03:21:26.045Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/avatar.gif\u001b[39m","time":"2016-10-29T03:21:26.046Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc-nd.svg\u001b[39m","time":"2016-10-29T03:21:26.047Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc-sa.svg\u001b[39m","time":"2016-10-29T03:21:26.049Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc.svg\u001b[39m","time":"2016-10-29T03:21:26.049Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nd.svg\u001b[39m","time":"2016-10-29T03:21:26.051Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-sa.svg\u001b[39m","time":"2016-10-29T03:21:26.052Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by.svg\u001b[39m","time":"2016-10-29T03:21:26.052Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/cc-zero.svg\u001b[39m","time":"2016-10-29T03:21:26.053Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/loading.gif\u001b[39m","time":"2016-10-29T03:21:26.053Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/placeholder.gif\u001b[39m","time":"2016-10-29T03:21:26.054Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/quote-l.svg\u001b[39m","time":"2016-10-29T03:21:26.054Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/quote-r.svg\u001b[39m","time":"2016-10-29T03:21:26.055Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/images/searchicon.png\u001b[39m","time":"2016-10-29T03:21:26.056Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_layout.swig\u001b[39m","time":"2016-10-29T03:21:26.388Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/archive.swig\u001b[39m","time":"2016-10-29T03:21:26.388Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/category.swig\u001b[39m","time":"2016-10-29T03:21:26.388Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/index.swig\u001b[39m","time":"2016-10-29T03:21:26.388Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/page.swig\u001b[39m","time":"2016-10-29T03:21:26.389Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/post.swig\u001b[39m","time":"2016-10-29T03:21:26.389Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/schedule.swig\u001b[39m","time":"2016-10-29T03:21:26.389Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/tag.swig\u001b[39m","time":"2016-10-29T03:21:26.389Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/de.yml\u001b[39m","time":"2016-10-29T03:21:26.412Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/default.yml\u001b[39m","time":"2016-10-29T03:21:26.412Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/en.yml\u001b[39m","time":"2016-10-29T03:21:26.412Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/fr-FR.yml\u001b[39m","time":"2016-10-29T03:21:26.412Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/id.yml\u001b[39m","time":"2016-10-29T03:21:26.413Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/ja.yml\u001b[39m","time":"2016-10-29T03:21:26.413Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/ko.yml\u001b[39m","time":"2016-10-29T03:21:26.413Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/pt-BR.yml\u001b[39m","time":"2016-10-29T03:21:26.413Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/pt.yml\u001b[39m","time":"2016-10-29T03:21:26.414Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/ru.yml\u001b[39m","time":"2016-10-29T03:21:26.415Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-hk.yml\u001b[39m","time":"2016-10-29T03:21:26.415Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-tw.yml\u001b[39m","time":"2016-10-29T03:21:26.415Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-Hans.yml\u001b[39m","time":"2016-10-29T03:21:26.415Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/affix.js\u001b[39m","time":"2016-10-29T03:21:26.417Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/bootstrap.js\u001b[39m","time":"2016-10-29T03:21:26.419Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/hook-duoshuo.js\u001b[39m","time":"2016-10-29T03:21:26.419Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/motion.js\u001b[39m","time":"2016-10-29T03:21:26.420Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/post-details.js\u001b[39m","time":"2016-10-29T03:21:26.421Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/scrollspy.js\u001b[39m","time":"2016-10-29T03:21:26.422Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/utils.js\u001b[39m","time":"2016-10-29T03:21:26.423Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/LICENSE\u001b[39m","time":"2016-10-29T03:21:26.425Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/README.md\u001b[39m","time":"2016-10-29T03:21:26.426Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/bower.json\u001b[39m","time":"2016-10-29T03:21:26.426Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/HELP-US-OUT.txt\u001b[39m","time":"2016-10-29T03:21:26.428Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/bower.json\u001b[39m","time":"2016-10-29T03:21:26.429Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/CONTRIBUTING.md\u001b[39m","time":"2016-10-29T03:21:26.429Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/README.md\u001b[39m","time":"2016-10-29T03:21:26.430Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/bower.json\u001b[39m","time":"2016-10-29T03:21:26.431Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/jquery.lazyload.js\u001b[39m","time":"2016-10-29T03:21:26.431Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery_lazyload/jquery.scrollstop.js\u001b[39m","time":"2016-10-29T03:21:26.433Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/bower.json\u001b[39m","time":"2016-10-29T03:21:26.434Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.min.js\u001b[39m","time":"2016-10-29T03:21:26.435Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.ui.js\u001b[39m","time":"2016-10-29T03:21:26.435Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.ui.min.js\u001b[39m","time":"2016-10-29T03:21:26.436Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/jquery/index.js\u001b[39m","time":"2016-10-29T03:21:26.466Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post-collapse.swig\u001b[39m","time":"2016-10-29T03:21:26.549Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post.swig\u001b[39m","time":"2016-10-29T03:21:26.549Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/reward.swig\u001b[39m","time":"2016-10-29T03:21:26.549Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/sidebar.swig\u001b[39m","time":"2016-10-29T03:21:26.549Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/wechat-subscriber.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/comments.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/duoshuo-hot-articles.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/footer.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/header.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/pagination.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/baidu-push.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/boostrap.swig\u001b[39m","time":"2016-10-29T03:21:26.550Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/commons.swig\u001b[39m","time":"2016-10-29T03:21:26.551Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/vendors.swig\u001b[39m","time":"2016-10-29T03:21:26.551Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/js/src/schemes/pisces.js\u001b[39m","time":"2016-10-29T03:21:26.564Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/blank.gif\u001b[39m","time":"2016-10-29T03:21:26.565Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_loading.gif\u001b[39m","time":"2016-10-29T03:21:26.566Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_loading@2x.gif\u001b[39m","time":"2016-10-29T03:21:26.567Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_overlay.png\u001b[39m","time":"2016-10-29T03:21:26.568Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_sprite.png\u001b[39m","time":"2016-10-29T03:21:26.568Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/fancybox_sprite@2x.png\u001b[39m","time":"2016-10-29T03:21:26.569Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/jquery.fancybox.css\u001b[39m","time":"2016-10-29T03:21:26.569Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/jquery.fancybox.js\u001b[39m","time":"2016-10-29T03:21:26.570Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/jquery.fancybox.pack.js\u001b[39m","time":"2016-10-29T03:21:26.572Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/lib/fastclick.js\u001b[39m","time":"2016-10-29T03:21:26.573Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fastclick/lib/fastclick.min.js\u001b[39m","time":"2016-10-29T03:21:26.573Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/css/font-awesome.css\u001b[39m","time":"2016-10-29T03:21:26.573Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/css/font-awesome.css.map\u001b[39m","time":"2016-10-29T03:21:26.574Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/css/font-awesome.min.css\u001b[39m","time":"2016-10-29T03:21:26.574Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.woff2\u001b[39m","time":"2016-10-29T03:21:26.574Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/ua-parser-js/dist/ua-parser.min.js\u001b[39m","time":"2016-10-29T03:21:26.575Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/ua-parser-js/dist/ua-parser.pack.js\u001b[39m","time":"2016-10-29T03:21:26.575Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/mist.swig\u001b[39m","time":"2016-10-29T03:21:26.581Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/muse.swig\u001b[39m","time":"2016-10-29T03:21:26.582Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/FontAwesome.otf\u001b[39m","time":"2016-10-29T03:21:26.583Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.eot\u001b[39m","time":"2016-10-29T03:21:26.583Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.woff\u001b[39m","time":"2016-10-29T03:21:26.584Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/velocity/velocity.js\u001b[39m","time":"2016-10-29T03:21:26.584Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head/external-fonts.swig\u001b[39m","time":"2016-10-29T03:21:26.608Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/add-this.swig\u001b[39m","time":"2016-10-29T03:21:26.609Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/baidushare.swig\u001b[39m","time":"2016-10-29T03:21:26.609Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/duoshuo_share.swig\u001b[39m","time":"2016-10-29T03:21:26.609Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/jiathis.swig\u001b[39m","time":"2016-10-29T03:21:26.609Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/pages/post-details.swig\u001b[39m","time":"2016-10-29T03:21:26.609Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/pisces.swig\u001b[39m","time":"2016-10-29T03:21:26.610Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics.swig\u001b[39m","time":"2016-10-29T03:21:26.610Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/comments.swig\u001b[39m","time":"2016-10-29T03:21:26.610Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/lean-analytics.swig\u001b[39m","time":"2016-10-29T03:21:26.610Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/localsearch.swig\u001b[39m","time":"2016-10-29T03:21:26.610Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/mathjax.swig\u001b[39m","time":"2016-10-29T03:21:26.611Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/schedule.swig\u001b[39m","time":"2016-10-29T03:21:26.611Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/tinysou.swig\u001b[39m","time":"2016-10-29T03:21:26.611Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/localsearch.swig\u001b[39m","time":"2016-10-29T03:21:26.612Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/swiftype.swig\u001b[39m","time":"2016-10-29T03:21:26.612Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/tinysou.swig\u001b[39m","time":"2016-10-29T03:21:26.612Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/fancybox_buttons.png\u001b[39m","time":"2016-10-29T03:21:26.617Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-buttons.css\u001b[39m","time":"2016-10-29T03:21:26.618Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-buttons.js\u001b[39m","time":"2016-10-29T03:21:26.619Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-media.js\u001b[39m","time":"2016-10-29T03:21:26.619Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-thumbs.css\u001b[39m","time":"2016-10-29T03:21:26.620Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/fancybox/source/helpers/jquery.fancybox-thumbs.js\u001b[39m","time":"2016-10-29T03:21:26.622Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.ttf\u001b[39m","time":"2016-10-29T03:21:26.622Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/baidu-analytics.swig\u001b[39m","time":"2016-10-29T03:21:26.636Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/busuanzi-counter.swig\u001b[39m","time":"2016-10-29T03:21:26.637Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/cnzz-analytics.swig\u001b[39m","time":"2016-10-29T03:21:26.637Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/facebook-sdk.swig\u001b[39m","time":"2016-10-29T03:21:26.637Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/google-analytics.swig\u001b[39m","time":"2016-10-29T03:21:26.637Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/analytics/tencent-analytics.swig\u001b[39m","time":"2016-10-29T03:21:26.638Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/comments/disqus.swig\u001b[39m","time":"2016-10-29T03:21:26.638Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/third-party/comments/duoshuo.swig\u001b[39m","time":"2016-10-29T03:21:26.638Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Processed: \u001b[35msource/vendors/font-awesome/fonts/fontawesome-webfont.svg\u001b[39m","time":"2016-10-29T03:21:26.640Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T03:21:27.031Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T03:21:27.031Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T03:21:27.031Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T03:21:27.032Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T03:21:27.032Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T03:21:27.032Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T03:21:27.035Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":30,"msg":"Hexo is running at \u001b[4mhttp://localhost:4000/\u001b[24m. Press Ctrl+C to stop.","time":"2016-10-29T03:21:27.047Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Database saved","time":"2016-10-29T03:21:27.077Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":20407,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T03:21:28.927Z","v":0}

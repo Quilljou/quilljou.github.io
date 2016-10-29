@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>数组练习,各种数组方法的使用</title>
+    <style>
+      p {
+          color: green;
+          border: 1px solid #ccc;
+          background: #f0f0f0;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <p>January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)</p>
+    <input type="button" value="删除January(1)"/>
+    <input type="button" value="删除December(12)"/>
+    <p>0,1,2,3,4,5,6,7,8,9</p>
+    <input type="button" value="复制"/>
+    <input type="button" value="还原"/>
+    <p>red,green,blue,white,yellow,black,brown</p>
+    <input type="button" value="还原"/>
+    <input type="button" value="删除前三项"/>
+    <input type="button" value="删除第二至三项"/>
+    <input type="button" value="在第二项后插入(orange,purple)"/>
+    <input type="button" value="替换第二至三项"/>
+    <script>
+      window.onload = function(){
+          var ps = document.getElementsByTagName('p');
+          var btns = document.getElementsByTagName('input');
+          var booleans = {
+              btn0 : true,
+              btn1 : true
+          };
+          var swaps = {
+              swap0 : '',
+              swap1 : ''
+          };
+          
+          btns[0].onclick = function() {
+              var monthsA = ps[0].innerText.trim().split(',')
+              //- 将字符串转换成数组
+              if(booleans.btn0){
+                  var jan = monthsA.shift()
+                  swaps.swap0 = jan;
+                  booleans.btn0 = false;                        
+              }else {
+                  monthsA.unshift(swaps.swap0);    
+                  booleans.btn0 = true;                        
+              }
+              this.value = this.value === '删除January(1)' ? '添加January(1)' : '删除January(1)';
+              ps[0].innerText = monthsA.join(',');
+              
+              //- 将数组装换成字符串
+          }
+          
+          
+          btns[1].onclick = function() {
+              var monthsA = ps[0].innerText.trim().split(',');
+              //- 将字符串转换成数组
+              if(booleans.btn1){
+                  var jan = monthsA.pop()
+                  swaps.swap1 = jan;
+                  booleans.btn1 = false;                        
+              }else {
+                  monthsA.push(swaps.swap1);    
+                  booleans.btn1 = true;                        
+              }
+              console.log(monthsA);
+              this.value = this.value === '删除December(12)' ? '添加December(12)' : '删除December(12)';
+              ps[0].innerText = monthsA.join(',');
+              //- 将数组装换成字符串
+          }
+          
+          
+          var numSwap = ps[1].innerText.trim().split(',');
+          var numArray = numSwap.slice(0);  /*复制数组*/
+          btns[2].onclick = function() {
+              numSwap.forEach(function(item){
+                  numArray.push(item);
+              })
+              ps[1].innerText = numArray.toString();
+          }
+          
+          
+          btns[3].onclick = function() {
+              ps[1].innerText = numSwap.toString();
+          }
+          
+          
+          var colors = ps[2].innerText.trim().split(',');
+          var backup = colors.slice(0);
+          
+          btns[4].onclick = function() {
+              colors = backup.slice(0);
+              ps[2].innerText = colors.toString();
+          }
+      
+          btns[5].onclick = function() {
+              colors.splice(0,3)
+              ps[2].innerText = colors.toString();
+          }
+      
+      
+          btns[6].onclick = function() {
+              colors.splice(1,2)
+              ps[2].innerText = colors.toString();
+          }
+      
+      
+          btns[7].onclick = function() {
+              colors.splice(1,0,'orange','purple')
+              ps[2].innerText = colors.toString();
+          }
+          
+          btns[8].onclick = function() {
+              colors.splice(1,2,'orange','purple')
+              ps[2].innerText = colors.toString();
+          }
+      
+      }
+    </script>
+  </body>
+</html>

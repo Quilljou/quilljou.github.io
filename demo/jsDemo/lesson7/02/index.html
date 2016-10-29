@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>带Loading效果的图片加载效果</title>
+    <style>
+      body {
+          background: #111;
+      }
+      .wrap {
+          width: 800px;
+          margin: 0 auto;
+          background: #000;
+          position: relative;
+          height: 600px;
+      }
+      .title {
+          width: 100%;
+          background: rgba(0,0,0,0.5);
+          color: #fff;
+          text-align: center;
+          left: 0;
+          position: absolute;
+          top: 0;
+          height: 50px;
+          z-index: 1;
+          padding: 15px 0;
+      }
+      .img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+      }
+      * {
+          box-sizing: border-box;
+      }
+      .loading {
+          position: absolute;
+          border: 10px solid transparent;
+          border-bottom-color: tomato;
+          height: 100px;
+          width: 100px;
+          border-radius: 100%;
+          background: rgba(255,255,255,0.5);
+          animation: load 1.5s linear infinite;
+          top: 50%;
+          left: 50%;
+          //- transform: translate(-50%,-50%);
+          margin: -50px 0 0 -50px;
+          
+      }
+      .img img {
+          width: 100%;
+          height: 100%;
+      }
+      @keyframes load {
+          from {
+              transform: rotate(0deg);
+          }
+          to {
+              transform: rotate(360deg);
+          }
+      }
+      .mask-left,.mask-right {
+          //- background: rgba(0,0,0,0.5);
+          position: absolute;
+          width: 50%;
+          height: 100%;
+          top: 0;
+          z-index: 1;
+                          
+      }
+      .mask-left:hover span,.mask-right:hover span{
+          display: block;
+          cusror: pointer;
+      }
+      .mask-left {
+          left: 0;
+      }
+      .mask-right {
+          right: 0;
+      }
+      .mask-right span,.mask-left span {
+          display: none;
+          width: 50px;
+          line-height： 100px;
+          height: 100px;
+          text-align: center;
+          vertical-align: middle;
+          //- display: block;
+          font-size: 76px;
+          border-radius: 8px;
+          color: #fff;
+          position: absolute;
+          opacity: 0.5;
+          top: 50%;
+          background: rgb(14, 14, 12);
+          transform: translateY(-50%);
+          cursor: pointer;
+      }
+      .mask-right span {
+          right: 30px;
+      }
+      
+      .mask-left span {
+          left: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="title">test</div>
+      <div class="img">
+        <div class="loading"></div>
+      </div>
+      <div class="mask-left"><span>‹</span></div>
+      <div class="mask-right"><span>›</span></div>
+    </div>
+    <script>
+      window.onload = function() {
+          var aData = [{
+              "imgSrc": "http://img1.gtimg.com/news/pics/hv1/106/238/825/53706421.jpg",
+              "title": "7月26日，吊车将事故现场的车头残片吊至大型运输车辆上。"
+          }, {
+              "imgSrc": "http://img1.gtimg.com/news/pics/hv1/105/238/825/53706420.jpg",
+              "title": "7月26日，一辆大卡车准备驶离事故现场。"
+          }, {
+              "imgSrc": "http://img1.gtimg.com/news/pics/hv1/101/238/825/53706416.jpg",
+              "title": "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"
+          }, {
+              "imgSrc": "http://img1.gtimg.com/news/pics/hv1/99/238/825/53706414.jpg",
+              "title": "7月26日，一名工人在事故现场最后一节车厢上作业。"
+          }, {
+              "imgSrc": "http://img1.gtimg.com/news/pics/hv1/100/238/825/53706415.jpg",
+              "title": "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"
+          }];
+          var next = 0;
+          var left = document.querySelector('.mask-left span');
+          var right = document.querySelector('.mask-right span');
+          var loading = document.querySelector('.loading');
+          var title = document.querySelector('.title');
+          var imgBox = document.querySelector('.img');
+          var img = new Image();
+          
+          function loadImg() {
+              loading.style.display = 'block';
+              img.src = aData[next].imgSrc;
+              title.innerHTML = aData[next].title;
+              img.onload = function(){
+                  loading.style.display = 'none';
+                  imgBox.appendChild(img);
+              }
+          }
+          
+          left.onclick = function(){
+              if(next<=0){
+                  alert('这是第一张了')
+              }else {
+                  next--
+              }
+              loadImg();
+          }
+          right.onclick = function(){
+              if(next>=aData.length -1){
+                  alert('最后一张了')
+              }else {
+                  next++
+              }
+              loadImg();
+          }
+          loadImg();
+      }
+              
+    </script>
+  </body>
+</html>

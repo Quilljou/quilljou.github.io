@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Settimeout应用</title>
+    <style>
+      * {
+          box-sizing: border-box;
+      }
+      li {
+          list-style: none;
+      }
+      ul {
+          padding: 0;
+          margin: 0;
+      }
+      .nav {
+          width: 900px;
+          margin: 0 auto;
+          border-radius: 6px;
+          height: 40px;
+          background: linear-gradient(to bottom,rgb(43, 113, 218),rgb(33, 70, 180));
+          padding: 7px 30px;
+          box-sizing: border-box;
+          text-align: center;
+      }
+      .nav > li {
+          display: inline-block;
+          width: 100px;
+          color: #fff;
+          border-radius: 5px;
+          position: relative;
+      
+      }
+      .nav > li > a {
+          color: #fff;
+          text-decoration: none;
+          display: block;
+          height: 100%;
+          width: 100%;
+      }
+      .nav > li:hover {
+          background: rgb(105, 182, 215);
+      }
+      
+      .subnav {
+          display: none;
+          height: 30px;
+          position: absolute;
+          top: 35px;
+          left: 0;
+          background: linear-gradient(to bottom,rgb(96, 166, 246),rgb(68, 205, 193));
+          border-radius: 6px;
+          text-align: center;
+      }
+      .subnav > li {
+          display: inline-block;
+          height: 100%;
+      }
+      .subnav > li > a{
+          display: block;
+          width: 100%;
+          height: 100%;
+          text-decoration: none;
+          color: #fff;
+      }
+      .subnav > li > a:hover{
+          text-decoration: underline;
+      }
+      
+      .subnav-1{
+          width: 700px;
+          padding: 3px 10px ;
+      }
+      .subnav-1 li{
+          width: 80px;
+      }
+      .subnav-2 {
+          width: 500px;
+          padding: 3px 10px ;
+      }
+      .subnav-2 li{
+          width: 80px;
+      }
+      .subnav-3 {
+          width: 400px;
+          padding: 3px 10px ;
+      }
+      .subnav-3 li{
+          width: 80px;
+      }
+      .subnav-4 {
+          width: 400px;
+          padding: 3px 10px ;
+      }
+      .subnav-4 li{
+          width: 80px;
+      }
+      .subnav-5 {
+          width: 600px;
+          padding: 3px 10px ;
+          left: initial;
+          right: 0;
+          
+      }
+      .subnav-5 li{
+          width: 70px;
+      }        
+      .subnav-6 {
+          width: 350px;
+          padding: 3px 10px;
+          right: 0;
+          left: initial;
+      }
+      .subnav-6 li{
+          width: 70px;
+      }        
+      .subnav-7 {
+          width: 750px;
+          padding: 3px 10px ;
+          right: 0;
+          left: initial
+      }
+      .subnav-7 li{
+          width: 100px;
+      }        
+    </style>
+  </head>
+  <body>
+    <ul class="nav">
+      <li> <a href="#">站长之家</a></li>
+      <li>行业资讯
+        <ul class="subnav subnav-1">
+          <li><a href="#">业界动态</a></li>
+          <li><a href="#">收购融资</a></li>
+          <li><a href="#">门户动态</a></li>
+          <li><a href="#">搜索引擎</a></li>
+          <li><a href="#">网络游戏</a></li>
+          <li><a href="#">电子商务</a></li>
+          <li><a href="#">广告传媒</a></li>
+          <li><a href="#">厂商开发        </a></li>
+        </ul>
+      </li>
+      <li>站长在线
+        <ul class="subnav subnav-2">
+          <li><a href="#">站长报道</a></li>
+          <li><a href="#">好站推荐</a></li>
+          <li><a href="#">站长聚会</a></li>
+          <li><a href="#">站长访谈</a></li>
+          <li><a href="#">站长茶馆</a></li>
+          <li><a href="#">网站排行       </a></li>
+        </ul>
+      </li>
+      <li>网站运营
+        <ul class="subnav subnav-3">
+          <li><a href="#">建站经验</a></li>
+          <li><a href="#">策划盈利</a></li>
+          <li><a href="#">搜索优化</a></li>
+          <li><a href="#">网站推广</a></li>
+          <li><a href="#">免费资源        </a></li>
+        </ul>
+      </li>
+      <li>设计在线
+        <ul class="subnav subnav-4">
+          <li><a href="#">酷站推荐</a></li>
+          <li><a href="#">网页设计</a></li>
+          <li><a href="#">WEB标准</a></li>
+          <li><a href="#">视频处理</a></li>
+          <li> <a href="#">设计活动           </a></li>
+        </ul>
+      </li>
+      <li>网络编程
+        <ul class="subnav subnav-5">
+          <li><a href="#">Asp编程</a></li>
+          <li><a href="#">Php编程</a></li>
+          <li><a href="#">.Net编程</a></li>
+          <li><a href="#">Xml编程</a></li>
+          <li><a href="#">Access</a></li>
+          <li><a href="#">Mssql</a></li>
+          <li><a href="#"> Mysql     </a></li>
+        </ul>
+      </li>
+      <li> 联盟咨询
+        <ul class="subnav subnav-6">
+          <li><a href="#">联盟动态</a></li>
+          <li><a href="#">联盟介绍</a></li>
+          <li><a href="#">联盟点评</a></li>
+          <li><a href="#">网赚技巧           </a></li>
+        </ul>
+      </li>
+      <li>服务器
+        <ul class="subnav subnav-7">
+          <li><a href="#">Web服务器</a></li>
+          <li><a href="#">Ftp服务器</a></li>
+          <li><a href="#">Mail服务器</a></li>
+          <li><a href="#">Dns服务器</a></li>
+          <li><a href="#">Win服务器</a></li>
+          <li><a href="#">Linux服务器</a></li>
+          <li><a href="#">安全防护</a></li>
+          <li><a href="#">虚拟主机      </a></li>
+        </ul>
+      </li>
+    </ul>
+    <script>
+      window.onload = function(){
+          var tabs =  document.querySelectorAll('.nav > li:not(:first-child)');
+          var subnavs = document.getElementsByClassName('subnav');
+          
+          console.log(tabs);
+          console.log(subnavs);
+          for(var i = 0; i < tabs.length; i++ ) {
+              tabs[i].index = i;
+              tabs[i].onmouseenter = showSubnav;
+              function showSubnav(){
+                  subnavs[this.index].style.display = 'block'
+              }
+              setTimeout(showSubnav,1000)
+          }
+      }
+    </script>
+  </body>
+</html>

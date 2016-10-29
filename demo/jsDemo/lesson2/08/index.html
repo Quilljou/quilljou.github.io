@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>简易万年历</title>
+  <style>
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        list-style: none;
+    }
+    .container {
+        width: 350px;
+        margin: 0 auto;
+        background: #ccc;
+        height: auto;
+        padding: 10px;
+    }
+    .monthes ul {
+        margin-right: -10px;
+        overflow: hidden;
+    }
+    .monthes li{
+        box-sizing: border-box;
+        width: 80px;
+        background: #444;
+        color: #fff;
+        float:  left;
+        height: 80px;
+        margin: 0 10px 10px 0;
+        text-align: center;
+        font-weight: bold;
+    }
+    .monthes li span {
+        display: block;
+        margin: 15px auto;
+    }
+    .detail {
+        clear: left;
+    }
+    .detail {
+        background: #ddd;
+    }
+    .hide  {
+        display: none;
+    }
+    .current {
+        display: initial;
+    }
+    .monthes .initial {
+        background: snow;
+        color: rgb(228, 98, 207);
+        border: 1px solid #111;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="monthes">
+      <ul>
+        <li><span>1</span> JAN</li>
+        <li><span>2</span> FER</li>
+        <li><span>3</span> MAR</li>
+        <li><span>4</span> APR</li>
+        <li><span>5</span> MAY</li>
+        <li class="initial"><span>6</span> JUN</li>
+        <li><span>7</span> JUL</li>
+        <li><span>8</span> AUG</li>
+        <li><span>9</span> SEP</li>
+        <li><span>1</span>0 OCT</li>
+        <li><span>1</span>1 NOV</li>
+        <li><span>1</span>2 DEC</li>
+      </ul>
+    </div>
+    <div class="detail">
+      <ul>
+        <li class="hide">
+          <h4>1月节日</h4>
+          <p>元旦：1月1日至3日放假三天。</p>
+        </li>
+        <li class="hide">
+          <h4>2月节日</h4>
+          <p>春节：2月2日至8日放假7天。</p>
+        </li>
+        <li class="hide">
+          <h4>3月节日</h4>
+          <p>妇女节：3月8日妇女节，与我无关。</p>
+        </li>
+        <li class="hide">
+          <h4>4月节日</h4>
+          <p>清明节：4月3日至5日放假3天</p>
+        </li>
+        <li class="hide">
+          <h4>5月节日</h4>
+          <p>劳动节：4月30日至5月2日放假3天。</p>
+        </li>
+        <li class="hide current">
+          <h4>6月节日</h4>
+          <p>端午节：6月4日至6日放假3天。</p>
+        </li>
+        <li class="hide">
+          <h4>7月节日</h4>
+          <p>小暑：7月7日小暑。不放假。</p>
+        </li>
+        <li class="hide">
+          <h4>8月节日</h4>
+          <p>七夕节：8月6日七夕节。不放假。</p>
+        </li>
+        <li class="hide">
+          <h4>9月节日</h4>
+          <p>中秋节：9月10日至12日放假3天。</p>
+        </li>
+        <li class="hide">
+          <h4>10月节日</h4>
+          <p>国庆节：10月1日至7日放假7天。</p>
+        </li>
+        <li class="hide">
+          <h4>11月节日</h4>
+          <p>立冬：11月8日立冬。不放假。</p>
+        </li>
+        <li class="hide">
+          <h4>12月节日</h4>
+          <p>艾滋病日:12月1日<br/>废除奴隶制国际日:12月2日。</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    window.onload = function() {
+        var monthes = document.querySelectorAll('.monthes li'); //取得月份的nodelist
+        var detail = document.querySelectorAll('.detail li');  //取得详细说明的nodelist
+        
+        NodeList.prototype.forEach = Array.prototype.forEach;
+        //- 将NodeList转换成Array
+        monthes.forEach(function(item,index,array){
+            item.onmouseenter = function(event) {
+                array.forEach(function(it,ind,arr) {
+                    it.className='';  /*1.移除默认的6月份的高亮，2.下一次进入的时候移除上一次的mouseenter状态*/
+                });
+                this.classList.add('initial');  /*为进入的月份高亮*/
+                
+                detail[5].classList.remove('current'); /*移除默认的6月份的信息*/
+                detail.forEach(function(a){
+                    a.classList.add('hide');    /*下一次mouseenter，为所有的项目加上hide，隐藏所有*/
+                })
+                detail[index].classList.remove('hide');  /*移除隐藏，显示信息*/
+            }
+        });
+    }
+  </script>
+</body>

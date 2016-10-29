@@ -1,0 +1,217 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+h1,h2,h3,h4,h5,h6,p,body,html,ul {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul {
+    list-style: none;
+}
+body {
+font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+//***preset***//
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background:linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(210,255,82,1) 23%, rgba(145,232,66,1) 86%, rgba(145,232,66,1) 100%);
+}
+
+
+
+// fancy menubar
+nav {
+    margin: 100px auto 250px auto;
+}
+nav > ul {
+    text-transform: uppercase;
+    text-align: center;
+    width:600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ddd;
+    border-radius: 5px;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+}
+.tab {
+    color: rgba(0,0,0,0.7);
+    width: 25%;
+    line-height: 50px;
+    height: 50px;
+    &:hover  {
+        border-radius: 5px 5px 0 0;
+        // 防止第一个和最后一个恢复圆角
+        background: #d5d5d5;
+
+        // menu1 animation:
+        .menu1 {
+            @for $i from 1 through 4 {
+                li:nth-child(#{$i}) {
+                    animation-name: menu1;
+                    animation-duration: 300ms;
+                    animation-timing-function: ease-in-out;
+                    animation-delay: 150ms * $i - 300ms;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+
+        // menu2 animation
+        .menu2 {
+            @for $i from 1 through 4 {
+                li:nth-child(#{$i}) {
+                    animation-name: menu2;
+                    animation-duration: 300ms;
+                    animation-timing-function: ease-in-out;
+                    animation-delay: 150ms * $i - 300ms;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+
+        // menu3 animation
+        .menu3 {
+            perspective: 1000px;
+            @for $i from 1 through 4 {
+                li:nth-child(#{$i}) {
+                    animation-name: menu3;
+                    animation-duration: 300ms;
+                    animation-timing-function: ease-in-out;
+                    animation-delay: 200ms * $i - 300ms;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+
+        // menu4 animation
+        .menu4 {
+            perspective: 1000px;
+            @for $i from 1 through 4 {
+                li:nth-child(#{$i}) {
+                    animation-name: menu4;
+                    animation-duration: 300ms;
+                    animation-timing-function: ease-in-out;
+                    animation-delay: 200ms * $i - 300ms;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+        // animation end
+    }
+}
+
+.dropdown-menu li{
+    opacity: 0;
+    background: #666;
+    color: rgba(0,0,0,0.7);
+    &:hover {
+        background: #606060;
+        // hover each item
+    }
+}
+
+// keyframes for menus
+@keyframes menu1 {
+    from {
+        transform: rotate(-90deg) translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0deg) translateY(0px);;
+        opacity: 1;
+    }
+}
+
+@keyframes menu2 {
+    from {
+        opacity: 0;
+        transform: scale(0.3) translateY(-60px);
+    }
+    80% {
+        transform: scale(1.2) translateY(10px);
+    }
+    to {
+        transform: scale(1) translateY(0);;
+        opacity: 1;
+    }
+}
+
+@keyframes menu3 {
+    from {
+        opacity: 0;
+        transform:rotateX(-90deg) translateY(30px);
+    }
+    60% {
+        transform:rotateX(-50deg) translateY(10px);
+    }
+    to {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes menu4 {
+    from {
+        opacity: 0;
+        transform:rotateY(-90deg) translate(30px);
+    }
+    to {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+// pure css tab part
+.pure-css-tab {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 10%;
+    border: 1px solid #333;
+    height: 200px;
+    background: #fff;
+    input {
+        display: none;
+    }
+    label {
+        color: snow;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        line-height: 2em;
+        height: 2em;
+        cursor: pointer;
+        float:left;
+        text-align: center;
+        display: inline-block;
+        width: 20%;
+        background: tomato;
+        border-right: 2px solid #fff;
+        &[for="tab5"] {
+            border-right: 0;
+        }
+    }
+    [class*=tab] {
+        display: none;
+        position: absolute;
+        top:2em;
+    }
+
+
+    input:checked + div {
+        display: block;
+        padding: 30px;
+    }
+}

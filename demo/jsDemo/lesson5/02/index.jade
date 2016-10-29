@@ -1,0 +1,25 @@
+//output: index.html
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 显示单击的坐标
+        style.
+    body
+        script.
+            window.onload = function() {
+                document.onclick = function(event) {
+                    alert('坐标: ' + '[' + event.pageX + ',' + event.pageY + ']');
+                    var pre = document.createElement('pre');
+                    var script = document.getElementsByTagName('script')[0];
+                    pre.style.cssText = 'border: 1px solid green; color: green';
+                    pre.innerHTML = script.innerHTML;
+                    document.body.appendChild(pre);
+                }
+                
+            };
+        
+    
+        

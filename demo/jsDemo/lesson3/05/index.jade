@@ -1,0 +1,26 @@
+// output: index.html
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 页面加载后累加，自加一
+        style.
+            body {
+                text-align: center;
+            }
+    body
+        script.
+            window.onload = function(){
+                var h1 = document.createElement('h1');
+                var body = document.body;
+                var num = 0;
+                h1.innerText = num;
+                body.appendChild(h1);
+                setInterval(function(){
+                    num++;
+                    h1.innerText = num;
+                },1000)
+                
+            }

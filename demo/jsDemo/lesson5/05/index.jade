@@ -1,0 +1,59 @@
+// output: index.html
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 跟随鼠标移动(大图显示)
+        style.
+            ul {
+                width: 800px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            li {
+                list-style: none;
+                border: 1px solid #111;
+                display: inline-block;
+                margin: 5px;
+            }
+            #bigImg {
+                display: none;
+                width: 400px;
+                height: 400px;
+            }
+    body
+        ul
+            li 
+                img(src="img/shirt_1.jpg")
+            li 
+                img(src="img/shirt_2.jpg")
+            li 
+                img(src="img/shirt_3.jpg")
+            li 
+                img(src="img/shirt_4.jpg")    
+        img#bigImg    
+            
+        script.
+            window.onload = function() {
+                var  li = document.getElementsByTagName('li');
+                var bigImg = document.getElementById('bigImg');
+                
+                HTMLCollection.prototype.forEach = Array.prototype.forEach;
+                
+                console.log(window.innerWidth);
+                    li.forEach(function(item,index){
+                        item.onmousemove = function(event) {
+                            // 鼠标位置＋大图片的宽度大于屏幕宽度，则图片在鼠标的左边显示
+                            var offsetX = event.pageX + bigImg.offsetWidth > window.innerWidth　? event.pageX - bigImg.offsetWidth - 10 : event.pageX - 10;
+                            
+                            bigImg.src = 'img/shirt_' + (index + 1) + '_big.jpg';
+                            bigImg.style.cssText = 'display:block;position: absolute;left:' + offsetX + 'px;' + 'top:'+(event.pageY + 10)+'px';
+                        }
+                        item.onmouseout = function(event) {
+                            bigImg.style = '';
+                        }
+                    });
+            }

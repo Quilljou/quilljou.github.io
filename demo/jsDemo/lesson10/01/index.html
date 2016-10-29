@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>为数组添加方法(面向对象)</title>
+  <style>
+    pre {
+        color: green;
+        border: 1px dashed green;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <pre> 
+  Array.prototype.sum = function(){
+       return this.reduce(function(prev,cur){
+           return prev + cur;
+       });
+   }
+  Array.prototype.maxima = function() {
+       return this.reduce(function(prev,cur){
+           var max = 0;
+           max = Math.max(prev,cur,max);
+           return max;
+       })
+   } 
+   
+  window.onload = function() {
+       var arr = [1,21,3,4,22,45,6,7,32];
+       alert(arr.join('+')+'='+arr.sum())
+       alert(arr.join('|')+'中,最大的数是'+arr.maxima());
+   }</pre>
+  </div>
+  <script>
+    Array.prototype.sum = function(){
+        return this.reduce(function(prev,cur){
+            return prev + cur;
+        });
+    }
+    Array.prototype.maxima = function() {
+        return this.reduce(function(prev,cur){
+            var max = 0;
+            max = Math.max(prev,cur,max);
+            return max;
+        })
+    } 
+    
+    window.onload = function() {
+        var arr = [1,21,3,4,22,45,6,7,32];
+        alert(arr.join('+')+'='+arr.sum())
+        alert(arr.join('|')+'中,最大的数是'+arr.maxima());
+    }
+  </script>
+</body>

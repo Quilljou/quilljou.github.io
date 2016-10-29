@@ -1,0 +1,213 @@
+/* output*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, body, html, ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(#E0D4CD, #93867E);
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px;
+}
+
+.video-container {
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: 7px 3px 25px rgba(0, 0, 0, 0.5), -7px 3px 25px rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding: 0;
+}
+
+.video-container:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.video-container span {
+  font-size: 1.3em;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.video-container span:hover {
+  color: white;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15%;
+  background: linear-gradient(to top, transparent 10%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.8));
+  width: 100%;
+  text-align: center;
+  padding-top: 2.5%;
+}
+
+.controls {
+  height: 50px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 12.5px 20px;
+}
+
+.controls .controls-wrap {
+  position: relative;
+  width: 100%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.start-pause {
+  width: 25px;
+  height: 25px;
+  background-color: #000;
+  background: transparent;
+  margin-right: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.start-pause .pause, .start-pause .play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-out;
+}
+
+.progress {
+  width: 85%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.progress .progress-bar {
+  border-radius: 1px;
+  width: 90%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+
+.progress .progress-bar .go {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+}
+
+.progress .time {
+  width: 5%;
+  text-align: center;
+  margin: 3px 7px;
+}
+
+.volume {
+  margin: 0 20px;
+  position: relative;
+}
+
+.volume .off {
+  font-size: 1.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.volume .volume-bar {
+  position: absolute;
+  height: 100px;
+  width: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  top: -135px;
+  left: -50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume .volume-bar:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 20px solid rgba(0, 0, 0, 0.6);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+}
+
+.volume .volume-bar .bar {
+  width: 4px;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.6);
+  position: relative;
+  cursor: pointer;
+}
+
+.volume .volume-bar .bar .bar-go {
+  position: absolute;
+  width: 100%;
+  background: white;
+  top: 0;
+  left: 0;
+}
+
+.fullscreen {
+  cursor: pointer;
+}
+
+.fullscreen span:hover {
+  transform: scale(1.1);
+}
+
+.hide {
+  display: none !important;
+}
+
+/*# sourceMappingURL=main.css.map */

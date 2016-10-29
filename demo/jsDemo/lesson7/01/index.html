@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>自动播放--幻灯片效果</title>
+    <style>
+      body {
+          background: #111;
+      }
+      li {
+          list-style: none;
+      }
+      ul {
+          margin: 0;
+          padding: 0;
+      }
+      .slide {
+          width: 500px;
+          margin: 0 auto;
+          border: 10px solid #fff;
+          border-radius: 5px;
+          height: 200px;
+          position: relative;
+          overflow: hidden;
+      }
+      .imgs {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transition: transform 1s ease-in-out;
+      }
+      .imgs > li {
+          //- position: relative;
+          width: 100%;
+          height: 100%;
+      }
+      img {
+          width: 100%;
+          height: 100%;
+      }
+      .control {
+          position: absolute;
+          bottom: 5px;
+          right: 10px    
+      }
+      .control > li {
+          display: inline-block;
+          margin-left: 5px;
+          width: 20px;
+          height: 20px;
+          padding: 3px;
+          border-radius: 50%;
+          color: #fff;
+          background: orange;
+          text-align: center;
+          cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="slide">
+      <ul class="imgs">
+        <li><img src="img/01.jpg"/></li>
+        <li><img src="img/02.jpg"/></li>
+        <li><img src="img/03.jpg"/></li>
+        <li><img src="img/04.jpg"/></li>
+        <li><img src="img/05.jpg"/></li>
+      </ul>
+      <ul class="control">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+    <script>
+      window.onload = function() {
+          var btns = document.querySelectorAll('.control li');
+          var imgs = document.querySelectorAll('.imgs li');
+          var control  = document.querySelector('.control');
+          var index = 0;
+          var play = null; 
+          var order = true;
+          var translate = 0;
+          
+          (function initial(){
+              btns[0].style.background = 'red';
+              NodeList.prototype.forEach = Array.prototype.forEach;
+          })()
+          
+          btns.forEach(function(item,ind){
+              item.onmouseenter = function(){
+                  show(ind);
+              }
+          })
+          
+          
+          function show(i){
+              index = i;
+              for(var k =0; k < imgs.length; k++) {
+                  btns[k].style.background = "orange";
+              }
+              btns[i].style.background = 'red';
+              translate = -(index * 100);
+              imgs[i].parentNode.style.transform = 'translateY('+ translate +'%)'
+          }
+      
+          
+          function autoPlay(){
+              play = setInterval(function(){
+                  if(order){
+                      index++;
+                      show(index);
+                      if(index>=4){
+                          order = false;
+                      }
+                  }else {
+                      index--
+                      show(index);
+                      if(index<=0){
+                          order= true;
+                      }
+                  }
+              },2000)
+          }
+          
+          autoPlay();
+          
+          
+          //- 鼠标hover,停止自动播放
+          control.onmouseenter = function(){
+              clearInterval(play);
+          }
+          
+          //- 鼠标hover,停止自动播放
+          control.onmouseleave = function(){
+              autoPlay();                    
+          }
+          
+      
+          
+          //- for(var i = 0; i < btns.length; i++) {
+          //-     var btn = btns[i];
+          //-     btn.addEventListener('mouseenter',enterHandler);
+          //-     
+          //-     function enterHandler(index){
+          //-         return function(){
+          //-         }
+          //-     }
+          //-     enterHandler(i);
+          //- }
+      }
+    </script>
+  </body>
+</html>

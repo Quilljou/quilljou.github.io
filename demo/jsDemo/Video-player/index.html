@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <link rel="stylesheet" href="css/main.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+  <title>Video Player</title>
+</head>
+<body>
+  <h1>HTML5 Video Player</h1>
+  <div class="wrapper">
+    <div class="video-container">
+      <video preload="metadata" id="video" poster="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg">
+        <source src="../../../video/The Chainsmokers - Closer (Lyric) ft. Halsey.mp4" type="video/mp4"/>
+        <p>你的浏览器不支持<code>video</code>元素</p>
+      </video>
+      <div class="caption">Big Buck Bunny</div>
+      <div class="controls"> 
+        <div class="controls-wrap">
+          <div class="start-pause"><span class="fa fa-play play"></span></div>
+          <div class="progress">
+            <div class="cur-time time">0:00</div>
+            <div class="progress-bar">
+              <div class="go"></div>
+            </div>
+            <div class="total-time time">0:00</div>
+          </div>
+          <div class="volume"><span class="fa fa-volume-up on"></span>
+            <div class="volume-bar hide">
+              <div class="bar">
+                <div class="bar-go"></div>
+              </div>
+            </div>
+          </div>
+          <div class="fullscreen"><span class="fa fa-arrows-alt"> </span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>

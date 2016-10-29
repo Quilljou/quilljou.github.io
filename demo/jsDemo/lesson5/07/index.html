@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>用键盘控制DIV</title>
+    <style>
+      .guide {
+          height: 250px;
+          border: 1px solid green;
+          color: green;
+          padding: 10px;
+      }
+      ul {
+          padding: 0;
+      }
+      
+      li{
+          list-style: none;
+      }
+      .move {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          top: 100px;
+          left: 350px;
+          background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="guide">
+      <p>红色方块为键盘操作区域，您可以进行如下操作</p>
+      <p>上：↑ 下：↓ 左：← 右：→</p>
+      <ul>
+        <li>Ctrl + 1 : 背景变为绿色</li>
+        <li>Ctrl + 2 : 背景变为黄色</li>
+        <li>Ctrl + 3 : 背景变为蓝色</li>
+        <li>Ctrl + ↑ : 放大</li>
+        <li>Ctrl + ↓ : 缩小</li>
+      </ul>
+    </div>
+    <div class="move"></div>
+    <script>
+      window.onload = function() {
+          var box = document.querySelector('.move');
+          var boxTop = box.offsetTop;
+          var boxLeft = box.offsetLeft
+          var scale = 1;
+      
+          document.onkeydown = function(event) {
+              event.preventDefault();
+              if(event.ctrlKey ) {
+                  switch (event.key) {
+                      case '1':
+                          changeBg('green');
+                          break;
+                      case '2':
+                          changeBg('yellow');
+                          break;
+                      case '3':
+                          changeBg('blue');
+                          break;
+                      case 'ArrowUp':
+                          scale += 0.5;
+                          break;
+                      case 'ArrowDown':
+                          scale -= 0.5;
+                          break;
+                  }
+              }else {
+                  switch (event.key) {
+                      case 'ArrowUp':
+                          boxTop -= 12;
+                          break;
+                      case 'ArrowRight':
+                          boxLeft += 12;
+                          break;
+                      case 'ArrowDown':
+                          boxTop += 12;
+                          break;
+                      case 'ArrowLeft':
+                          boxLeft -= 12;
+                          break;
+                  }
+              }
+              limit()
+              box.style.top = boxTop  + "px";
+              box.style.left = boxLeft + "px";
+              box.style.transform = 'scale('+ scale +')';
+          }
+          
+          
+          
+          
+          
+          function changeBg(color){
+              return box.style.background = color;
+          }
+          
+          function limit() {
+              if(boxTop <= 0){
+                  boxTop = 0 ;
+              }
+              if(boxTop >= window.innerHeight - box.offsetHeight) {
+                  boxTop = window.innerHeight - box.offsetHeight ;
+              }
+              if(boxLeft <= 0){
+                  boxLeft = 0;
+              }else if(boxLeft >= window.innerWidth - box.offsetWidth) {
+                  boxLeft = window.innerWidth - box.offsetWidth;
+              }
+      
+          }
+          
+      }
+    </script>
+  </body>
+</html>

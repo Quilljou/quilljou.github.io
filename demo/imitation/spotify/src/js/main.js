@@ -7,7 +7,7 @@ window.onload = function() {
         btnPlay : document.querySelectorAll('#btnPlay'),
         paused : false,
         ablums : document.querySelectorAll('#ablum'),
-        scrollDown : document.querySelectorAll('.btn-scroll-down')
+        scrollDown : document.querySelectorAll('.btn-scroll-down'),
     }
     function tryGet(id){
         try{
@@ -17,32 +17,52 @@ window.onload = function() {
         }
     }
 
-        // fadeup animation
-       var fadeUpObjs = document.querySelectorAll('.willFadeUp');
-       console.log(fadeUpObjs);
 
-        window.onscroll = function() {
-            for(var i = 0; i < fadeUpObjs.length; i++ ) {
-            var scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
+    // fadeup animation
+    // window.onscroll = fadeUp;
+    // window.addEventListener('scroll',fadeUp)
 
-                if(getOffsetY(fadeUpObjs[i]) <= scrollTarget.scrollTop + window.innerHeight + fadeUpObjs[i].clientHeight / 2) {
-                    //距离页面上端的高度 小于 滚动的高度 + 窗口的高度 + 自身的高度的时候开始fade
-                    fadeUpObjs[i].classList.add('fadeUp');
-                }
+
+    // function fadeUp() {
+    //     var scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
+    //     for(var i = 0; i < fadeUpObjs.length; i++ ) {
+    //         // var scrollTarget = document.documentElement;
+    //         // var scrollTarget = document.body;
+    //         if(getOffsetY(fadeUpObjs[i]) <= scrollTarget.scrollTop + window.innerHeight + fadeUpObjs[i].clientHeight / 2) {
+    //             //距离页面上端的高度 小于 滚动的高度 + 窗口的高度 + 自身的高度的时候开始fade
+    //             fadeUpObjs[i].classList.add('fadeUp');
+    //             console.log(i);
+    //         }
+
+
+    var fadeUpObjs = document.querySelectorAll('.willFadeUp')
+    var nodeArr = [].slice.call(fadeUpObjs);
+    var scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
+
+
+
+    window.onscroll = fadeUp;
+
+    function fadeUp() {
+        nodeArr.forEach(function(item,index,array){
+            console.log(index);
+            if(getOffsetY(array[index]) <= scrollTarget.scrollTop + window.innerHeight + array[index].offsetHeight / 2) {
+                array[index].className = 'fadeUp';
             }
+        })
+    }
+
+
+
+    function getOffsetY(ele){
+        var offsetY = ele.offsetTop;
+        var current = ele.offsetParent;
+        while(current !== null) {
+            offsetY += current.offsetTop;
+            current = current.offsetParent;
         }
-
-        function getOffsetY(ele){
-            var current = ele;
-            var offsetY = 0;
-            while(current.offsetParent !== null) {
-                offsetY += current.offsetTop;
-                current = current.offsetParent;
-            }
-            return offsetY;
-        }
-
-
+        return offsetY;
+    }
 
 
     //album resize
@@ -177,8 +197,12 @@ window.onload = function() {
         }
 
         function navRightToggle(event) {
+            var  liA = document.querySelectorAll('.navbar-right-cotent li');
             g.navbarToggle.classList.toggle('nav-toggle-opened');
             g.navRight.classList.toggle('hidden');
+            for(var i = 0; i < liA.length; i++){
+                liA[i].classList.toggle('fadeRight');
+            }
             event.stopPropagation();
         }
 
@@ -239,4 +263,7 @@ window.onload = function() {
             }
         }
     })()
+
 }
+
+

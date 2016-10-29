@@ -46,3 +46,11 @@ console.log(NodeList instanceof HTMLCollection);
 
 
 ## pageX,pageY相对于可滚动的页面,clientX,clientY相对于viewport
+
+var a = []
+var b =[];
+a === [] // false;
+各自是不同的实例
+
+
+## 定义两个IIFE时，如果不加分号，就会抛出错误

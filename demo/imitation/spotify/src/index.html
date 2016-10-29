@@ -274,7 +274,6 @@
                                 features.style.height = '1178px';
                             }
                         }
-                        console.log("did");
                         window.addEventListener('resize', square, false);
                     </script>
                     <div class="what-on">
@@ -464,31 +463,6 @@
                 <!--end wrap-->
             </div>
         </section>
-        <script>
-            var fadeUpObjs = document.querySelectorAll('.willFadeUp');
-            console.log(fadeUpObjs);
-
-            window.onscroll = function() {
-                for (var i = 0; i < fadeUpObjs.length; i++) {
-                    var scrollTarget = document.body.scrollTop === 0 ? document.documentElement : document.body;
-
-                    if (getOffsetY(fadeUpObjs[i]) <= scrollTarget.scrollTop + window.innerHeight + fadeUpObjs[i].clientHeight / 2) {
-                        //距离页面上端的高度 小于 滚动的高度 + 窗口的高度 + 自身的高度的时候开始fade
-                        fadeUpObjs[i].classList.add('fadeUp');
-                    }
-                }
-            }
-
-            function getOffsetY(ele) {
-                var current = ele;
-                var offsetY = 0;
-                while (current.offsetParent !== null) {
-                    offsetY += current.offsetTop;
-                    current = current.offsetParent;
-                }
-                return offsetY;
-            }
-        </script>
         <footer class="footer">
             <div class="wrap">
                 <div class="footer-container">

@@ -907,3 +907,19 @@
 {"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T05:34:16.516Z","v":0}
 {"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2016-10-29T05:34:21.214Z","v":0}
 {"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Rendering post: \u001b[35m2016/10/29/Atom简明用法/index.html\u001b[39m","time":"2016-10-29T05:34:28.322Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T05:44:15.923Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T05:44:15.923Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T05:44:15.923Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T05:44:15.924Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T05:44:15.924Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T05:44:15.924Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T05:44:15.930Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2016-10-29T05:44:16.124Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2016-10-29T05:44:16.124Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2016-10-29T05:44:16.126Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2016-10-29T05:44:16.132Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2016-10-29T05:44:16.133Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2016-10-29T05:44:16.133Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2016-10-29T05:44:16.136Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":30,"msg":"Catch you later","time":"2016-10-29T06:07:28.445Z","v":0}
+{"name":"hexo","hostname":"Quill","pid":5512,"level":20,"msg":"Database saved","time":"2016-10-29T06:07:28.528Z","v":0}

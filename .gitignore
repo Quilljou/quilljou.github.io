@@ -109,3 +109,7 @@ typings/
 .fusebox/
 
 # End of https://www.gitignore.io/api/macos,node
+
+
+public
+.deploy_git

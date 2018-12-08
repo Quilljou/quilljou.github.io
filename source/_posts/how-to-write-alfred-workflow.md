@@ -1,5 +1,5 @@
 ---
-title: how-to-write-alfred-workflow
+title: 如何编写 Alfred Workflow
 date: 2018-12-04 21:54:16
 tags:
 ---

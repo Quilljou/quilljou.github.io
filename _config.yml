@@ -81,3 +81,11 @@ deploy:
   type: git
   repo: git@github.com:Quilljou/quilljou.github.io.git  #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: master #published
+
+
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:

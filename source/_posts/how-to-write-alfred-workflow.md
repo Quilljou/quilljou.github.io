@@ -42,11 +42,11 @@ Alfred 的 workflows 是一个使我非常兴奋的功能。它能充分满足�
 
 </center>
 
-在空白的 workflow 界面，右键。根据我们这次需要开发的 wolkflow 的特性选择 Inputs 为 Keyword。就是关键词触发。
+在空白的 workflow 界面，右键。根据我们这次需要开发的 wolkflow 的特性选择 Inputs 为 Script Filter。
 
 <center>
 
-![alt](http://pjcw35d11.bkt.clouddn.com/Screen%20Shot%202018-12-04%20at%2022.29.57.png)
+![alt](http://pjcw35d11.bkt.clouddn.com/workflow-script-filter)
 
 </center>
 

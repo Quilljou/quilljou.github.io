@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#e2e0de">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="大部分示例和教程来自优秀的 A. Sharif 的系列文章  泛型 和 extends123function prop(obj, key) {  return obj[key]} 这样一个函数如何让其类型安全呢？ 1234567891011function prop(obj: T, key: Key) {  return obj[key];}const user: User = {  id: 1,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typescript 高阶类型">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/typescript-advanced-type/index.html">
+<meta property="og:site_name" content="Carpe Diem">
+<meta property="og:description" content="大部分示例和教程来自优秀的 A. Sharif 的系列文章  泛型 和 extends123function prop(obj, key) {  return obj[key]} 这样一个函数如何让其类型安全呢？ 1234567891011function prop(obj: T, key: Key) {  return obj[key];}const user: User = {  id: 1,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-19T01:53:42.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Typescript 高阶类型">
+<meta name="twitter:description" content="大部分示例和教程来自优秀的 A. Sharif 的系列文章  泛型 和 extends123function prop(obj, key) {  return obj[key]} 这样一个函数如何让其类型安全呢？ 1234567891011function prop(obj: T, key: Key) {  return obj[key];}const user: User = {  id: 1,">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Typescript 高阶类型</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/09/24/electron-in-action/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/12/04/how-to-write-alfred-workflow/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/19/typescript-advanced-type/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&text=Typescript 高阶类型"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&is_video=false&description=Typescript 高阶类型"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Typescript 高阶类型&body=Check out this article: http://yoursite.com/2019/06/19/typescript-advanced-type/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&name=Typescript 高阶类型&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型-和-extends"><span class="toc-number">1.</span> <span class="toc-text">泛型 和 extends</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Types"><span class="toc-number">2.</span> <span class="toc-text">Conditional Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pick、Exclude-和-Omit"><span class="toc-number">3.</span> <span class="toc-text">Pick、Exclude 和 Omit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pick"><span class="toc-number">3.1.</span> <span class="toc-text">Pick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Omit"><span class="toc-number">3.2.</span> <span class="toc-text">Omit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#infer"><span class="toc-number">4.</span> <span class="toc-text">infer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapped-types-映射类型"><span class="toc-number">5.</span> <span class="toc-text">Mapped types 映射类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Readonly"><span class="toc-number">5.1.</span> <span class="toc-text">Readonly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partial"><span class="toc-number">5.2.</span> <span class="toc-text">Partial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Required"><span class="toc-number">5.3.</span> <span class="toc-text">Required</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Record"><span class="toc-number">5.4.</span> <span class="toc-text">Record</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Typescript 高阶类型
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Carpe Diem</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-06-19T07:10:42.000Z" itemprop="datePublished">2019-06-19</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>大部分示例和教程来自优秀的 <a href="https://dev.to/busypeoples" target="_blank" rel="noopener">A. Sharif</a> 的系列文章 </p>
+<h2 id="泛型-和-extends"><a href="#泛型-和-extends" class="headerlink" title="泛型 和 extends"></a>泛型 和 extends</h2><figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prop</span>(<span class="params">obj, key</span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> obj[key]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这样一个函数如何让其类型安全呢？</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prop</span><<span class="title">T</span>, <span class="title">Key</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">T</span>>(<span class="params">obj: T, key: Key</span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> obj[key];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user: User = {</span><br><span class="line">  id: <span class="number">1</span>,</span><br><span class="line">  name: <span class="string">"Test User"</span>,</span><br><span class="line">  points: <span class="number">0</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userName = prop(user, <span class="string">"name"</span>); <span class="comment">// const userName : string;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>需要像这样使用到泛型，因为我们不知道这个 obj 的类型定义是怎样的，所以我们需要使用 T 来作为 obj 的定义的占位，T 是第一个泛型参数。Key 是第二个泛型参数，它 extends 自 T 的所有 key 值，Key 在这里就是 <code>"id" | "name" | "points"</code> 的所有子集。</p>
+<p>在使用的时候我们可以不用显式的传入泛型参数，因为我们给函数传参的时候，TS 编译器就已经帮我们推到出来正确的泛型参数了，并且验证了第二个参数的类型必须是 extends 自 T 的所有 key 值。这就为我们提供了鲁棒性非常的类型安全的函数了，还有自动补全的功能哦。</p>
+<h2 id="Conditional-Types"><a href="#Conditional-Types" class="headerlink" title="Conditional Types"></a>Conditional Types</h2><p>条件类型自 Typescript 2.8 引入。 它的定义是</p>
+<blockquote>
+<p>“A conditional type selects one of two possible types based on a condition expressed as a type relationship test”</p>
+</blockquote>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> S = <span class="built_in">string</span> <span class="keyword">extends</span> <span class="built_in">any</span> ? <span class="string">"string"</span> : never;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">type S = "string"</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+<p>这个三元操作符的解释是如果 <code>string</code> 类型 extends 自 <code>any</code> 类型，（答案是明显的YES）。那么类型 S 的定义就是 <code>string</code>，否则就是 <code>never</code>。</p>
+<p>常见的应用就是标准库中 <code>Exclude</code> 的定义。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Exclude from T those types that are assignable to U</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> Exclude<T, U> = T <span class="keyword">extends</span> U ? never : T;</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Exclude</code>可用于两个联合类型之间取差集。</p>
+<h2 id="Pick、Exclude-和-Omit"><a href="#Pick、Exclude-和-Omit" class="headerlink" title="Pick、Exclude 和 Omit"></a>Pick、Exclude 和 Omit</h2><p>在 <code>lodash</code> 库中有两个实用的方法，<code>pick</code> 和 <code>omit</code>. </p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = { <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="string">'2'</span>, <span class="string">'c'</span>: <span class="number">3</span> };</span><br><span class="line"> </span><br><span class="line">_.pick(object, [<span class="string">'a'</span>, <span class="string">'c'</span>]);</span><br><span class="line"><span class="comment">// => { 'a': 1, 'c': 3 }</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>pick</code> 用于由选取的对象属性组成新的对象。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = { <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="string">'2'</span>, <span class="string">'c'</span>: <span class="number">3</span> };</span><br><span class="line"> </span><br><span class="line">_.omit(object, [<span class="string">'a'</span>, <span class="string">'c'</span>]);</span><br><span class="line"><span class="comment">// => { 'b': '2' }</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>omit</code> 的释义是消除。与 <code>pick</code> 相反; 此方法创建一个对象，消除指定的属性，剩下的对象属性组成一个新的对象。</p>
+<h3 id="Pick"><a href="#Pick" class="headerlink" title="Pick"></a>Pick</h3><p>在 Typescript 中也有类似的概念。只不过被操作的对象不是对象字面量，而是类型.</p>
+<p>Pick 在 Typescript 的标准库中的定义是</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Pick<T, K <span class="keyword">extends</span> keyof T> = { </span><br><span class="line">    [P <span class="keyword">in</span> K]: T[P];</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>可以看出 Pick 也是一种类型，可用于创造新的类型。这个新的类型的 key 值为泛型 T 的所有 key 值的联合类型的子集。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person {</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    age: <span class="built_in">number</span>;</span><br><span class="line">    location: <span class="built_in">string</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">type</span> PersonWithouLocation = Pick<Person, <span class="string">'name'</span> | <span class="string">'age'</span>></span><br><span class="line"><span class="comment">// => type PersonWithouLocation = {</span></span><br><span class="line"><span class="comment">//     name: string;</span></span><br><span class="line"><span class="comment">//     age: number;</span></span><br><span class="line"><span class="comment">// }</span></span><br></pre></td></tr></tbody></table></figure>
+<p>那如何为 <code>_.pick</code> 加上类型呢？</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">pick</span><<span class="title">T</span> <span class="title">extends</span> <span class="title">object</span>, <span class="title">K</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">T</span>>(<span class="params">object: T, paths?: K[]</span>): <span class="title">Pick</span><<span class="title">T</span>, <span class="title">K</span>></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">var</span> <span class="title">object</span> = </span>{ <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="string">'2'</span>, <span class="string">'c'</span>: <span class="number">3</span> };</span><br><span class="line"><span class="keyword">const</span> result = pick(object, [<span class="string">'a'</span>, <span class="string">'c'</span>]); </span><br><span class="line"><span class="comment">// const result: Pick<{</span></span><br><span class="line"><span class="comment">//     'a': number;</span></span><br><span class="line"><span class="comment">//     'b': string;</span></span><br><span class="line"><span class="comment">//     'c': number;</span></span><br><span class="line"><span class="comment">// }, "a" | "b"></span></span><br></pre></td></tr></tbody></table></figure>
+<p>使用泛型和 <code>Pick</code> ,我们就得到了一个类型安全的 <code>pick</code> 方法</p>
+<h3 id="Omit"><a href="#Omit" class="headerlink" title="Omit"></a>Omit</h3><p>在 Typescript 3.5 版本才引入 <code>Omit</code> 类型。</p>
+<p><code>Omit</code> 作为 <code>Pick</code> 的反操作，我们想得到和上面 Pick 相同的操作只需要对类型的键值取反即可。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person {</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    age: <span class="built_in">number</span>;</span><br><span class="line">    location: <span class="built_in">string</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">type</span> PersonWithouLocation = Omit<Person, <span class="string">'location'</span>></span><br><span class="line"><span class="comment">// 结果是</span></span><br><span class="line"><span class="comment">// type PersonWithouLocation = {</span></span><br><span class="line"><span class="comment">//     name: string;</span></span><br><span class="line"><span class="comment">//     age: number;</span></span><br><span class="line"><span class="comment">// }</span></span><br></pre></td></tr></tbody></table></figure>
+<p>Omit 在标准库中的定义是</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Construct a type with the properties of T except for those in type K.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> Omit<T, K <span class="keyword">extends</span> keyof <span class="built_in">any</span>> = Pick<T, Exclude<keyof T, K>>;</span><br></pre></td></tr></tbody></table></figure>
+<p>Omit 实现中的第二个泛型参数为什么不是 <code>K extends keyof T</code>，而是使用的 <code>K extends keyof any</code>呢？这样 IDE 就不能在第二个参数帮助补全了，这是我的一个疑问。在 Stack Overflow 上有找到 key 值可能是 <code>string | number | symbol</code> 三种类型。</p>
+<p>让我们看看 Omit 的实现，就是 Pick 出 T 中 keyof T 和 K 的差集组成新的类型。也就是说消除了第二个参数中为键值的类型组成新的类型。</p>
+<p>那如何为 <code>_.omit</code> 加上类型呢？</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">omit</span><<span class="title">T</span> <span class="title">extends</span> <span class="title">object</span>, <span class="title">K</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">T</span>>(<span class="params">object: T, paths: K[]</span>): <span class="title">Omit</span><<span class="title">T</span>, <span class="title">K</span>></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">const</span> <span class="title">result</span> = <span class="title">omit</span>(<span class="params">object, ['a', 'b']</span>)</span>; </span><br><span class="line"><span class="comment">// const result: Pick<{</span></span><br><span class="line"><span class="comment">//     'a': number;</span></span><br><span class="line"><span class="comment">//     'b': string;</span></span><br><span class="line"><span class="comment">//     'c': number;</span></span><br><span class="line"><span class="comment">// }, "c"></span></span><br></pre></td></tr></tbody></table></figure>
+<p>扩展一下，也许某些时候 <code>omit</code> 方法的第二个参数可能是扩展运算符。例如</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">omit</span>(<span class="params">object, ...rest</span>) </span>{</span><br><span class="line">    <span class="comment">// do omit</span></span><br><span class="line">}</span><br><span class="line">omit(object, <span class="string">'a'</span>, <span class="string">'b'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>那这个时候的类型定义应该是这样</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">omit</span><<span class="title">T</span> <span class="title">extends</span> <span class="title">object</span>, <span class="title">K</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">T</span>>(<span class="params">object: T, ...paths: K[]</span>): <span class="title">Omit</span><<span class="title">T</span>, <span class="title">K</span>></span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h2><p>infer 是 TS 的一个关键字，用于显式类型推断。与之相关的常见的两个类型就是 <code>ReturnType</code> 和 <code>Parameters</code></p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getInt</span>(<span class="params">a: <span class="built_in">string</span></span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(a);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> A = ReturnType<<span class="keyword">typeof</span> getInt>; <span class="comment">// => number</span></span><br></pre></td></tr></tbody></table></figure>
+<p>再这个例子中，我们先需要使用 <code>typeof</code> 关键字获取函数的类型定义，也就是 <code>(a: string) => number</code>, 然后再将其作为泛型参数传入 <code>ReturnType</code>。这样就能从一个函数声明得到它的返回类型，这可以在写代码的时候减少我们一些心智负担，能够非常灵活的获取类型。</p>
+<p><code>ReturnType</code> 在标准库中的实现是 </p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ReturnType<T> = T <span class="keyword">extends</span> (...args: <span class="built_in">any</span>[]) => infer R ? R : <span class="built_in">any</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>对这个实现的解释是，如果类型 T 是扩展自函数类型，那么返回值就是 infer 关键字推断出的 R 类型，如果不是，就返回 <code>any</code> 类型。</p>
+<p>根据这个实现我们还能实现一个高阶类型用于推断函数参数。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ParametersType<T> = T <span class="keyword">extends</span> (...args: infer K) => <span class="built_in">any</span> ? K : <span class="built_in">any</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>使用这个类型推断出的类型是参数元组类型。</p>
+<p>其实这个类型在标准库中的的实现是这样的，只不过这个标准库实现了限定了泛型入参的类型必须为函数类型。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Obtain the parameters of a function type in a tuple</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> Parameters<T <span class="keyword">extends</span> (...args: <span class="built_in">any</span>) => <span class="built_in">any</span>> = T <span class="keyword">extends</span> (...args: infer P) => <span class="built_in">any</span> ? P : never;</span><br></pre></td></tr></tbody></table></figure>
+<p><code>lib.es5.d.ts</code> 中还实现了很多类似的高阶类型。可参考 <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html" target="_blank" rel="noopener">官网</a></p>
+<h2 id="Mapped-types-映射类型"><a href="#Mapped-types-映射类型" class="headerlink" title="Mapped types 映射类型"></a>Mapped types 映射类型</h2><p>常见的 Mapped types 都很简单, 可以简单过一下</p>
+<h3 id="Readonly"><a href="#Readonly" class="headerlink" title="Readonly"></a>Readonly</h3><p>假设我们有如下类型。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User = {</span><br><span class="line">  readonly id: <span class="built_in">number</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Readonly<Type> = {readonly [key <span class="keyword">in</span> keyof Type ]: Type[key]};</span><br><span class="line"><span class="keyword">type</span> ReadonlyUser =  Readonly<User>;</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Readonly</code> 的实现就是让泛型的每一个 key 都用 <code>readonly</code> 关键字标注，这样就能得到每一个 key 都是 readonly 只读的类型了。</p>
+<h3 id="Partial"><a href="#Partial" class="headerlink" title="Partial"></a>Partial</h3><figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Make all properties in T optional</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> Partial<T> = {</span><br><span class="line">    [P <span class="keyword">in</span> keyof T]?: T[P];</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>同理使用 <code>?</code> 让每一个 key 都可选。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> BlogPost = {</span><br><span class="line">  id: <span class="built_in">number</span>;</span><br><span class="line">  title: <span class="built_in">string</span>;</span><br><span class="line">  description?: <span class="built_in">string</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> PartialBlogPost = Partial<BlogPost>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">=> type PartialBlogPost {</span></span><br><span class="line"><span class="comment">  id?: number | undefined;</span></span><br><span class="line"><span class="comment">  title?: string / undefined;</span></span><br><span class="line"><span class="comment">  description?: string / undefined;</span></span><br><span class="line"><span class="comment">}</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Required"><a href="#Required" class="headerlink" title="Required"></a>Required</h3><figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Make all properties in T required</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> Required<T> = {</span><br><span class="line">    [P <span class="keyword">in</span> keyof T]-?: T[P];</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Required</code> 类型和上两个差不多，需要注意的是 <code>-</code> 这个修饰符，它意味着去除后面的可选修饰符 <code>?</code>, 那就是每一个 key 都是必需。同理也存在 <code>+</code> 修饰符。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> BlogPost = {</span><br><span class="line">  id: <span class="built_in">number</span>;</span><br><span class="line">  title: <span class="built_in">string</span>;</span><br><span class="line">  description?: <span class="built_in">string</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> RequiredBlogPost = Required<BlogPost>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">=> type RequiredBlogPost {</span></span><br><span class="line"><span class="comment">  id: number;</span></span><br><span class="line"><span class="comment">  title: string;</span></span><br><span class="line"><span class="comment">  description: string;</span></span><br><span class="line"><span class="comment">}</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Record"><a href="#Record" class="headerlink" title="Record"></a>Record</h3><p>在刚开始学习 TS 的时候，<code>Record</code> 的实现和使用场景让我比较困惑。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Construct a type with a set of properties K of type T</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">type</span> Record<K <span class="keyword">extends</span> keyof <span class="built_in">any</span>, T> = {</span><br><span class="line">    [P <span class="keyword">in</span> K]: T;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ExportFormat = <span class="string">"jsonMiniDiary"</span> | <span class="string">"md"</span> | <span class="string">"pdf"</span> | <span class="string">"txtDayOne"</span>;</span><br><span class="line"><span class="keyword">const</span> fileExtensions: Record<ExportFormat, <span class="built_in">string</span>> = {</span><br><span class="line">	jsonMiniDiary: <span class="string">"json"</span>,</span><br><span class="line">	md: <span class="string">"md"</span>,</span><br><span class="line">	pdf: <span class="string">"pdf"</span>,</span><br><span class="line">	txtDayOne: <span class="string">"txt"</span>,</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>这是一段来自 real world 的代码。通过这段代码，能看到 <code>Record</code> 能够帮助我们获得类型安全的对象声明。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型-和-extends"><span class="toc-number">1.</span> <span class="toc-text">泛型 和 extends</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Types"><span class="toc-number">2.</span> <span class="toc-text">Conditional Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pick、Exclude-和-Omit"><span class="toc-number">3.</span> <span class="toc-text">Pick、Exclude 和 Omit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pick"><span class="toc-number">3.1.</span> <span class="toc-text">Pick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Omit"><span class="toc-number">3.2.</span> <span class="toc-text">Omit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#infer"><span class="toc-number">4.</span> <span class="toc-text">infer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapped-types-映射类型"><span class="toc-number">5.</span> <span class="toc-text">Mapped types 映射类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Readonly"><span class="toc-number">5.1.</span> <span class="toc-text">Readonly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partial"><span class="toc-number">5.2.</span> <span class="toc-text">Partial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Required"><span class="toc-number">5.3.</span> <span class="toc-text">Required</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Record"><span class="toc-number">5.4.</span> <span class="toc-text">Record</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/19/typescript-advanced-type/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&text=Typescript 高阶类型"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&is_video=false&description=Typescript 高阶类型"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Typescript 高阶类型&body=Check out this article: http://yoursite.com/2019/06/19/typescript-advanced-type/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&title=Typescript 高阶类型"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/19/typescript-advanced-type/&name=Typescript 高阶类型&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Quill
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

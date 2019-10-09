@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#e2e0de">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="社交魔方平台是京东的 SNS 活动搭建平台，其内置了很多模板，每一个模板都有一个模板 JSON 用于生成表单，运营同学、商家配置了这个表单后就可以生成活动页面了。模板 JSON 是标准的结构化数据，包含名称、类型、控件类型、校验器、默认值等等字段。以往都是采用手写 JSON 的方式，这是非常低效的，而且容易出错。针对其结构化数据的特点可以用 GUI 的方式去编辑，我们基于 Electron 参考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Electron 实践笔记">
+<meta property="og:url" content="http://yoursite.com/2019/09/24/electron-in-action/index.html">
+<meta property="og:site_name" content="Carpe Diem">
+<meta property="og:description" content="社交魔方平台是京东的 SNS 活动搭建平台，其内置了很多模板，每一个模板都有一个模板 JSON 用于生成表单，运营同学、商家配置了这个表单后就可以生成活动页面了。模板 JSON 是标准的结构化数据，包含名称、类型、控件类型、校验器、默认值等等字段。以往都是采用手写 JSON 的方式，这是非常低效的，而且容易出错。针对其结构化数据的特点可以用 GUI 的方式去编辑，我们基于 Electron 参考">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-09T09:48:37.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Electron 实践笔记">
+<meta name="twitter:description" content="社交魔方平台是京东的 SNS 活动搭建平台，其内置了很多模板，每一个模板都有一个模板 JSON 用于生成表单，运营同学、商家配置了这个表单后就可以生成活动页面了。模板 JSON 是标准的结构化数据，包含名称、类型、控件类型、校验器、默认值等等字段。以往都是采用手写 JSON 的方式，这是非常低效的，而且容易出错。针对其结构化数据的特点可以用 GUI 的方式去编辑，我们基于 Electron 参考">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Electron 实践笔记</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/06/19/typescript-advanced-type/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/24/electron-in-action/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/24/electron-in-action/&text=Electron 实践笔记"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/24/electron-in-action/&is_video=false&description=Electron 实践笔记"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Electron 实践笔记&body=Check out this article: http://yoursite.com/2019/09/24/electron-in-action/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/24/electron-in-action/&name=Electron 实践笔记&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、关于-Electron"><span class="toc-number">1.</span> <span class="toc-text">一、关于 Electron</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、开发环境搭建"><span class="toc-number">2.</span> <span class="toc-text">二、开发环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、目录结构"><span class="toc-number">3.</span> <span class="toc-text">三、目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-项目目录结构"><span class="toc-number">3.1.</span> <span class="toc-text">1. 项目目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CSS-规范"><span class="toc-number">3.2.</span> <span class="toc-text">2. CSS 规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、IPC-通信"><span class="toc-number">4.</span> <span class="toc-text">三、IPC 通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-main-端"><span class="toc-number">4.1.</span> <span class="toc-text">1. main 端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-renderer-端"><span class="toc-number">4.2.</span> <span class="toc-text">2. renderer 端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、数据持久化及状态管理"><span class="toc-number">5.</span> <span class="toc-text">四、数据持久化及状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-复杂数据持久化"><span class="toc-number">5.1.</span> <span class="toc-text">1. 复杂数据持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-简单数据持久化"><span class="toc-number">5.2.</span> <span class="toc-text">2. 简单数据持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、功能实现"><span class="toc-number">6.</span> <span class="toc-text">五、功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-磁盘-编辑器版本实时同步"><span class="toc-number">6.1.</span> <span class="toc-text">1. 磁盘/编辑器版本实时同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Context-Menu"><span class="toc-number">6.2.</span> <span class="toc-text">2. Context-Menu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、日志"><span class="toc-number">7.</span> <span class="toc-text">六、日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、打包，发布及更新"><span class="toc-number">8.</span> <span class="toc-text">七、打包，发布及更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、其他"><span class="toc-number">9.</span> <span class="toc-text">八、其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-devtools"><span class="toc-number">9.1.</span> <span class="toc-text">1. devtools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-保持窗口大小"><span class="toc-number">10.</span> <span class="toc-text">2. 保持窗口大小</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Electron 实践笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">[object Object]</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-09-24T03:44:36.000Z" itemprop="datePublished">2019-09-24</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>社交魔方平台是京东的 SNS 活动搭建平台，其内置了很多模板，每一个模板都有一个模板 JSON 用于生成表单，运营同学、商家配置了这个表单后就可以生成活动页面了。<br>模板 JSON 是标准的结构化数据，包含名称、类型、控件类型、校验器、默认值等等字段。以往都是采用手写 JSON 的方式，这是非常低效的，而且容易出错。针对其结构化数据的特点可以用 GUI 的方式去编辑，我们基于 <a href="http://electronjs.org" target="_blank" rel="noopener">Electron</a> 参考 <a href="https://github.com/desktop/desktop" target="_blank" rel="noopener">Github Desktop 客户端</a> 的架构编写了一个 <a href="http://git.jd.com/zhouquan31_repos/cubic" target="_blank" rel="noopener">编辑器</a>，通过填写表单的方式生成 JSON。所以在这里记录下这个 Electron 编辑器开发过程中可以记录的点和从 Github Desktop 客户端代码中值得学习的点。</p>
+<h2 id="一、关于-Electron"><a href="#一、关于-Electron" class="headerlink" title="一、关于 Electron"></a>一、关于 Electron</h2><blockquote>
+<p>Electron是由Github开发，用HTML，CSS和JavaScript来构建跨平台桌面应用程序的一个开源库。 Electron通过将Chromium和Node.js合并到同一个运行时环境中，并将其打包为Mac，Windows和Linux系统下的应用来实现这一目的。</p>
+</blockquote>
+<p>上面是来自 Electron 官方的介绍。基于 Electron 平台，我们可以使用熟悉的前端技术栈来开发桌面应用。Electron 运行 package.json 的 main 脚本的进程被称为主进程（以下简称main）。 在主进程中运行的脚本通过创建 web 页面来展示用户界面（以下简称 renderer）。 一个 Electron 应用总是有且只有一个主进程。main 用于创建应用，创建浏览器窗口，它就是一个彻底的 Node 进程，获取不到 DOM, BOM 这些接口。在 main 创建的浏览器窗口中运行的就是 renderer 进程，它既可以获取 DOM, BOM 这些接口，也可以使用 Node 的 API。两类进程之间可以通过 Electron 提供的 IPC 接口通信。</p>
+<h2 id="二、开发环境搭建"><a href="#二、开发环境搭建" class="headerlink" title="二、开发环境搭建"></a>二、开发环境搭建</h2><p>我们了解到 Electron 分为两类进程，main 和 renderer。所以搭建开发环境时不能像普通的前端应用一样一个 webpack 配置搞定。并且我们想要实现</p>
+<ol>
+<li>一键启动开发环境</li>
+<li>一键打包</li>
+<li>一键发布</li>
+</ol>
+<p>那么就需要两个 webpack 配置文件。</p>
+<p>一个用于开发环境 – <code>webpack.dev.ts</code>。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.dev.ts</span></span><br><span class="line"><span class="keyword">const</span> mainConfig = merge({}, base.mainConfig, config, {</span><br><span class="line">  watch: <span class="literal">true</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rendererConfig = merge({}, base.rendererConfig, config, {</span><br><span class="line">  <span class="keyword">module</span>: {</span><br><span class="line">    rules: [</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>],</span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.styl$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'stylus-loader'</span>],</span><br><span class="line">      }</span><br><span class="line">    ]</span><br><span class="line">  },</span><br><span class="line">  devServer: {</span><br><span class="line">    contentBase: path.join(__dirname, base.outputDir),</span><br><span class="line">    port: <span class="number">8000</span>,</span><br><span class="line">    hot: <span class="literal">true</span>,</span><br><span class="line">    inline: <span class="literal">true</span>,</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    writeToDisk: <span class="literal">true</span></span><br><span class="line">  },</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = [rendererConfig, mainConfig]</span><br></pre></td></tr></tbody></table></figure>
+<p>另一个用于生产环境 – <code>webpack.prod.ts</code>。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config: webpack.Configuration = {</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mainConfig = merge({}, base.mainConfig, config)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rendererConfig = merge({}, base.rendererConfig, config, {</span><br><span class="line">  <span class="keyword">module</span>: {</span><br><span class="line">    rules: [</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>],</span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.styl$/</span>,</span><br><span class="line">        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>, <span class="string">'stylus-loader'</span>],</span><br><span class="line">      }</span><br><span class="line">    ]</span><br><span class="line">  },</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin({ filename: <span class="string">'renderer.css'</span> }),</span><br><span class="line">    <span class="keyword">new</span> BundleAnalyzerPlugin({</span><br><span class="line">      analyzerMode: <span class="string">'static'</span>,</span><br><span class="line">      openAnalyzer: <span class="literal">false</span>,</span><br><span class="line">      reportFilename: <span class="string">'renderer.report.html'</span>,</span><br><span class="line">    }),</span><br><span class="line">  ],</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = [mainConfig, rendererConfig]</span><br></pre></td></tr></tbody></table></figure>
+<p>这里参考了 Desktop 使用 Typescript 编写 webpack 配置文件。配合 interface 可以实现 webpack 配置文件的编辑器自动补全。具体使用方法可参考 webpack 文档 <a href="https://webpack.js.org/configuration/configuration-languages/#typescript" target="_blank" rel="noopener">https://webpack.js.org/configuration/configuration-languages/#typescript</a></p>
+<p>每一个配置文件导出一个数组，分别是 main, renderer 的配置对象。</p>
+<p>使用 webpack-dev-server 启动能实现 renderer 的热更新，main 则是使用 webpack 的 watch 模式。</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="attr">"compile:dev"</span>: <span class="string">"webpack-dev-server --config scripts/webpack.dev.ts"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>使用 <a href="https://nodemon.io" target="_blank" rel="noopener">nodemon</a> 监听 main 编译后的产物，nodemon 监听到改动则重新运行 <code>electron .</code> 重启应用,这样间接实现了 main 的 livereload。</p>
+<blockquote>
+<p>Nodemon is a utility that will monitor for any changes in your source and automatically restart your server.</p>
+</blockquote>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="attr">"app"</span>: <span class="string">"electron ."</span>,</span><br><span class="line">  <span class="attr">"app:watch"</span>: <span class="string">"nodemon --watch 'dest/main.js' --exec npm run app"</span>,</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这样就实现了一键启动开发环境，且能够监听代码变化，重新启动应用。</p>
+<blockquote>
+<p>Tips: 开源社区有更好的 <a href="https://github.com/electron-userland/electron-webpack" target="_blank" rel="noopener">electron-webpack</a>, HMR for both renderer and main processes</p>
+</blockquote>
+<p>生产环境则使用 webpack 顺序编译 main 和 renderer。编译完成后使用 <a href="https://www.electron.build" target="_blank" rel="noopener">electron-builder</a> 打包。这样就实现了一键打包。</p>
+<p>由于工具链的缺失实现不了一键发布，就只能打包后手动发布了（后面详细说明）。</p>
+<p>下面就是完整的 scripts。</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="attr">"scripts"</span>: {</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"run-p -c compile:dev typecheck:watch app:watch"</span>,</span><br><span class="line">    <span class="attr">"dist"</span>: <span class="string">"npm run compile:prod && electron-builder build --win --mac"</span>,</span><br><span class="line">    <span class="attr">"compile:dev"</span>: <span class="string">"webpack-dev-server --config scripts/webpack.dev.ts"</span>,</span><br><span class="line">    <span class="attr">"compile:prod"</span>: <span class="string">"npm run clean && webpack --config scripts/webpack.prod.ts"</span>,</span><br><span class="line">    <span class="attr">"app"</span>: <span class="string">"electron ."</span>,</span><br><span class="line">    <span class="attr">"app:watch"</span>: <span class="string">"nodemon --watch 'dest/main.js' --exec npm run app"</span>,</span><br><span class="line">    <span class="attr">"clean"</span>: <span class="string">"rimraf dest dist"</span>,</span><br><span class="line">    <span class="attr">"typecheck"</span>: <span class="string">"tsc --noEmit"</span>,</span><br><span class="line">    <span class="attr">"typecheck:watch"</span>: <span class="string">"tsc --noEmit --watch"</span>,</span><br><span class="line">    <span class="attr">"lint"</span>: <span class="string">"eslint src --ext .ts,.js --fix"</span>,</span><br><span class="line">    <span class="attr">"release:patch"</span>: <span class="string">"standard-version --release-as patch && git push --follow-tags origin master && npm run dist"</span>,</span><br><span class="line">    <span class="attr">"release:minor"</span>: <span class="string">"standard-version --release-as minor && git push --follow-tags origin master && npm run dist"</span>,</span><br><span class="line">    <span class="attr">"release:major"</span>: <span class="string">"standard-version --release-as major && git push --follow-tags origin master && npm run dist"</span>,</span><br><span class="line">    <span class="attr">"repush"</span>: <span class="string">"git push --follow-tags origin master && npm run dist"</span></span><br><span class="line">  },</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="三、目录结构"><a href="#三、目录结构" class="headerlink" title="三、目录结构"></a>三、目录结构</h2><h3 id="1-项目目录结构"><a href="#1-项目目录结构" class="headerlink" title="1. 项目目录结构"></a>1. 项目目录结构</h3><figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">├── lib</span><br><span class="line">│   ├── cube</span><br><span class="line">│   ├── databases</span><br><span class="line">│   ├── enviroment</span><br><span class="line">│   ├── files</span><br><span class="line">│   ├── <span class="built_in">local</span>-storage</span><br><span class="line">│   ├── <span class="built_in">log</span></span><br><span class="line">│   ├── shell</span><br><span class="line">│   ├── stores</span><br><span class="line">│   ├── update</span><br><span class="line">│   ├── validator</span><br><span class="line">│   └── watcher</span><br><span class="line">├── main</span><br><span class="line">│   ├── app-window.ts</span><br><span class="line">│   ├── event-bus.ts</span><br><span class="line">│   ├── index.ts</span><br><span class="line">│   ├── keyboard</span><br><span class="line">│   └── menu</span><br><span class="line">├── models</span><br><span class="line">│   ├── popup.ts</span><br><span class="line">│   └── project.ts</span><br><span class="line">└── renderer</span><br><span class="line">    ├── App.tsx</span><br><span class="line">    ├── assets</span><br><span class="line">    ├── components</span><br><span class="line">    ├── index.html</span><br><span class="line">    ├── index.tsx</span><br><span class="line">    ├── pages</span><br><span class="line">    └── types</span><br></pre></td></tr></tbody></table></figure>
+<p>在目录结构上模仿了 Desktop。main 目录存放 main 进程相关代码，包括应用入口，窗口创建，菜单，快捷键等等；而 renderer 目录则是整个 UI 渲染层的代码。lib 目录则是一些和 UI 无关也和 main 无强相关的业务逻辑代码。models 则存放一些领域模型。</p>
+<h3 id="2-CSS-规范"><a href="#2-CSS-规范" class="headerlink" title="2. CSS 规范"></a>2. CSS 规范</h3><p>在这个 React 中项目中没有使用 css-modules 这类方案。而是使用 BEM 这类能形成命名空间的规范来实现模块化，这样做的好处是能够比较好的对样式进行覆盖。</p>
+<p>在文件的组织方式上采用一个独立的 React 组件搭配一个独立的样式文件，这样在重构的时候，我们想要修改一个组件的样式只需要找到对应的样式文件进行修改即可，提高重构的效率。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">stylesheets</span><br><span class="line">  ├── common.styl</span><br><span class="line">  ├── components</span><br><span class="line">  │   ├── editor.styl</span><br><span class="line">  │   ├── empty-guide.styl</span><br><span class="line">  │   ├── find-in-page.styl</span><br><span class="line">  │   ├── reindex.styl</span><br><span class="line">  │   ├── sidebar.styl</span><br><span class="line">  │   ├── source-viewer.styl</span><br><span class="line">  │   └── upload.styl</span><br><span class="line">  ├── index.styl</span><br><span class="line">  └── reset.styl</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="三、IPC-通信"><a href="#三、IPC-通信" class="headerlink" title="三、IPC 通信"></a>三、IPC 通信</h2><blockquote>
+<p>进程间通信（IPC，InterProcess Communication）是指在不同进程之间传播或交换信息。 </p>
+</blockquote>
+<p>Electron 的 main 进程和 renderer 进程的通信是通过 Electron 提供的 <code>ipcMain</code> 和 <code>ipcRenderer</code> 来实现的。</p>
+<h3 id="1-main-端"><a href="#1-main-端" class="headerlink" title="1. main 端"></a>1. main 端</h3><p>在 main 中向某一个窗口 renderer 发送消息可以使用 <code>window.webContents.send</code>。<br>在 main 端监听 renderer 消息可以使用 <code>ipcMain.on</code>。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在主进程中.</span></span><br><span class="line"><span class="keyword">const</span> { ipcMain } = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">ipcMain.on(<span class="string">'asynchronous-message'</span>, (event, arg) => {</span><br><span class="line">  <span class="built_in">console</span>.log(arg) <span class="comment">// prints "ping"</span></span><br><span class="line">  event.reply(<span class="string">'asynchronous-reply'</span>, <span class="string">'pong'</span>)</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">ipcMain.on(<span class="string">'synchronous-message'</span>, (event, arg) => {</span><br><span class="line">  <span class="built_in">console</span>.log(arg) <span class="comment">// prints "ping"</span></span><br><span class="line">  event.returnValue = <span class="string">'pong'</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="2-renderer-端"><a href="#2-renderer-端" class="headerlink" title="2. renderer 端"></a>2. renderer 端</h3><p>回复同步消息可以使用 <code>event.returnValue</code>。同步消息的返回值可以直接读取。<br>回复异步消息可以使用 <code>event.reply</code>。那么在 renderer 就要监听回复的 channel 得到返回值。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在渲染器进程 (网页) 中。</span></span><br><span class="line"><span class="keyword">const</span> { ipcRenderer } = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(ipcRenderer.sendSync(<span class="string">'synchronous-message'</span>, <span class="string">'ping'</span>)) <span class="comment">// prints "pong"</span></span><br><span class="line"></span><br><span class="line">ipcRenderer.on(<span class="string">'asynchronous-reply'</span>, <span class="function">(<span class="params">event, arg</span>) =></span> {</span><br><span class="line">  <span class="built_in">console</span>.log(arg) <span class="comment">// prints "pong"</span></span><br><span class="line">})</span><br><span class="line">ipcRenderer.send(<span class="string">'asynchronous-message'</span>, <span class="string">'ping'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>可以看到 renderer 可以使用 <code>ipcRenderer.send</code> 向主进程发送异步消息。用 <code>ipcRenderer.sendSync</code> 发送同步消息。</p>
+<h2 id="四、数据持久化及状态管理"><a href="#四、数据持久化及状态管理" class="headerlink" title="四、数据持久化及状态管理"></a>四、数据持久化及状态管理</h2><h3 id="1-复杂数据持久化"><a href="#1-复杂数据持久化" class="headerlink" title="1. 复杂数据持久化"></a>1. 复杂数据持久化</h3><p>数据持久化可选的方案有很多，比如 <a href="https://github.com/sindresorhus/electron-store#readme" target="_blank" rel="noopener">electron-store</a>等基于 JSON 文件实现的存储方案。对于更复杂的应用场景还可以使用 <a href="https://github.com/typicode/lowdb" target="_blank" rel="noopener">lowdb</a>，<a href="https://github.com/louischatriot/nedb" target="_blank" rel="noopener">nedb</a> ，<code>sqlite</code>等。</p>
+<p>最初我使用的是 <code>electron-store</code>, 并且一直有一个执念是对磁盘的读写只能在 main 进程进行，renderer 进程只负责渲染界面。所以在最初设计的是在 renderer 进程渲染数据或者更新数据的时候都需要通过 IPC 到 main 进程来完成最终的磁盘读写。除去读写正常的情况，还要考虑读写磁盘的异常，这样导致数据流异常的绕。而且还需要自己维护 ID 的生成。借鉴了 Desktop 的代码后，重构了数据持久化部分，也采用了 <a href="https://github.com/dfahlander/Dexie.js" target="_blank" rel="noopener">Dexie</a>，它是对浏览器标准数据库 indexedDB 的一个封装。从它的 Readme 可以看到它主要解决了indexedDB 的三个问题：</p>
+<ol>
+<li>不明确的异常处理</li>
+<li>查询很烂</li>
+<li>代码复杂</li>
+</ol>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Dexie <span class="keyword">from</span> <span class="string">'dexie'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> IDatabaseProject {</span><br><span class="line">  id?: <span class="built_in">number</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  filePath: <span class="built_in">string</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ProjectsDatabase <span class="keyword">extends</span> Dexie {</span><br><span class="line">  <span class="keyword">public</span> projects: Dexie.Table<IDatabaseProject, <span class="built_in">number</span>>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) {</span><br><span class="line">    <span class="keyword">super</span>(<span class="string">'ProjectsDatabase'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.version(<span class="number">1</span>).stores({</span><br><span class="line">      projects: <span class="string">'++id,&name,&filePath'</span>,</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.projects = <span class="keyword">this</span>.table(<span class="string">'projects'</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>继承 Dexie 来实现我们自己的数据库类，在构造函数中声明数据库的版本，表的 schema 等等。具体可以参考 <a href="https://dexie.org/docs/" target="_blank" rel="noopener">Dexie 官方文档</a>。</p>
+<h3 id="2-简单数据持久化"><a href="#2-简单数据持久化" class="headerlink" title="2. 简单数据持久化"></a>2. 简单数据持久化</h3><p>一些 UI 状态的标志位存储（比如某个弹窗是否显示过），我们一般会把这种标志位存储到 <code>localStorage</code> 中。<br>在查看 Desktop 的源码过程中，发现他们对 <code>number</code>, <code>boolean</code> 类型的数据的 get, set 进行了简单的封装。使用起来非常方便，这里贴一下对于 <code>boolean</code> 型数据的处理。</p>
+<figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getBoolean</span>(<span class="params">key: <span class="built_in">string</span></span>): <span class="title">boolean</span> | <span class="title">undefined</span></span></span><br><span class="line"><span class="function"><span class="title">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getBoolean</span>(<span class="params">key: <span class="built_in">string</span>, defaultValue: <span class="built_in">boolean</span></span>): <span class="title">boolean</span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="title">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getBoolean</span>(<span class="params"></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="params">  key: <span class="built_in">string</span>,</span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="params">  defaultValue?: <span class="built_in">boolean</span></span></span></span></span></span><br><span class="line"><span class="function"><span class="function"><span class="function"><span class="params"></span>): <span class="title">boolean</span> | <span class="title">undefined</span> </span>{</span></span></span><br><span class="line"><span class="function"><span class="function">  <span class="title">const</span> <span class="title">value</span> = <span class="title">localStorage</span>.<span class="title">getItem</span>(<span class="params">key</span>)</span></span></span><br><span class="line"><span class="function"><span class="function">  <span class="title">if</span> (<span class="params">value === <span class="literal">null</span></span>) </span>{</span></span><br><span class="line"><span class="function">    <span class="title">return</span> <span class="title">defaultValue</span></span></span><br><span class="line"><span class="function">  }</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">if</span> (<span class="params">value === '1' || value === '<span class="literal">true</span>'</span>) </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (value === <span class="string">'0'</span> || value === <span class="string">'false'</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> defaultValue</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">setBoolean</span>(<span class="params">key: <span class="built_in">string</span>, value: <span class="built_in">boolean</span></span>) </span>{</span><br><span class="line">  localStorage.setItem(key, value ? <span class="string">'1'</span> : <span class="string">'0'</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><a href="https://github.com/desktop/desktop/blob/development/app/src/lib/local-storage.ts" target="_blank" rel="noopener">源码详见</a></p>
+<h2 id="五、功能实现"><a href="#五、功能实现" class="headerlink" title="五、功能实现"></a>五、功能实现</h2><h3 id="1-磁盘-编辑器版本实时同步"><a href="#1-磁盘-编辑器版本实时同步" class="headerlink" title="1. 磁盘/编辑器版本实时同步"></a>1. 磁盘/编辑器版本实时同步</h3><p>一般情况下，在编辑器中我们编辑的内容其实是编辑器读取磁盘文件到内存中的副本。所以说如果磁盘的文件发生了改动，比如 Git 切换分支造成文件变动，抑或是删除了磁盘文件，重命名等等都会造成内存版本和磁盘版本的不一致，即磁盘版本领先于内存版本，这个时候就可能产生冲突。解决这个问题很简单，可以使用 fs.watch/watchFile 监听当前编辑的文件，一旦发生变化，就重新读取磁盘版本，更新内存版本来实现同步。但是 fs.watch 这个 API 在工程上不是可以开箱即用的，有许多兼容问题和一些 bug。比如说</p>
+<p>Node.js fs.watch:</p>
+<ul>
+<li>Doesn’t report filenames on MacOS.</li>
+<li>Doesn’t report events at all when using editors like Sublime on MacOS.</li>
+<li>Often reports events twice.</li>
+<li>Emits most changes as rename.</li>
+<li>Does not provide an easy way to recursively watch file trees.</li>
+</ul>
+<p>Node.js fs.watchFile:</p>
+<ul>
+<li>Almost as bad at event handling.</li>
+<li>Also does not provide any recursive watching.</li>
+<li>Results in high CPU utilization.</li>
+</ul>
+<p>上面列举的点来自 <a href="https://github.com/paulmillr/chokidar" target="_blank" rel="noopener">chokidar</a>，它是一个 Node 模块，提供了开箱可用的监听文件变化的能力。只需要监听 <code>add</code>, <code>unlink</code>, <code>change</code> 等事件读取最新版本的文本到编辑器就可以实现磁盘/编辑器版本的同步了。</p>
+<h3 id="2-Context-Menu"><a href="#2-Context-Menu" class="headerlink" title="2. Context-Menu"></a>2. Context-Menu</h3><p>Desktop 的 <code>contextmenu</code> (右键菜单)的实现基于原生 IPC 的，比较绕。</p>
+<p>首先我们需要知道的是 <code>Menu</code> 类是 <code>main process only</code> 的。</p>
+<p>在需要 <code>contextmenu</code> 的 <code>JSX.Element</code> 上绑定 <code>onContextMenu</code> 事件。构造对象数组 <code>Array<MenuItem></code>, 并且为每个 MenuItem 对象绑定触发事件，再通过 IPC 将对象传递至 main 进程，值得一提的是这个时候将 MenuItem 数组赋值给了一个全局对象，暂存起来。在 main 进程构造出真正的 MenuItem 实例，绑定 MenuItem 的点击事件，触发 MenuItem 点击事件的时候记录 MenuItem 的 序列号 index，再将 index 通过 event.sender.send 将 index 传递到 renderer 进程。renderer 进程拿到 index 之后根据之前保存的全局对象取出单个 MenuItem， 执行绑定的事件。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onContextMenu => showContextualMenu (暂存MenuItems，ipcRenderer.send) => icpMain => menu.popup() => MenuItem.onClick(index) => event.sernder.send(index) => MenuItem.action()</span><br></pre></td></tr></tbody></table></figure>
+<p>所以在我的应用中使用了 remote 对象屏蔽上述复杂的 IPC 通信。在 renderer 进程完成 Menu 的构造展示和事件的绑定触发。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> { remote } <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"><span class="keyword">const</span> { MenuItem, dialog, getCurrentWindow, Menu } = remote;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> onContextMenu = <span class="function">(<span class="params">project: Project</span>) =></span> {</span><br><span class="line">  <span class="keyword">const</span> menu = <span class="keyword">new</span> Menu();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> menus = [</span><br><span class="line">    <span class="keyword">new</span> MenuItem({</span><br><span class="line">      label: <span class="string">'在终端中打开'</span>,</span><br><span class="line">      visible: __DARWIN__,</span><br><span class="line">      click() {</span><br><span class="line">        <span class="keyword">const</span> accessor = <span class="keyword">new</span> FileAccessor(project.filePath);</span><br><span class="line">        accessor.openInTerminal();</span><br><span class="line">      },</span><br><span class="line">    }),</span><br><span class="line">    <span class="keyword">new</span> MenuItem({</span><br><span class="line">      label: <span class="string">'在 vscode 中打开'</span>,</span><br><span class="line">      click() {</span><br><span class="line">        <span class="keyword">const</span> accessor = <span class="keyword">new</span> FileAccessor(project.filePath);</span><br><span class="line">        accessor.openInVscode();</span><br><span class="line">      },</span><br><span class="line">    }),</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  menus.forEach(menu.append);</span><br><span class="line">  menu.popup({ <span class="built_in">window</span>: getCurrentWindow() });</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="六、日志"><a href="#六、日志" class="headerlink" title="六、日志"></a>六、日志</h2><p>完善的日志不论是开发环境还是生产环境都是非常重要的，大致记录 UI 状态迁移背后的数据变动，流程的分支走向，能很好的辅助开发。</p>
+<p>参考 Desktop，他们的日志基于日志库：<a href="https://github.com/winstonjs/winston#readme" target="_blank" rel="noopener">winston</a>。</p>
+<p>在 main 进程和 renderer 进程都提供了全局 log 对象，接口都是一致的。分别是 <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>。在 renderer 进程，简单的封装了 <code>window.console</code> 对象上的 <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code> 方法，日志打印到浏览器控制台的时候也通过 IPC 传递到 main 进程，由 main 进程统一管理。 </p>
+<p>main 进程接收了来自 renderer 进程的日志信息和 main 进程自身的日志信息。设置了两个 <code>transports</code>。<code>winston.transports.Console</code> 和 <code>winston.transports.DailyRotateFile</code> 分别用于将日志信息打印在终端控制台和存储在磁盘文件。DailyRotateFile 以天为单位，设置了最多存储 14 天的上限。</p>
+<p>在 main 进程和 renderer 进程启动时分别引入日志安装模块。因为 log 方法都是暴露在全局，因此只需要在进程启动时引入一次即可。同时在 TS 环境中还需要添加 log 方法的类型声明。</p>
+<h2 id="七、打包，发布及更新"><a href="#七、打包，发布及更新" class="headerlink" title="七、打包，发布及更新"></a>七、打包，发布及更新</h2><p>开源世界已经有非常完善的打包和发布的工具 – <a href="https://www.electron.build" target="_blank" rel="noopener">electron-builder</a>。它集多平台打包，签名，自动更新，发布到Github等平台等等功能于一身。</p>
+<p>鉴于这个工具只能在内网使用，不能发布到 Github 而且也没有没有苹果开发者工具无法进行签名，只能利用 <code>electron-builder</code> 在本机打包，发布的话只能使用手动打包上传了，用户也只能手动下载安装包覆盖安装，不能像 VSCODE 这样实现自动更新。</p>
+<p>既然不能自动更新，那么新版本下发后，如何通知到用户去下载新版本安装包更新呢？<br>从用户这一端来看，在应用每次启动的时候可以做一次请求，查询是否有版本更新，或者是在应用菜单栏提供入口，让用户手动触发更新查询。查询到服务端的最新版本后，使用 <a href="https://www.npmjs.com/package/semver" target="_blank" rel="noopener">sermver</a> 比较本机版本是否低于服务器版本，如果是就下发通知给用户，提示用户去下载更新。</p>
+<p>在有限的条件下怎么实现这个功能呢？</p>
+<p>实现这个功能必需的三个元素：服务端标识着最新版本的可读文件；托管各个版本安装包的云空间；应用代码中的更新逻辑。</p>
+<p>服务端标识着最新版本的可读文件：每次打包时都会更新 <code>package.json</code>，所以我们直接把 <code>package.json</code> 上传到某个不带鉴权的 CDN 就可以，更新的时候就请求这个文件。</p>
+<p>托管各个版本安装包的云空间：这个可以使用云盘，云盘可以生成分享链接，把这个链接手动拷贝到 Gitlab 该版本的 tag 的 Notes 中。</p>
+<p>应用代码中的更新逻辑：</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> got <span class="keyword">from</span> <span class="string">'got'</span>;</span><br><span class="line"><span class="keyword">import</span> semver <span class="keyword">from</span> <span class="string">'semver'</span>;</span><br><span class="line"><span class="keyword">import</span> { app, remote, BrowserWindow } <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> realApp = app || remote.app;</span><br><span class="line"><span class="keyword">const</span> currentVersion = realApp.getVersion();</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkForUpdates</span>(<span class="params"><span class="built_in">window</span>: BrowserWindow, silent: <span class="built_in">boolean</span> = <span class="literal">false</span></span>) </span>{</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">`http://yourcdn/package.json?t=<span class="subst">${Date.now()}</span>`</span>;</span><br><span class="line">  <span class="keyword">try</span> {</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> got(url);</span><br><span class="line">    <span class="keyword">const</span> pkg = <span class="built_in">JSON</span>.parse(response.body);</span><br><span class="line">    log.debug(<span class="string">'检查更新，云端版本：'</span>, pkg.version);</span><br><span class="line">    log.debug(<span class="string">'当前版本'</span>, currentVersion);</span><br><span class="line">    <span class="keyword">if</span> (semver.lt(currentVersion, pkg.version)) {</span><br><span class="line">      <span class="built_in">window</span>.webContents.send(<span class="string">'update-available'</span>, pkg.version);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="built_in">window</span>.webContents.send(<span class="string">'update-not-available'</span>, silent);</span><br><span class="line">    }</span><br><span class="line">  } <span class="keyword">catch</span> (error) {</span><br><span class="line">    <span class="built_in">window</span>.webContents.send(<span class="string">'update-error'</span>, silent);</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>分别在应用主进程启动、用户点击应用菜单<code>检查更新</code>时调用这个方法，从而通知 UI 进程下发通知。我们期望应用主进程启动时的更新是在失败或者无更新时是静默的，不用打扰用户，所以在 IPC 管道可以提供一个 <code>silent</code> 参数。检测到更新后就可以通知用户，用户点击更新后就可以跳转到最新版本的 Gitlab tags ，引导用户下载最新版本进行手动安装。</p>
+<h2 id="八、其他"><a href="#八、其他" class="headerlink" title="八、其他"></a>八、其他</h2><h3 id="1-devtools"><a href="#1-devtools" class="headerlink" title="1. devtools"></a>1. devtools</h3><p>开发 Electron 应用中 renderer 端也是使用 Chrome devtools 来调试的。对于 React, Mobx 这类框的 devtools 扩展也可以通过 <code>electron-devtools-installer</code> 来安装。应用窗口创建之后调用<code>electron-devtools-installer</code> 进行 <code>mobx</code>、<code>react</code> 等扩展的安装。</p>
+<figure class="highlight ts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> { <span class="keyword">default</span>: installExtension, MOBX_DEVTOOLS, REACT_DEVELOPER_TOOLS } = <span class="built_in">require</span>(<span class="string">'electron-devtools-installer'</span>);</span><br><span class="line"><span class="keyword">const</span> extensions = [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> extension of extensions) {</span><br><span class="line">  <span class="keyword">try</span> {</span><br><span class="line">    installExtension(extension);</span><br><span class="line">  } <span class="keyword">catch</span> (e) {</span><br><span class="line">    <span class="comment">// log.error(e);</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="2-保持窗口大小"><a href="#2-保持窗口大小" class="headerlink" title="2. 保持窗口大小"></a>2. 保持窗口大小</h2><p>对于桌面应用，一个常见的需求就是关闭后重新打开，需要恢复到上次打开时的窗口大小，位置。实现这个比较简单，监听窗口的 resize 事件，把窗口信息记录到当前用户的应用数据文件夹, 即 <code>app.getPath(appData)</code>。下次启动应用创建窗口时读取这个文件设置窗口信息即可。开源社区已经有对这个功能封装好的库：<a href="https://github.com/mawie81/electron-window-state#readme" target="_blank" rel="noopener">electron-window-state</a></p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> windowStateKeeper = <span class="built_in">require</span>(<span class="string">'electron-window-state'</span>);</span><br><span class="line"><span class="keyword">let</span> win;</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'ready'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">  <span class="keyword">let</span> mainWindowState = windowStateKeeper({</span><br><span class="line">    defaultWidth: <span class="number">1000</span>,</span><br><span class="line">    defaultHeight: <span class="number">800</span></span><br><span class="line">  });</span><br><span class="line"></span><br><span class="line">  win = <span class="keyword">new</span> BrowserWindow({</span><br><span class="line">    <span class="string">'x'</span>: mainWindowState.x,</span><br><span class="line">    <span class="string">'y'</span>: mainWindowState.y,</span><br><span class="line">    <span class="string">'width'</span>: mainWindowState.width,</span><br><span class="line">    <span class="string">'height'</span>: mainWindowState.height</span><br><span class="line">  });</span><br><span class="line"></span><br><span class="line">  mainWindowState.manage(win);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>只需要提供缺省窗口大小，剩余的事情 <code>electron-window-state</code> 都帮我们搞定了。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、关于-Electron"><span class="toc-number">1.</span> <span class="toc-text">一、关于 Electron</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、开发环境搭建"><span class="toc-number">2.</span> <span class="toc-text">二、开发环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、目录结构"><span class="toc-number">3.</span> <span class="toc-text">三、目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-项目目录结构"><span class="toc-number">3.1.</span> <span class="toc-text">1. 项目目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CSS-规范"><span class="toc-number">3.2.</span> <span class="toc-text">2. CSS 规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、IPC-通信"><span class="toc-number">4.</span> <span class="toc-text">三、IPC 通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-main-端"><span class="toc-number">4.1.</span> <span class="toc-text">1. main 端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-renderer-端"><span class="toc-number">4.2.</span> <span class="toc-text">2. renderer 端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、数据持久化及状态管理"><span class="toc-number">5.</span> <span class="toc-text">四、数据持久化及状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-复杂数据持久化"><span class="toc-number">5.1.</span> <span class="toc-text">1. 复杂数据持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-简单数据持久化"><span class="toc-number">5.2.</span> <span class="toc-text">2. 简单数据持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、功能实现"><span class="toc-number">6.</span> <span class="toc-text">五、功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-磁盘-编辑器版本实时同步"><span class="toc-number">6.1.</span> <span class="toc-text">1. 磁盘/编辑器版本实时同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Context-Menu"><span class="toc-number">6.2.</span> <span class="toc-text">2. Context-Menu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、日志"><span class="toc-number">7.</span> <span class="toc-text">六、日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、打包，发布及更新"><span class="toc-number">8.</span> <span class="toc-text">七、打包，发布及更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、其他"><span class="toc-number">9.</span> <span class="toc-text">八、其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-devtools"><span class="toc-number">9.1.</span> <span class="toc-text">1. devtools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-保持窗口大小"><span class="toc-number">10.</span> <span class="toc-text">2. 保持窗口大小</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/24/electron-in-action/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/24/electron-in-action/&text=Electron 实践笔记"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/24/electron-in-action/&is_video=false&description=Electron 实践笔记"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Electron 实践笔记&body=Check out this article: http://yoursite.com/2019/09/24/electron-in-action/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/24/electron-in-action/&title=Electron 实践笔记"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/24/electron-in-action/&name=Electron 实践笔记&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Quill
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

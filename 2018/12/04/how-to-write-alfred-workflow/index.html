@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#e2e0de">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="✨ 前言每当有人问到有什么 macOS 上的提升效率的神器，Alfred 都是我脑海里第一个蹦出来的答案。Alfred with Powerpack 更是强上加强。几乎 mac 里的一切都可以通过简单的 ⌘ + space（我的 Alfred 快捷键）获取到。 Alfred 的 workflows 是一个使我非常兴奋的功能。它能充分满足程序员自给自足的乐趣。 今天我们不介绍 Alfred 的那些优">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何编写 Alfred Workflow">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/index.html">
+<meta property="og:site_name" content="Carpe Diem">
+<meta property="og:description" content="✨ 前言每当有人问到有什么 macOS 上的提升效率的神器，Alfred 都是我脑海里第一个蹦出来的答案。Alfred with Powerpack 更是强上加强。几乎 mac 里的一切都可以通过简单的 ⌘ + space（我的 Alfred 快捷键）获取到。 Alfred 的 workflows 是一个使我非常兴奋的功能。它能充分满足程序员自给自足的乐趣。 今天我们不介绍 Alfred 的那些优">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/Quilljou/alfred-gitmoji-workflow/blob/master/screenshots/demo.gif?raw=true">
+<meta property="og:image" content="http://pjcw35d11.bkt.clouddn.com/workflow-list.png">
+<meta property="og:image" content="http://pjcw35d11.bkt.clouddn.com/create-workflow">
+<meta property="og:image" content="http://pjcw35d11.bkt.clouddn.com/workflow-script-filter">
+<meta property="og:image" content="http://pjcw35d11.bkt.clouddn.com/workflow-hotkey">
+<meta property="og:image" content="http://pjcw35d11.bkt.clouddn.com/workflow-langs">
+<meta property="og:image" content="http://pjcw35d11.bkt.clouddn.com/workflow">
+<meta property="og:updated_time" content="2019-07-19T01:53:42.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何编写 Alfred Workflow">
+<meta name="twitter:description" content="✨ 前言每当有人问到有什么 macOS 上的提升效率的神器，Alfred 都是我脑海里第一个蹦出来的答案。Alfred with Powerpack 更是强上加强。几乎 mac 里的一切都可以通过简单的 ⌘ + space（我的 Alfred 快捷键）获取到。 Alfred 的 workflows 是一个使我非常兴奋的功能。它能充分满足程序员自给自足的乐趣。 今天我们不介绍 Alfred 的那些优">
+<meta name="twitter:image" content="https://github.com/Quilljou/alfred-gitmoji-workflow/blob/master/screenshots/demo.gif?raw=true">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>如何编写 Alfred Workflow</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/19/typescript-advanced-type/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&text=如何编写 Alfred Workflow"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&is_video=false&description=如何编写 Alfred Workflow"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何编写 Alfred Workflow&body=Check out this article: http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&name=如何编写 Alfred Workflow&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sparkles-前言"><span class="toc-number">1.</span> <span class="toc-text">✨ 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wrench-搭建工作环境"><span class="toc-number">2.</span> <span class="toc-text">🔧 搭建工作环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rocket-写脚本"><span class="toc-number">3.</span> <span class="toc-text">🚀 写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robot-TODO"><span class="toc-number">4.</span> <span class="toc-text">🤖 TODO</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        如何编写 Alfred Workflow
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Carpe Diem</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-04T13:54:16.000Z" itemprop="datePublished">2018-12-04</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="sparkles-前言"><a href="#sparkles-前言" class="headerlink" title=":sparkles: 前言"></a><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">✨</span> 前言</h2><p>每当有人问到有什么 macOS 上的提升效率的神器，<a href="https://www.alfredapp.com/" target="_blank" rel="noopener">Alfred</a> 都是我脑海里第一个蹦出来的答案。Alfred with Powerpack 更是强上加强。<br>几乎 mac 里的一切都可以通过简单的 <code>⌘ + space</code>（我的 Alfred 快捷键）获取到。</p>
+<p>Alfred 的 workflows 是一个使我非常兴奋的功能。它能充分满足程序员自给自足的乐趣。</p>
+<p>今天我们不介绍 Alfred 的那些优秀的功能。只来学习下如何开发自己的 workflow。</p>
+<p>这是成品 <a href="https://github.com/Quilljou/alfred-gitmoji-workflow" target="_blank" rel="noopener">alfred-gitmoji-workflow</a>。效果如下：<br></p><center></center><p></p>
+<p><img src="https://github.com/Quilljou/alfred-gitmoji-workflow/blob/master/screenshots/demo.gif?raw=true" alt="alt"></p>
+<p></p>
+<blockquote>
+<p><a href="https://github.com/carloscuesta/gitmoji" target="_blank" rel="noopener">Gitmoji</a> 是一个标准化和解释在GitHub提交消息上使用emojis的计划。可以理解为用来规范 git commit message 中 emoji 的使用的。</p>
+</blockquote>
+<p>通过在 Alfred 中键入 gitmoji 就会列出所有的 gitmoji，可以通过 <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="noopener">gitmoji</a> 官网中提供的 emoji 名称和释义来搜索。按下回车就复制到了粘贴板，并且粘贴到你当前 focus 的窗口的输入框。</p>
+<h2 id="wrench-搭建工作环境"><a href="#wrench-搭建工作环境" class="headerlink" title=":wrench: 搭建工作环境"></a><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f527.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f527.png?v8">🔧</span> 搭建工作环境</h2><p>在 Alfred 打开时，键入 <code>⌘ + ,</code> 就会进入到偏好页。在 Alfred偏好页 -> Workflows 左侧 workflow 列表的最下方点击加号新建一个空白的 workflow。</p>
+<center><br><br><img src="http://pjcw35d11.bkt.clouddn.com/workflow-list.png" alt="abc"><br><br></center>
+
+<p>在创建 workflow 的弹窗，填写好基本信息，需要注意的是 Bundle Id 是你这个 workflow 的签名。需要填写的独特一些。</p>
+<center><br><br><img src="http://pjcw35d11.bkt.clouddn.com/create-workflow" alt="alt"><br><br></center>
+
+<p>在空白的 workflow 界面，右键。根据我们这次需要开发的 wolkflow 的特性选择 Inputs 为 Script Filter。</p>
+<center><br><br><img src="http://pjcw35d11.bkt.clouddn.com/workflow-script-filter" alt="alt"><br><br></center>
+
+<p>然后填写关键词的一些描述信息，包括输入关键词的标题，副标题，和 Loading 时的占位词等等一些设置。</p>
+<p>当然最重要的就是设置得到用户输入之后，对这个输入进行处理然后输出的脚本。</p>
+<center><br><br><img src="http://pjcw35d11.bkt.clouddn.com/workflow-hotkey" alt="alt"><br><br></center>
+
+
+<p>Alfred 提供了几种脚本语言的运行时。</p>
+<center><br><br><img src="http://pjcw35d11.bkt.clouddn.com/workflow-langs" alt="languages"><br><br></center>
+
+<p>一开始觉得这种插件的开发应该是 JS 的天下。没想到在 Github 上用来开发 workflow 的最多的语言居然是 PHP。我也随大流的选择了 PHP 来进行这次开发。</p>
+<p>脚本输入框内就是最关键的两行代码，我们的脚本入口：</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$query = urlencode( <span class="string">"{query}"</span> );</span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">"gitmoji.php"</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>在 Alfred 中。输入<code>gitmoji</code>， 这个关键字后面输入的文字就作为 <code>{query}</code> 作为我们脚本的输入。也就是上面我们把这个输入 <code>urlencode</code> 之后赋给了变量 <code>$query</code>。我们然后引用了 <code>gitmoji.php</code>。我们做的搜索逻辑就是在这个 php 文件中完成的。</p>
+<p>在列表中右键这个 workflow, 选择在 Finder 中打开，我们就可以看到两个文件。<code>info.plist</code>, <code>icon.png</code>。<code>info.plist</code> 就包含了我们刚刚填写的所有基本信息和设置选项的 xml 文件。你可以双击打开查看。<br>所以再创建一个 <code>gitmoji.php</code> 就完成了一个 workflow 的开发了。</p>
+<center><br><br><img src="http://pjcw35d11.bkt.clouddn.com/workflow" alt="alt"><br><br></center>
+
+
+<p>刚刚打开的路径是<code>/Users/xxxx/Library/Application\ Support/Alfred\3/Alfred.alfredpreferences/workflows/user.workflow.xxxxx/</code>。</p>
+<p>我们一般不会选择直接在上面这个路径我们的开发目录，因为这根本不是我们的开发地盘。</p>
+<p>所以在自己常用的开发目录下新建一个目录，将上面得到的两个文件拷贝过来。我们新建一个空白的 workflow 的目的就是先得到这两个文件。</p>
+<p>我们不在 Alfred 存放 workflow 的目录开发，那我们怎么将我们源码放置到 workflow 指定的目录呢？</p>
+<p>其实 Alfred 的 workflow 的文件扩展是类似 <code>gitmoji.workflow</code> 的一个压缩文件。双击这个压缩文件 Alfred 就会安装这个插件到上面的路径。</p>
+<p>所以我们就需要一个脚本帮我们完成这个压缩（打包）的工作。</p>
+<p>这里借鉴(copy)的是 <a href="https://github.com/gharlan/alfred-github-workflow/blob/master/bin/build" target="_blank" rel="noopener">alfred-github-workflow</a> 的打包脚本。</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env php</span></span><br><span class="line"><span class="meta"><?php</span></span><br><span class="line"><span class="comment">// Forked from https://github.com/gharlan/alfred-github-workflow/blob/master/bin/build</span></span><br><span class="line"></span><br><span class="line">$dir = dirname(<span class="keyword">__DIR__</span>);</span><br><span class="line">$VERSION = <span class="string">"1.0.0"</span>;</span><br><span class="line"><span class="keyword">require</span> $dir.<span class="string">'/workflows.php'</span>;</span><br><span class="line"></span><br><span class="line">$plist = $dir.<span class="string">'/info.plist'</span>;</span><br><span class="line"></span><br><span class="line">exec(sprintf(<span class="string">'/usr/libexec/PlistBuddy -c "Set :version %s" %s'</span>, $VERSION, escapeshellarg($plist)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// $changelog = file_get_contents($dir.'/CHANGELOG.md');</span></span><br><span class="line"><span class="comment">// $changelog = str_replace("\n", '\n', $changelog);</span></span><br><span class="line"><span class="comment">// exec(sprintf('/usr/libexec/PlistBuddy -c "Set :readme \"%s\"" %s', escapeshellcmd($changelog), escapeshellarg($plist)));</span></span><br><span class="line"></span><br><span class="line">$zipFile = $dir.<span class="string">'/github.zip'</span>;</span><br><span class="line"><span class="keyword">if</span> (file_exists($zipFile)) {</span><br><span class="line">    unlink($zipFile);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">$zip = <span class="keyword">new</span> PharData($zipFile);</span><br><span class="line"></span><br><span class="line">$files = <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'icon.png'</span>,</span><br><span class="line">    <span class="string">'info.plist'</span>,</span><br><span class="line">    <span class="string">'gitmoji.php'</span>,</span><br><span class="line">    <span class="string">'README.md'</span>,</span><br><span class="line">    <span class="string">'workflows.php'</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($files <span class="keyword">as</span> $file) {</span><br><span class="line">    $zip->addFile($dir.<span class="string">'/'</span>.$file, $file);</span><br><span class="line">}</span><br><span class="line"><span class="keyword">foreach</span> (glob($dir.<span class="string">'/icons/*.png'</span>) <span class="keyword">as</span> $path) {</span><br><span class="line">    $zip->addFile($path, <span class="string">'icons/'</span>.basename($path));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">$zip->compressFiles(Phar::GZ);</span><br><span class="line"></span><br><span class="line">$workflow = $dir.<span class="string">'/gitmoji.alfredworkflow'</span>;</span><br><span class="line"><span class="keyword">if</span> (file_exists($workflow)) {</span><br><span class="line">    unlink($workflow);</span><br><span class="line">}</span><br><span class="line">rename($zipFile, $workflow);</span><br></pre></td></tr></tbody></table></figure>
+<p>它所做的事情就是将源码（workflow 需要的几个文件）通过 php 的 PharData 类将生成一个压缩包。双击就能被 Alfred 安装。安装也就是解压缩之后复制到 workflow 的工作目录。</p>
+<h2 id="rocket-写脚本"><a href="#rocket-写脚本" class="headerlink" title=":rocket: 写脚本"></a><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f680.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f680.png?v8">🚀</span> 写脚本</h2><figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'workflows.php'</span>);</span><br><span class="line">$w = <span class="keyword">new</span> Workflows();</span><br><span class="line">$query = urldecode(strtolower(trim($query)));</span><br><span class="line"></span><br><span class="line"><!-- 一周更新一次 --></span><br><span class="line"><span class="keyword">if</span> (filemtime(<span class="string">"data.json"</span>) <= (time() - <span class="number">86400</span> * <span class="number">7</span>)) {</span><br><span class="line">    $dataUrl = <span class="string">'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'</span>;</span><br><span class="line">    $gitmojis = $w->request($dataUrl);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(json_decode($gitmojis)->gitmojis)) {</span><br><span class="line">        file_put_contents(<span class="string">"data.json"</span>, $gitmojis);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><!-- 将 gitmoji 的数据设置成 Alfred 可读的数据结构  --></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setResult</span><span class="params">($gitmojis)</span> </span>{</span><br><span class="line">    <span class="keyword">global</span> $w;</span><br><span class="line">    <span class="keyword">foreach</span> ($gitmojis <span class="keyword">as</span> $key => $value) {</span><br><span class="line">        $id = $value->name;</span><br><span class="line">        $arg = $value->code;</span><br><span class="line">        $emoji = $value->emoji;</span><br><span class="line">        $title = $emoji.<span class="string">" "</span>.$value->description;</span><br><span class="line">        $subTitle = <span class="string">"Copy "</span>.$arg.<span class="string">" to clipboard"</span>;</span><br><span class="line">        $w->result($id, $arg, $title, $subTitle, <span class="string">' '</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><!-- 通过搜索词过滤出结果 --></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span><span class="params">($var)</span> </span>{</span><br><span class="line">    <span class="keyword">global</span> $query;</span><br><span class="line">    $description = strtolower($var->description);</span><br><span class="line">    $name = strtolower($var->name);</span><br><span class="line">    <span class="keyword">return</span> strpos($description,$query) !== <span class="keyword">false</span> || strpos($name,$query) !== <span class="keyword">false</span>;</span><br><span class="line">}</span><br><span class="line">$gitmojis = json_decode(file_get_contents(<span class="string">'data.json'</span>))->gitmojis;</span><br><span class="line">$data = $gitmojis;</span><br><span class="line"></span><br><span class="line"><!-- 没有关键词就显示所有 gitmoji --></span><br><span class="line"><span class="keyword">if</span> (strlen($query) != <span class="number">0</span>) {</span><br><span class="line">    $data = array_filter($gitmojis, <span class="string">"filter"</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><!-- 得到的搜索，设置到缓冲区 --></span><br><span class="line">setResult($data);</span><br><span class="line"></span><br><span class="line"><!-- 将结果输出成 Alfred 可读的 xml --></span><br><span class="line"><span class="keyword">echo</span> $w->toxml();</span><br></pre></td></tr></tbody></table></figure>
+<p>脚本只有短短的42行。能这么短的原因是社区有已经封装好的很好用的 <a href="https://github.com/jdfwarrior/Workflows" target="_blank" rel="noopener">workflow util</a>。</p>
+<p>我们用到的这个 util 的方法只有<code>result</code>，<code>toxml</code>。</p>
+<p><code>result</code>方法就是把数据推到一个缓冲区，并且设置了 Alfred 最终显示的每一行的数据结构。这个结构包括<code>$uid, $arg, $title, $sub, $icon</code>。依次对应唯一ID、结果（复制到粘贴板的字符串）、标题、副标题、icon。注意这里的 icon 只能是本地资源，不能是服务器资源。</p>
+<p><code>toxml</code>方法就是把缓冲区的数据转成 Alfred 可读的 <code>xml</code> 格式。</p>
+<p>我做的事情就是获取 gitmoji 托管在 github 上的 json 数据，缓存到本地。根据关键词通过字符串匹配名字和释义。将过滤之后得到的数据转成 Alfred 需要的数据格式，然后转成 xml。</p>
+<p>然后再终端运行 <code>./bin/build</code>。就得到了一个 Alfred workflow: <code>gitmoji.workflow</code>。<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span></p>
+<p>双击<code>gitmoji.workflow</code>安装，就可以在 Alfred 中和 gitmoji 尽情玩耍了。</p>
+<h2 id="robot-TODO"><a href="#robot-TODO" class="headerlink" title=":robot: TODO"></a><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f916.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f916.png?v8">🤖</span> TODO</h2><p>其实可以做到事情还有</p>
+<ul>
+<li>根据不同的语言来搜索 gitmoji。可惜 gitmoji 的维护者说还<a href="https://github.com/carloscuesta/gitmoji/issues/217" target="_blank" rel="noopener">没有找到好的方法</a>维护多语言翻译。</li>
+<li>为了保持和 gitmoji 源码数据的同步，没有使用 emoji 图片作为 icon。因为这样每次 gitmoji 数据一更新，这个 workflow 也需要更新。</li>
+<li>增加 update 命令：立即同步 github 数据。</li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sparkles-前言"><span class="toc-number">1.</span> <span class="toc-text">✨ 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wrench-搭建工作环境"><span class="toc-number">2.</span> <span class="toc-text">🔧 搭建工作环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rocket-写脚本"><span class="toc-number">3.</span> <span class="toc-text">🚀 写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robot-TODO"><span class="toc-number">4.</span> <span class="toc-text">🤖 TODO</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&text=如何编写 Alfred Workflow"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&is_video=false&description=如何编写 Alfred Workflow"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何编写 Alfred Workflow&body=Check out this article: http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&title=如何编写 Alfred Workflow"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/04/how-to-write-alfred-workflow/&name=如何编写 Alfred Workflow&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Quill
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

@@ -16,8 +16,8 @@ tags:
 
 本文基于以下版本进行分析
 
-- webpack-dev-server@3.11.0
-- webpack@4.44.1
+- [webpack-dev-server@3.11.0](https://github.com/webpack/webpack-dev-server/tree/v3.11.0)
+- [webpack@4.44.1](https://github.com/webpack/webpack/tree/v4.44.1)
 
 ## 入口
 

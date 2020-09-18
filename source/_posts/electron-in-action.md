@@ -2,11 +2,6 @@
 title: Electron 实践笔记
 subtitle: Electron是由Github开发，用HTML，CSS和JavaScript来构建跨平台桌面应用程序的一个开源库。 
 date: 2019-09-24 11:44:36
-cover: https://camo.githubusercontent.com/627c774e3070482b180c3abd858ef2145d46303b/68747470733a2f2f656c656374726f6e6a732e6f72672f696d616765732f656c656374726f6e2d6c6f676f2e737667
-author:
-  nick: 周全
-  github_name: zhouquan31
-tags: 
 ---
 
 社交魔方平台是京东的 SNS 活动搭建平台，其内置了很多模板，每一个模板都有一个模板 JSON 用于生成表单，运营同学、商家配置了这个表单后就可以生成活动页面了。

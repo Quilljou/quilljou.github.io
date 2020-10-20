@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#e2e0de">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="原文链接 Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。 下面是一些当我们使用 Express 时可能会看到的一些设计模式。 工厂模式这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。 1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】design-patterns-in-expressjs">
+<meta property="og:url" content="http://yoursite.com/2020/10/20/design-patterns-in-expressjs/index.html">
+<meta property="og:site_name" content="Carpe Diem">
+<meta property="og:description" content="原文链接 Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。 下面是一些当我们使用 Express 时可能会看到的一些设计模式。 工厂模式这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。 1234">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://vietcanho.files.wordpress.com/2016/06/middleware.png?w=1462">
+<meta property="og:image" content="https://dzone.com/storage/temp/2440958-decorator.png">
+<meta property="og:image" content="https://dzone.com/storage/temp/2442910-strategy.png">
+<meta property="og:image" content="https://dzone.com/storage/temp/2442923-proxy.png">
+<meta property="og:updated_time" content="2020-10-20T11:24:28.103Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】design-patterns-in-expressjs">
+<meta name="twitter:description" content="原文链接 Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。 下面是一些当我们使用 Express 时可能会看到的一些设计模式。 工厂模式这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。 1234">
+<meta name="twitter:image" content="https://vietcanho.files.wordpress.com/2016/06/middleware.png?w=1462">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>【译】design-patterns-in-expressjs</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/09/18/how-wepback-dev-server-run/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&text=【译】design-patterns-in-expressjs"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&is_video=false&description=【译】design-patterns-in-expressjs"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译】design-patterns-in-expressjs&body=Check out this article: http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&name=【译】design-patterns-in-expressjs&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中间件"><span class="toc-number">2.</span> <span class="toc-text">中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰器模式"><span class="toc-number">3.</span> <span class="toc-text">装饰器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式"><span class="toc-number">4.</span> <span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式"><span class="toc-number">5.</span> <span class="toc-text">代理模式</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【译】design-patterns-in-expressjs
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Carpe Diem</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-10-20T10:03:25.000Z" itemprop="datePublished">2020-10-20</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="https://dzone.com/articles/design-patterns-in-expressjs" target="_blank" rel="noopener">原文链接</a></p>
+<p>Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。</p>
+<p>下面是一些当我们使用 Express 时可能会看到的一些设计模式。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Expose `createApplication()`.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">exports = <span class="built_in">module</span>.exports = createApplication;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createApplication</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="keyword">var</span> app = <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>{</span><br><span class="line">    app.handle(req, res, next);</span><br><span class="line">  };</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> app;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>另外，使用工厂模式创造一个 express 应用就如下面代码所示这么简单</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</span><br><span class="line">..</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>中间件被 Express.js 带火的一个术语。</p>
+<p>事实上，我们可以把这种设计模式看成 <a href="http://www.oracle.com/technetwork/java/interceptingfilter-142169.html" target="_blank" rel="noopener">拦截过滤</a>和 <a href="http://www.oracle.com/technetwork/java/interceptingfilter-142169.html" target="_blank" rel="noopener">职责链模式</a>的一种变体。</p>
+<p><img src="https://vietcanho.files.wordpress.com/2016/06/middleware.png?w=1462" alt="alt"></p>
+<p>关于该模式的更多信息-点击 <a href="https://dzone.com/articles/understanding-middleware-pattern-in-expressjs" target="_blank" rel="noopener">这里</a></p>
+<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>装饰器模式动态地扩展（装饰）了一个对象的行为。它和经典的继承不同，因为新的行为是在运行时被添加的，并且只被添加到被装饰的对象上（并非类上）。</p>
+<p><img src="https://dzone.com/storage/temp/2440958-decorator.png" alt="alt"></p>
+<p>这种模式的一个简单示例是 <a href="http://expressjs.com/en/4x/api.html#req" target="_blank" rel="noopener">req</a> 和 <a href="http://expressjs.com/en/4x/api.html#res" target="_blank" rel="noopener">resp</a> ，在 Node 中，请求和响应对象的 API 是有限的。Express 通过使用一些新的特性装饰它们从而扩展了这些对象。</p>
+<p>以下就是接收 request (req) 和 response (resp) 对象并且装饰它们的函数。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///lib/middleware/init.js</span></span><br><span class="line">exports.init = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>)</span>{</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">expressInit</span>(<span class="params">req, res, next</span>)</span>{</span><br><span class="line">    <span class="keyword">if</span> (app.enabled(<span class="string">'x-powered-by'</span>)) res.setHeader(<span class="string">'X-Powered-By'</span>, <span class="string">'Express'</span>);</span><br><span class="line">    req.res = res;</span><br><span class="line">    res.req = req;</span><br><span class="line">    req.next = next;</span><br><span class="line"></span><br><span class="line">    req.__proto__ = app.request;</span><br><span class="line">    res.__proto__ = app.response;</span><br><span class="line"></span><br><span class="line">    res.locals = res.locals || <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">    next();</span><br><span class="line">  };</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><blockquote>
+<p>定义一组算法，对每一个算法进行封装，让他们变得可被替换。策略模式让算法非常独立于使用它的客户。</p>
+</blockquote>
+<p><img src="https://dzone.com/storage/temp/2442910-strategy.png" alt="alt"></p>
+<p>它让一个策略（算法）在运行时在不被客户意识到的情况下被任何其他策略所替换。</p>
+<p>在 Express 中，策略模式能在 Express 支持不同的模板引擎（例如 Pug, Mustache, EJS, swig等等）的实现中看到。在 <a href="https://github.com/expressjs/express/wiki?_ga=1.216495568.777274470.1463719254#template-engines" target="_blank" rel="noopener">这里</a> 可以看到 Express 支持的渲染引擎的完整列表。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</span><br><span class="line"><span class="keyword">import</span> exphbs <span class="keyword">from</span> <span class="string">'express-handlebars'</span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.engine(<span class="string">'.html'</span>, exphbs({...}));</span><br><span class="line">app.engine(<span class="string">'jade'</span>, <span class="built_in">require</span>(<span class="string">'jade'</span>).__express);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Select the strategy '.html'</span></span><br><span class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'.html'</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>另一个例子是 Express 如何支持 <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html" target="_blank" rel="noopener">内容协商</a></p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>这种设计模式提供了一个叫做 <strong>Proxy</strong> 的对象用于控制另一个叫 <strong>Subject</strong> 的对象的访问。<strong>Proxy</strong> 对象和 Subject 对象具有相同的接口。<strong>Proxy</strong> 位于客户和 Subject 对象之间，它拦截了所有或者部分的请求，然后将这些请求转发给 <strong>Subject</strong></p>
+<p><img src="https://dzone.com/storage/temp/2442923-proxy.png" alt="alt"></p>
+<p>Express 有两种类型的中间件：</p>
+<p>应用级中间件</p>
+<p>路由级中间件</p>
+<p>除了 应用级中间件 是绑定在一个应用（application）对象上且 路由级中间件是绑定在 路由（router）实例上的区别外，它们都是一样的。所以 Express 是怎么实现这个功能的呢？通过 <strong>组合（composition）</strong>！express 的应用（application）对象拥有对 路由Router 实例对象的内部引用。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>._router = <span class="keyword">new</span> Router({</span><br><span class="line">      caseSensitive: <span class="keyword">this</span>.enabled(<span class="string">'case sensitive routing'</span>),</span><br><span class="line">      strict: <span class="keyword">this</span>.enabled(<span class="string">'strict routing'</span>)</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>._router.use(query(<span class="keyword">this</span>.get(<span class="string">'query parser fn'</span>)));</span><br><span class="line"><span class="keyword">this</span>._router.use(middleware.init(<span class="keyword">this</span>));</span><br></pre></td></tr></tbody></table></figure>
+<p>使用每个受支持的API，在将请求转发到内部路由器（Router）实例之前，应用（application）对象将进行一些逻辑检查和验证。</p>
+<p>注意: 还有许多其他的设计模式我没有在这里列出来，比如单例模式，懒初始化模式，事件发射器模式。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中间件"><span class="toc-number">2.</span> <span class="toc-text">中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰器模式"><span class="toc-number">3.</span> <span class="toc-text">装饰器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式"><span class="toc-number">4.</span> <span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式"><span class="toc-number">5.</span> <span class="toc-text">代理模式</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&text=【译】design-patterns-in-expressjs"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&is_video=false&description=【译】design-patterns-in-expressjs"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译】design-patterns-in-expressjs&body=Check out this article: http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&name=【译】design-patterns-in-expressjs&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Quill
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="原文链接 Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。 下面是一些当我们使用 Express 时可能会看到的一些设计模式。 工厂模式这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。 1234">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【译】design-patterns-in-expressjs">
+<meta property="og:title" content="【译】Express 中的设计模式">
 <meta property="og:url" content="http://yoursite.com/2020/10/20/design-patterns-in-expressjs/index.html">
 <meta property="og:site_name" content="Carpe Diem">
 <meta property="og:description" content="原文链接 Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。 下面是一些当我们使用 Express 时可能会看到的一些设计模式。 工厂模式这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。 1234">
@@ -18,9 +18,9 @@
 <meta property="og:image" content="https://dzone.com/storage/temp/2440958-decorator.png">
 <meta property="og:image" content="https://dzone.com/storage/temp/2442910-strategy.png">
 <meta property="og:image" content="https://dzone.com/storage/temp/2442923-proxy.png">
-<meta property="og:updated_time" content="2020-10-20T11:24:28.103Z">
+<meta property="og:updated_time" content="2020-10-20T11:28:52.088Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【译】design-patterns-in-expressjs">
+<meta name="twitter:title" content="【译】Express 中的设计模式">
 <meta name="twitter:description" content="原文链接 Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。 下面是一些当我们使用 Express 时可能会看到的一些设计模式。 工厂模式这是 JavaScript 语言中一个简单和常用的设计模式。工厂模式是一种创新的设计模式可以让我们从外部世界中抽象出对象实现细节。Express 通过导出工厂实现这种模式。 1234">
 <meta name="twitter:image" content="https://vietcanho.files.wordpress.com/2016/06/middleware.png?w=1462">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>【译】design-patterns-in-expressjs</title>
+    <title>【译】Express 中的设计模式</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -87,15 +87,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&text=【译】design-patterns-in-expressjs"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&is_video=false&description=【译】design-patterns-in-expressjs"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【译】design-patterns-in-expressjs&body=Check out this article: http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&name=【译】design-patterns-in-expressjs&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&text=【译】Express 中的设计模式"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&is_video=false&description=【译】Express 中的设计模式"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译】Express 中的设计模式&body=Check out this article: http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&name=【译】Express 中的设计模式&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -112,7 +112,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        【译】design-patterns-in-expressjs
+        【译】Express 中的设计模式
     </h1>
 
 
@@ -215,15 +215,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&text=【译】design-patterns-in-expressjs"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&is_video=false&description=【译】design-patterns-in-expressjs"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【译】design-patterns-in-expressjs&body=Check out this article: http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】design-patterns-in-expressjs"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&name=【译】design-patterns-in-expressjs&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&text=【译】Express 中的设计模式"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&is_video=false&description=【译】Express 中的设计模式"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译】Express 中的设计模式&body=Check out this article: http://yoursite.com/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&title=【译】Express 中的设计模式"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/20/design-patterns-in-expressjs/&name=【译】Express 中的设计模式&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

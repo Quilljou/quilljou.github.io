@@ -170,3 +170,14 @@ function merge(dest, src, redefine) {
 
 ## 参考
 https://www.runoob.com/nodejs/nodejs-express-framework.html
+
+
+
+Refactor
+
+## 中间件原理
+
+
+## express 在 http 的基础上还做了什么
+
+### 对 req/res 对象的扩展

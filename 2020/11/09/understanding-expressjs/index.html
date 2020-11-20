@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#e2e0de">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="原文链接  回顾 express api在我们开始之前，先来快速回顾下 express 的 api。 Expressjs 主要有两种类型的 api：中间件和路由。 在创建了一个 express 应用后，我们做的第一件事就是通过调用 app.use 添加一些有用的中间件，比如： 123456789101112131415161718var app = express()var bodyParser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】理解 express.js">
+<meta property="og:url" content="http://yoursite.com/2020/11/09/understanding-expressjs/index.html">
+<meta property="og:site_name" content="Carpe Diem">
+<meta property="og:description" content="原文链接  回顾 express api在我们开始之前，先来快速回顾下 express 的 api。 Expressjs 主要有两种类型的 api：中间件和路由。 在创建了一个 express 应用后，我们做的第一件事就是通过调用 app.use 添加一些有用的中间件，比如： 123456789101112131415161718var app = express()var bodyParser">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/150192/31/13662/19143/5fa8e603E010f22f1/0c02010c35e76fa5.png">
+<meta property="og:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/155146/1/5229/15738/5fa8f8a0Ed8c4360f/084ebfa9387cb459.png">
+<meta property="og:updated_time" content="2020-11-09T09:04:54.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】理解 express.js">
+<meta name="twitter:description" content="原文链接  回顾 express api在我们开始之前，先来快速回顾下 express 的 api。 Expressjs 主要有两种类型的 api：中间件和路由。 在创建了一个 express 应用后，我们做的第一件事就是通过调用 app.use 添加一些有用的中间件，比如： 123456789101112131415161718var app = express()var bodyParser">
+<meta name="twitter:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/150192/31/13662/19143/5fa8e603E010f22f1/0c02010c35e76fa5.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>【译】理解 express.js</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/11/09/understanding-expressjs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/11/09/understanding-expressjs/&text=【译】理解 express.js"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/11/09/understanding-expressjs/&is_video=false&description=【译】理解 express.js"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译】理解 express.js&body=Check out this article: http://yoursite.com/2020/11/09/understanding-expressjs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/11/09/understanding-expressjs/&name=【译】理解 express.js&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾-express-api"><span class="toc-number">1.</span> <span class="toc-text">回顾 express api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何实现"><span class="toc-number">2.</span> <span class="toc-text">如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layer"><span class="toc-number">3.</span> <span class="toc-text">Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Router"><span class="toc-number">4.</span> <span class="toc-text">The Router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route"><span class="toc-number">5.</span> <span class="toc-text">Route</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【译】理解 express.js
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Carpe Diem</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-11-09T02:55:34.000Z" itemprop="datePublished">2020-11-09</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p><a href="https://blog.laputa.io/understanding-expressjs-d5ef4f4646c8" target="_blank" rel="noopener">原文链接</a></p>
+</blockquote>
+<h2 id="回顾-express-api"><a href="#回顾-express-api" class="headerlink" title="回顾 express api"></a>回顾 express api</h2><p>在我们开始之前，先来快速回顾下 express 的 api。</p>
+<p>Expressjs 主要有两种类型的 api：中间件和路由。</p>
+<p>在创建了一个 express 应用后，我们做的第一件事就是通过调用 <code>app.use</code> 添加一些有用的中间件，比如：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// third party middleware</span></span><br><span class="line"><span class="comment">// parse application/json</span></span><br><span class="line">app.use(bodyParser.json())</span><br><span class="line"></span><br><span class="line"><span class="comment">// user defined middleware</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Time:'</span>, <span class="built_in">Date</span>.now())</span><br><span class="line">  next()</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">// use middleware for specific url path</span></span><br><span class="line">app.use(<span class="string">'/user/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>{</span><br><span class="line">  checkUser(req.params.id)</span><br><span class="line">  next()</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<p>这个中间件函数会按照他们被调用的顺序被执行。<code>next()</code> 方法会把请求（request）传到下一个中间件，当请求被处理的时候这就形成了一个链路。</p>
+<p>路由 api 包括了 <code>app.METHOD()</code> 和 <code>app.route().METHOD()</code>，<em>METHOD</em> 可以试任何 HTTP 方法。它们被用来为指定的 url 路径和 http 方法设置一个 handler 函数。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">// handle GET /foo</span></span><br><span class="line">app.get(<span class="string">'/foo'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>{</span><br><span class="line">  res.end(<span class="string">'foo'</span>)</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">// define a route and a group of handlers</span></span><br><span class="line">app.route(<span class="string">'/book'</span>)</span><br><span class="line">  .get(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>{</span><br><span class="line">    res.send(<span class="string">'Get a random book'</span>)</span><br><span class="line">  })</span><br><span class="line">  .post(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>{</span><br><span class="line">    res.send(<span class="string">'Add a book'</span>)</span><br><span class="line">  })</span><br><span class="line">  .put(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>{</span><br><span class="line">    res.send(<span class="string">'Update the book'</span>)</span><br><span class="line">  })</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><p>让我们先看看这些 api 是怎么在 express 中实现的。</p>
+<p>express 的源代码有着非常简单的结构。</p>
+<p><img src="https://img10.360buyimg.com/jdphoto/jfs/t1/150192/31/13662/19143/5fa8e603E010f22f1/0c02010c35e76fa5.png" alt="alt"></p>
+<p>所有的内部逻辑都在 <em>lib</em> 目录，<em>application.js</em> 定义了 express application，中间件和路由逻辑在 <em>router</em> 目录下。（middleware目录包含了两个内置的中间件，在这篇文章中我们会跳过）</p>
+<blockquote>
+<p>译者注：两个内置的中间件分别是 expressInit 和 query。分别用于初始化 express 的 req、res 和解析 req 的 querystring 成 query 对象。</p>
+</blockquote>
+<p>每个 express 应用都有一个 <em>_router</em> 属性，它是 Router 的一个实例，<a href="https://github.com/expressjs/express/blob/3ed5090ca91f6a387e66370d57ead94d886275e1/lib/application.js#L187-L221" target="_blank" rel="noopener">app.use</a> 和 <a href="https://github.com/expressjs/express/blob/3ed5090ca91f6a387e66370d57ead94d886275e1/lib/application.js#L254-L257" target="_blank" rel="noopener">app.route</a> 仅仅是代理到 <em>_router</em> 对象的同名函数上。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.use = <span class="function"><span class="keyword">function</span> <span class="title">use</span>(<span class="params">fn</span>) </span>{</span><br><span class="line">...</span><br><span class="line">  fns.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>{</span><br><span class="line"><span class="comment">// non-express app</span></span><br><span class="line">    <span class="keyword">if</span> (!fn || !fn.handle || !fn.set) {</span><br><span class="line">      <span class="keyword">return</span> router.use(path, fn);</span><br><span class="line">    }</span><br><span class="line">...</span><br><span class="line">}</span><br><span class="line">app.route = <span class="function"><span class="keyword">function</span> <span class="title">route</span>(<span class="params">path</span>) </span>{</span><br><span class="line">  <span class="keyword">this</span>.lazyrouter();</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>._router.route(path);</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>而将 <a href="https://github.com/expressjs/express/blob/3ed5090ca91f6a387e66370d57ead94d886275e1/lib/application.js#L472-L485" target="_blank" rel="noopener">app.method</a> 委托给 _router 来为特定的HTTP方法创建Route:</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// methods is an array of all HTTP verbs</span></span><br><span class="line">methods.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">method</span>)</span>{</span><br><span class="line">  app[method] = <span class="function"><span class="keyword">function</span>(<span class="params">path</span>)</span>{</span><br><span class="line">  ...</span><br><span class="line">    <span class="keyword">var</span> route = <span class="keyword">this</span>._router.route(path);</span><br><span class="line">    route[method].apply(route, slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  };</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>到现在为止，我们知道了一个 Express 应用基本上是它内部的 <em>_router</em> 对象的一个包装。</p>
+<p><em>_router</em> 是如何实现这些中间件和路由逻辑的呢？秘密就放在 <em>lib/router</em> 目录下。它有三个核心的组件，分别是 <strong>Router</strong>，<strong>Route</strong>，<strong>Layer</strong>。</p>
+<p>在我们更深入之前，我会使用一个 express 的示例应用来帮助解释这些内部组件。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span> <span class="title">middlewareWithoutPath</span>(<span class="params">req, res, next</span>) </span>{</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'use middleware without path'</span>)</span><br><span class="line">    next()</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/foo'</span>, <span class="function"><span class="keyword">function</span> <span class="title">middlewareWithPath</span>(<span class="params">req, res, next</span>) </span>{</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'use middleware with path'</span>)</span><br><span class="line">    next()</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">app.route(<span class="string">'/bar'</span>)</span><br><span class="line">    .get(<span class="function"><span class="keyword">function</span> <span class="title">routeBarGet</span>(<span class="params">req, res</span>) </span>{</span><br><span class="line">        res.send(<span class="string">'ok'</span>)</span><br><span class="line">    })</span><br><span class="line">    .post(<span class="function"><span class="keyword">function</span> <span class="title">routeBarPost</span>(<span class="params">req, res</span>) </span>{</span><br><span class="line">        res.send(<span class="string">'ok'</span>)</span><br><span class="line">    })</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/zoo'</span>, <span class="function"><span class="keyword">function</span> <span class="title">getZoo</span>(<span class="params">req, res</span>) </span>{</span><br><span class="line">    res.send(<span class="string">'ok'</span>)</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, () => {</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'listen on 3000...'</span>)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<p>上面的代码创建了一个 express 应用，然后调用了 <code>app.use()</code> 方法两次。第一次没有带 path 参数，第二次传入了 path <code>/foo</code>。然后调用了 <code>route</code> 方法为路径 <code>/bar</code> 创建了一个路由，并且为这个路径分别定义了 <code>get</code> 和 <code>post</code> 方法的 handler。最后在 <code>app</code> 上调用了 <code>get</code> 方法，为路径 <code>/zoo</code> 定义了一个 handler。</p>
+<p>这里应用内部的样子：</p>
+<p><img src="https://img10.360buyimg.com/jdphoto/jfs/t1/155146/1/5229/15738/5fa8f8a0Ed8c4360f/084ebfa9387cb459.png" alt="alt"></p>
+<h2 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h2><p>layer 是最简单的组件，它具有一个 <em>path</em> 属性或者是 <em>method</em> 属性用于匹配请求，还有一个 <em>handle</em> 字段用于存储中间件函数。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Layer {</span><br><span class="line">  path   <span class="comment">// when it's in the router</span></span><br><span class="line">  method <span class="comment">// when it's in the route</span></span><br><span class="line">  handle = middleware_func</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>layer 会调用它的 <code>match</code> 方法，如果传入请求（incoming request）的属性匹配上 layer 的 <code>path</code> 或者 <code>method</code>，那么它就会把请求（request）传给 middleware_func。</p>
+<h2 id="The-Router"><a href="#The-Router" class="headerlink" title="The Router"></a>The Router</h2><p>它是 express 应用中的主要组件。它维护了一个 <em>Layer</em> 的队列（使用 array 实现），当 <code>app.use(path, fn)</code> 被调用时，<code>_router</code> 会创建一个新的 Layer 对象，并且把 <code>path</code> 和 <code>middleware</code> 赋给这个 layer 对象，然后把它推进队列。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.use(path, fn) ==></span><br><span class="line"></span><br><span class="line">_router:</span><br><span class="line"></span><br><span class="line">layer = <span class="keyword">new</span> Layer()</span><br><span class="line">layer.path = path</span><br><span class="line">layer.handle = fn</span><br><span class="line">stack.push(layer)</span><br></pre></td></tr></tbody></table></figure>
+<p>在没有 path 参数的情况下添加一个中间件，这个 layer 的 <code>path</code> 会被默认设置为 <code>/</code>，而 <code>/</code> 会匹配任意路径，这意味着这个中间件会在任何请求进入时都会被执行。</p>
+<p>当 <code>app.route(path).get(fn)</code> 或者 <code>app.get(path, fn)</code> 被调用时，_router <a href="https://github.com/expressjs/express/blob/3ed5090ca91f6a387e66370d57ead94d886275e1/lib/router/index.js#L491-L504" target="_blank" rel="noopener">会创建</a> 一个新的 Route 对象，和一个新的 Layer 对象，这个 Layer 对象的 path 属性会被设置参数 path，而 Layer 对象的 handle 函数会被设置成新的 Route 对象的 dispatch 方法。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.route(path).get(fn) ==></span><br><span class="line"></span><br><span class="line"><span class="comment">// _router</span></span><br><span class="line">route = <span class="keyword">new</span> Route()</span><br><span class="line">route.get(fn)</span><br><span class="line"></span><br><span class="line">layer = <span class="keyword">new</span> Layer()</span><br><span class="line">layer.path = path</span><br><span class="line">layer.handle = route.dispatch</span><br><span class="line">stack.push(layer)</span><br></pre></td></tr></tbody></table></figure>
+<p>所有的路径匹配都发生在 _router 的队列中，当一个请求进入，_router 会遍历它队列中的所有 layer，如果 layer 的 path 匹配上了请求的 path，那么这个 layer 对象的 handle 函数就会被执行，这个函数既可能是中间件方法，也可能是一个路由的 dispatch 方法。</p>
+<p>如果匹配的 layer 指向一个 route 的 dispatch 方法，则请求将被传递到该 route 对象，让我们来看看Route是如何工作的</p>
+<h2 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h2><p><em>Router</em> 处理 path 匹配，<em>Route</em> 处理 http method 匹配。每个 Route 有它自己的 layer 队列，队列中的每个 layer 在创建时都会存储 http 方法名。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.get(path, fn) ==></span><br><span class="line"></span><br><span class="line"><span class="comment">// _router:</span></span><br><span class="line">route = <span class="keyword">new</span> Route()</span><br><span class="line">route.get(fn)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// route.get(fn)</span></span><br><span class="line">layer = <span class="keyword">new</span> Layer()</span><br><span class="line">layer.method = <span class="string">'get'</span></span><br><span class="line">layer.handle = fn</span><br><span class="line">route.stack.push(layer)</span><br></pre></td></tr></tbody></table></figure>
+<p><code>app.route(path).get(fn)</code> 也是相同的逻辑</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾-express-api"><span class="toc-number">1.</span> <span class="toc-text">回顾 express api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何实现"><span class="toc-number">2.</span> <span class="toc-text">如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layer"><span class="toc-number">3.</span> <span class="toc-text">Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Router"><span class="toc-number">4.</span> <span class="toc-text">The Router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route"><span class="toc-number">5.</span> <span class="toc-text">Route</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/11/09/understanding-expressjs/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/11/09/understanding-expressjs/&text=【译】理解 express.js"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/11/09/understanding-expressjs/&is_video=false&description=【译】理解 express.js"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译】理解 express.js&body=Check out this article: http://yoursite.com/2020/11/09/understanding-expressjs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/11/09/understanding-expressjs/&title=【译】理解 express.js"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/11/09/understanding-expressjs/&name=【译】理解 express.js&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Quill
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

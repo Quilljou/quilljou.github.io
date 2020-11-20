@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#e2e0de">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？ 从 官方文档 可以看出它的主要特点或者说和 express.js 的区别主要是  精简 使用 async  koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 no">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa 原理">
+<meta property="og:url" content="http://yoursite.com/2020/10/16/how-koa/index.html">
+<meta property="og:site_name" content="Carpe Diem">
+<meta property="og:description" content="Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？ 从 官方文档 可以看出它的主要特点或者说和 express.js 的区别主要是  精简 使用 async  koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 no">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/127096/30/18199/6516/5faa98eaEd5e002ab/f40c762d5fdd23f8.png">
+<meta property="og:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/143072/10/15096/11183/5fb618ccE295c7533/604bf4ee66b82557.png">
+<meta property="og:updated_time" content="2020-11-20T11:16:36.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Koa 原理">
+<meta name="twitter:description" content="Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？ 从 官方文档 可以看出它的主要特点或者说和 express.js 的区别主要是  精简 使用 async  koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 no">
+<meta name="twitter:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/127096/30/18199/6516/5faa98eaEd5e002ab/f40c762d5fdd23f8.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Koa 原理</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/20/design-patterns-in-expressjs/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/09/18/how-wepback-dev-server-run/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/16/how-koa/&text=Koa 原理"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/16/how-koa/&is_video=false&description=Koa 原理"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Koa 原理&body=Check out this article: http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/16/how-koa/&name=Koa 原理&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录结构"><span class="toc-number">2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#use"><span class="toc-number">3.</span> <span class="toc-text">use</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#listen"><span class="toc-number">4.</span> <span class="toc-text">listen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#callback"><span class="toc-number">5.</span> <span class="toc-text">callback</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#koa-compose"><span class="toc-number">5.1.</span> <span class="toc-text">koa-compose</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#context"><span class="toc-number">6.</span> <span class="toc-text">context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Request-amp-Response"><span class="toc-number">7.</span> <span class="toc-text">Request &amp; Response</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Koa 原理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Carpe Diem</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-10-16T09:11:15.000Z" itemprop="datePublished">2020-10-16</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？</p>
+<p>从 <a href="https://github.com/koajs/koa/blob/master/docs/koa-vs-express.md" target="_blank" rel="noopener">官方文档</a> 可以看出它的主要特点或者说和 express.js 的区别主要是</p>
+<ol>
+<li>精简</li>
+<li>使用 async</li>
+</ol>
+<p>koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 node.js 的 http 模块的抽象，而 express.js 则是一个应用框架。</p>
+<p>koa 不使用传统的 node.js callback 编码风格，而是拥抱了 async/await。当然 express.js 也是可以使用 async/await，只不过 koa 使用 async/await 能够实现 <a href="https://eggjs.org/zh-cn/intro/egg-and-koa.html#middleware" target="_blank" rel="noopener">洋葱圈模型</a> 和更好的 <a href="https://itnext.io/from-express-to-koa-f3be4afdfd39" target="_blank" rel="noopener">异常处理</a>。</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>首先看看 koa 是如何使用的？</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// logger</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) => {</span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">  <span class="keyword">const</span> rt = ctx.response.get(<span class="string">'X-Response-Time'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">${ctx.method}</span> <span class="subst">${ctx.url}</span> - <span class="subst">${rt}</span>`</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// x-response-time</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) => {</span><br><span class="line">  <span class="keyword">const</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">  <span class="keyword">const</span> ms = <span class="built_in">Date</span>.now() - start;</span><br><span class="line">  ctx.set(<span class="string">'X-Response-Time'</span>, <span class="string">`<span class="subst">${ms}</span>ms`</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// response</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> ctx => {</span><br><span class="line">  ctx.body = <span class="string">'Hello World'</span>;</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>koa app 的实例化和 express 的工厂模式不同，它通过 new 关键字来实例化。</p>
+<p><code>use</code> 方法继承了 express.js 的命名风格，在这个示例里声明了三个中间件。但是这里 <code>use</code> 的入参和 express 的 <code>use</code> 方法有不同，koa 这里只接收一个入参，就是中间件函数。</p>
+<p>中间件函数的签名是 <code>(context: Koa.Context, next: Koa.Next) => any;</code>，那么这里又有两个非常重要的概念，<code>context</code> 和 <code>next()</code>，<code>context</code> 是单次请求的上下文对象，在每次请求时会被创建；<code>next</code> 方法是 Koa 实现洋葱圈模型的关键。</p>
+<p><code>listen</code> 方法同 express.js 的 <code>listen</code> 方法一样，开启了监听端口。</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><blockquote>
+<p>版本：Koa v2.13.0</p>
+</blockquote>
+<p><img src="https://img10.360buyimg.com/jdphoto/jfs/t1/127096/30/18199/6516/5faa98eaEd5e002ab/f40c762d5fdd23f8.png" alt="cloc koa/lib"></p>
+<p>Koa 的源代码（不包括依赖）只有大概700行，相比于 express.js 少了大概 1000 行。</p>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lib</span><br><span class="line">├── application.js</span><br><span class="line">├── context.js</span><br><span class="line">├── request.js</span><br><span class="line">└── response.js</span><br></pre></td></tr></tbody></table></figure>
+<p>koa 的代码被划分为以上四个文件:</p>
+<p>application.js 导出的是 Koa Application 类<br>context.js 是 context 对象的原型<br>request.js 和 response.js 分别是 context.request 和 context.response 对象的原型</p>
+<h2 id="use"><a href="#use" class="headerlink" title="use"></a>use</h2><p><img src="https://img10.360buyimg.com/jdphoto/jfs/t1/143072/10/15096/11183/5fb618ccE295c7533/604bf4ee66b82557.png" alt="koa structue"></p>
+<p>Koa 框架的核心在于它实现了一套好用的中间件机制。Koa 的中间件是一个签名为 <code>(context: Koa.Context, next: Koa.Next) => any;</code> 的函数，Koa 实例的 <code>use</code> 方法用于注册中间件。Koa 实例上维护了一个名为 <code>middleware</code> 的队列，用于存储所有的中间件函数。<code>use</code> 方法的实现非常简单，以下是精简过的代码：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use(fn) {</span><br><span class="line">  <span class="keyword">this</span>.middleware.push(fn);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>use</code> 方法将中间件函数推入队列中，返回 <code>this</code>，这让 <code>use</code> 可以链式调用。</p>
+<p>完成了中间件的注册之后，我们就要创建 http 服务器，开启端口监听。koa 实例的 <code>listen</code> 方法就是这个作用，它是怎么实现的呢？</p>
+<h2 id="listen"><a href="#listen" class="headerlink" title="listen"></a>listen</h2><p>Koa 是基于 node.js 网络模块封装出来的框架。在上面的示例中在初始化 koa 实例后，就调用了 <code>listen</code> 方法在 3000 端口开始监听请求。它的实现是：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">listen(...args) {</span><br><span class="line">    <span class="keyword">const</span> server = http.createServer(<span class="keyword">this</span>.callback());</span><br><span class="line">    <span class="keyword">return</span> server.listen(...args);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>通过查阅 <a href="https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener" target="_blank" rel="noopener">node.js 文档</a> 我们会知道调用<code>http.createServer</code> 方法之后会返回一个 <code>Server</code> 实例，且这个方法的入参就是一个签名为 <code>(req: IncomingMessage, res: ServerResponse) => void</code> 的 <code>request handler</code>，这个函数会在 Server 实例每次接收到 <a href="https://nodejs.org/api/http.html#http_event_request" target="_blank" rel="noopener"><code>request</code> 事件</a>（即请求进入）时被调用。</p>
+<p>从源码看到 Koa 框架使用的 <code>request handler</code> 就是 <code>this.callback()</code> 的返回值。所以当请求进入的时候，Koa 是如何应战的？</p>
+<h2 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h2><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compose = <span class="built_in">require</span>(<span class="string">'koa-compose'</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>{</span><br><span class="line">  callback() {</span><br><span class="line">    <span class="keyword">const</span> fn = compose(<span class="keyword">this</span>.middleware);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.listenerCount(<span class="string">'error'</span>)) <span class="keyword">this</span>.on(<span class="string">'error'</span>, <span class="keyword">this</span>.onerror);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> handleRequest = <span class="function">(<span class="params">req, res</span>) =></span> {</span><br><span class="line">      <span class="keyword">const</span> ctx = <span class="keyword">this</span>.createContext(req, res);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.handleRequest(ctx, fn);</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> handleRequest;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Handle request in callback.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @api private</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  handleRequest(ctx, fnMiddleware) {</span><br><span class="line">    <span class="keyword">const</span> res = ctx.res;</span><br><span class="line">    res.statusCode = <span class="number">404</span>;</span><br><span class="line">    <span class="keyword">const</span> onerror = <span class="function"><span class="params">err</span> =></span> ctx.onerror(err);</span><br><span class="line">    <span class="keyword">const</span> handleResponse = <span class="function"><span class="params">()</span> =></span> respond(ctx);</span><br><span class="line">    onFinished(res, onerror);</span><br><span class="line">    <span class="keyword">return</span> fnMiddleware(ctx).then(handleResponse).catch(onerror);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>callback</code> 首先把 middleware 传给了 koa-compose 模块，返回了一个函数 <code>fn</code>。</p>
+<p>接着 <code>callback</code> 内声明了一个 <code>handleRequest</code> 函数并将其返回。所以最终 node.js <code>request</code> 事件触发的时候调用的就是这个 <code>handleRequest</code>。</p>
+<p>当请求进入，<code>handleRequest</code> 被调用。被调用时它创建了一个 <code>context</code> 对象，关于 <code>context</code> 对象我们暂时略过，先走完中间件的执行流程。接着就把上面得到的 <code>fn</code> 和 <code>ctx</code> 传递给<strong>实例方法</strong> <code>handleRequest</code> 执行。</p>
+<p>实例方法 <code>handleRequest</code> 中实际的代码就是执行了 koa-compose 得到的函数 <code>fnMiddleware</code>。</p>
+<p>可以看出这是一个 promsise 链，当 <code>fnMiddleware</code> 返回的 <code>promise</code> 变更为 resolved 状态时，就调用 <code>handleResponse</code>这个闭包函数，其内的 <code>respond</code> 方法持有对 <code>ctx</code> 的引用。其作用就是经过中间件处理后响应客户端；当 <code>promise</code> 变更为 rejected 状态时，就会使用 <code>ctx.onerror</code> 方法响应给客户端，这个主要是 Koa 框架提供的兜底异常处理。一般业务中我们都会定义自己的异常处理函数。</p>
+<p>所以中间件具体是怎么执行的，这就需要查看 koa-compose 模块的执行逻辑。</p>
+<h3 id="koa-compose"><a href="#koa-compose" class="headerlink" title="koa-compose"></a>koa-compose</h3><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Compose `middleware` returning</span></span><br><span class="line"><span class="comment"> * a fully valid middleware comprised</span></span><br><span class="line"><span class="comment"> * of all those which are passed.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param {Array} middleware</span></span><br><span class="line"><span class="comment"> * @return {Function}</span></span><br><span class="line"><span class="comment"> * @api public</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span> (<span class="params">middleware</span>) </span>{</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(middleware)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Middleware stack must be an array!'</span>)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> fn <span class="keyword">of</span> middleware) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Middleware must be composed of functions!'</span>)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * @param {Object} context</span></span><br><span class="line"><span class="comment">   * @return {Promise}</span></span><br><span class="line"><span class="comment">   * @api public</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">context, next</span>) </span>{</span><br><span class="line">    <span class="comment">// last called middleware #</span></span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">return</span> dispatch(<span class="number">0</span>)</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span> (<span class="params">i</span>) </span>{</span><br><span class="line">      <span class="keyword">if</span> (i <= index) <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'next() called multiple times'</span>))</span><br><span class="line">      index = i</span><br><span class="line">      <span class="keyword">let</span> fn = middleware[i]</span><br><span class="line">      <span class="keyword">if</span> (i === middleware.length) fn = next</span><br><span class="line">      <span class="keyword">if</span> (!fn) <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve()</span><br><span class="line">      <span class="keyword">try</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(fn(context, dispatch.bind(<span class="literal">null</span>, i + <span class="number">1</span>)));</span><br><span class="line">      } <span class="keyword">catch</span> (err) {</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>当我们在上面的 <code>handleRequest</code> 中调用 <code>fnMiddleware</code> 时最终执行的是 <code>dispatch(0)</code>，上面 promise 链的起点也就是这个方法的返回值。</p>
+<p>我们先跳过 dispatch 函数声明的第二行和第三行。从第四行开始阅读，以 i 为下标取 middleware 队列中的中间件函数，还记得中间件的签名是 <code>(context: Koa.Context, next: Koa.Next) => any;</code>，在这里将作用域里的 context 和 bind 过后且参数为 i+1 的 dispatch 函数作为 next 传给中间件执行。</p>
+<p>假设有如下两个中间件</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">middleware1</span>(<span class="params">context, next</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'before 1'</span>)</span><br><span class="line">  <span class="keyword">await</span> next()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'after 1'</span>)</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">middleware2</span>(<span class="params">context, next</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'before 2'</span>)</span><br><span class="line">  <span class="keyword">await</span> next()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'after '</span>)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<p>经过 Koa 的编排，那么他们的执行逻辑等同于</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">middleware1</span>(<span class="params">context, next</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'before 1'</span>)</span><br><span class="line">  <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">context, next</span>) </span>{</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'before 2'</span>)</span><br><span class="line">    <span class="keyword">await</span> next()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'after 2'</span>)</span><br><span class="line">  }(context, () => <span class="built_in">Promise</span>.resolve()))</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'after 1'</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">middleware1({}, <span class="literal">undefined</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>中间件的嵌套执行实现了 Koa 的洋葱圈模型。</p>
+<p>最后一个值得注意的点是，闭包里维护了一个 index，这是防止 <code>next</code> 方法在一个中间件中被多次执行，多次执行就会导致中间件的执行顺序不是串行的而是并行的导致混乱。</p>
+<h2 id="context"><a href="#context" class="headerlink" title="context"></a>context</h2><p>在上面我们看到每次请求进入都会调用 createContext 来创建一个上下文对象 context，并将其传给了中间件链条。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">createContext(req, res) {</span><br><span class="line">  <span class="keyword">const</span> context = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.context);</span><br><span class="line">  <span class="keyword">const</span> request = context.request = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.request);</span><br><span class="line">  <span class="keyword">const</span> response = context.response = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.response);</span><br><span class="line">  context.app = request.app = response.app = <span class="keyword">this</span>;</span><br><span class="line">  context.req = request.req = response.req = req;</span><br><span class="line">  context.res = request.res = response.res = res;</span><br><span class="line">  request.ctx = response.ctx = context;</span><br><span class="line">  request.response = response;</span><br><span class="line">  response.request = request;</span><br><span class="line">  context.originalUrl = request.originalUrl = req.url;</span><br><span class="line">  context.state = {};</span><br><span class="line">  <span class="keyword">return</span> context;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>context 是一个原型为 <code>this.context</code> 的新对象。而 <code>this.context</code> 又是以 <code>context.js</code> 下声明的原型对象为原型的对象。</p>
+<p>context.app 为 Koa 实例；context.req 是 Node.js IncomingMessage 的实例；context.res 是 Node.js ServerResponse 的实例；context.request 是 Koa 扩展过 IncomingMessage 后的实例；context.request 是 Koa 扩展过 ServerResponse 后的实例；</p>
+<p>context 如下大量代理了它的 Koa response (非 Node.js req)和 Koa request (非 Node.js res)上的方法和属性。这就是为什么我们可以使用诸如 <code>ctx.body = { data: {}}</code> 的原因。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">delegate(proto, <span class="string">'response'</span>)</span><br><span class="line">  .method(<span class="string">'attachment'</span>)</span><br><span class="line">  .method(<span class="string">'redirect'</span>)</span><br><span class="line">  .method(<span class="string">'remove'</span>)</span><br><span class="line">  .method(<span class="string">'vary'</span>)</span><br><span class="line">  .method(<span class="string">'has'</span>)</span><br><span class="line">  .method(<span class="string">'set'</span>)</span><br><span class="line">  .method(<span class="string">'append'</span>)</span><br><span class="line">  .method(<span class="string">'flushHeaders'</span>)</span><br><span class="line">  .access(<span class="string">'status'</span>)</span><br><span class="line">  .access(<span class="string">'message'</span>)</span><br><span class="line">  .access(<span class="string">'body'</span>)</span><br><span class="line">  .access(<span class="string">'length'</span>)</span><br><span class="line">  .access(<span class="string">'type'</span>)</span><br><span class="line">  .access(<span class="string">'lastModified'</span>)</span><br><span class="line">  .access(<span class="string">'etag'</span>)</span><br><span class="line">  .getter(<span class="string">'headerSent'</span>)</span><br><span class="line">  .getter(<span class="string">'writable'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Request delegation.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">delegate(proto, <span class="string">'request'</span>)</span><br><span class="line">  .method(<span class="string">'acceptsLanguages'</span>)</span><br><span class="line">  .method(<span class="string">'acceptsEncodings'</span>)</span><br><span class="line">  .method(<span class="string">'acceptsCharsets'</span>)</span><br><span class="line">  .method(<span class="string">'accepts'</span>)</span><br><span class="line">  .method(<span class="string">'get'</span>)</span><br><span class="line">  .method(<span class="string">'is'</span>)</span><br><span class="line">  .access(<span class="string">'querystring'</span>)</span><br><span class="line">  .access(<span class="string">'idempotent'</span>)</span><br><span class="line">  .access(<span class="string">'socket'</span>)</span><br><span class="line">  .access(<span class="string">'search'</span>)</span><br><span class="line">  .access(<span class="string">'method'</span>)</span><br><span class="line">  .access(<span class="string">'query'</span>)</span><br><span class="line">  .access(<span class="string">'path'</span>)</span><br><span class="line">  .access(<span class="string">'url'</span>)</span><br><span class="line">  .access(<span class="string">'accept'</span>)</span><br><span class="line">  .getter(<span class="string">'origin'</span>)</span><br><span class="line">  .getter(<span class="string">'href'</span>)</span><br><span class="line">  .getter(<span class="string">'subdomains'</span>)</span><br><span class="line">  .getter(<span class="string">'protocol'</span>)</span><br><span class="line">  .getter(<span class="string">'host'</span>)</span><br><span class="line">  .getter(<span class="string">'hostname'</span>)</span><br><span class="line">  .getter(<span class="string">'URL'</span>)</span><br><span class="line">  .getter(<span class="string">'header'</span>)</span><br><span class="line">  .getter(<span class="string">'headers'</span>)</span><br><span class="line">  .getter(<span class="string">'secure'</span>)</span><br><span class="line">  .getter(<span class="string">'stale'</span>)</span><br><span class="line">  .getter(<span class="string">'fresh'</span>)</span><br><span class="line">  .getter(<span class="string">'ips'</span>)</span><br><span class="line">  .getter(<span class="string">'ip'</span>);</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Request-amp-Response"><a href="#Request-amp-Response" class="headerlink" title="Request & Response"></a>Request & Response</h2><p>request.js 和 response.js 分别声明了上面 context.request 和 context.response 对象的原型。</p>
+<p>在这些原型上声明了很多语法糖方法。比如 <code>ctx.status = 200</code> 和  <code>const status = ctx.status</code> 都是我们上面所说的 ctx 对 response 对象的代理。而 <code>response[set status]</code> 和 <code>response[get status]</code> 实现如下</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get response status code.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @return {Number}</span></span><br><span class="line"><span class="comment"> * @api public</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span> status() {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.res.statusCode;</span><br><span class="line">},</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Set response status code.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param {Number} code</span></span><br><span class="line"><span class="comment"> * @api public</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> status(code) {</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.headerSent) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  assert(<span class="built_in">Number</span>.isInteger(code), <span class="string">'status code must be a number'</span>);</span><br><span class="line">  assert(code >= <span class="number">100</span> && code <= <span class="number">999</span>, <span class="string">`invalid status code: <span class="subst">${code}</span>`</span>);</span><br><span class="line">  <span class="keyword">this</span>._explicitStatus = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">this</span>.res.statusCode = code;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.req.httpVersionMajor < <span class="number">2</span>) <span class="keyword">this</span>.res.statusMessage = statuses[code];</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.body && statuses.empty[code]) <span class="keyword">this</span>.body = <span class="literal">null</span>;</span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录结构"><span class="toc-number">2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#use"><span class="toc-number">3.</span> <span class="toc-text">use</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#listen"><span class="toc-number">4.</span> <span class="toc-text">listen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#callback"><span class="toc-number">5.</span> <span class="toc-text">callback</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#koa-compose"><span class="toc-number">5.1.</span> <span class="toc-text">koa-compose</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#context"><span class="toc-number">6.</span> <span class="toc-text">context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Request-amp-Response"><span class="toc-number">7.</span> <span class="toc-text">Request &amp; Response</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/16/how-koa/&text=Koa 原理"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/16/how-koa/&is_video=false&description=Koa 原理"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Koa 原理&body=Check out this article: http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/16/how-koa/&name=Koa 原理&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Quill
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="https://github.com/Quilljou">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

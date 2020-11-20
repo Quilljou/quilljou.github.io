@@ -21,7 +21,7 @@ tags:
 假设有构造函数 F。创建出来的对象的 `__proto__` 属性指向
 
 ## Object.create()
-
+创建一个对象并返回。这个对象的原型是传入的第一个参数。第二个参数用于对该对象执行 Object.defineProperties()
 
 ## setPrototypeof
 

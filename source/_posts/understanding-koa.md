@@ -1,20 +1,20 @@
 ---
-title: Koa 原理
+title: 理解 koa.js
 date: 2020-10-16 17:11:15
 tags:
 ---
 
 
-Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？
+koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？
 
 从 [官方文档](https://github.com/koajs/koa/blob/master/docs/koa-vs-express.md) 可以看出它的主要特点或者说和 express.js 的区别主要是
 
 1. 精简
-2. 使用 async
+2. 使用 async/await
 
-koa 只实现了中间件内核，没有 express.js 的重要功能 -- 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 node.js 的 http 模块的抽象，而 express.js 则是一个应用框架。
+koa 只实现了中间件内核，没有实现 express.js 中的一个重要特性 -- 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 node.js 的 http 模块的抽象，而 express.js 则是一个应用框架。
 
-koa 不使用传统的 node.js callback 编码风格，而是拥抱了 async/await。当然 express.js 也是可以使用 async/await，只不过 koa 使用 async/await 能够实现 [洋葱圈模型](https://eggjs.org/zh-cn/intro/egg-and-koa.html#middleware) 和更好的 [异常处理](https://itnext.io/from-express-to-koa-f3be4afdfd39)。
+koa 不使用传统的 node.js callback 编码风格，而是拥抱了 async/await。当然 express.js 也是可以使用 async/await，只不过 koa 使用 async/await 基于 promise 能够实现 [洋葱圈模型](https://eggjs.org/zh-cn/intro/egg-and-koa.html#middleware) 和更好的 [异常处理](https://itnext.io/from-express-to-koa-f3be4afdfd39)。
 
 
 ## API
@@ -57,9 +57,9 @@ koa app 的实例化和 express 的工厂模式不同，它通过 new 关键字�
 
 中间件函数的签名是 `(context: Koa.Context, next: Koa.Next) => any;`，那么这里又有两个非常重要的概念，`context` 和 `next()`，`context` 是单次请求的上下文对象，在每次请求时会被创建；`next` 方法是 Koa 实现洋葱圈模型的关键。
 
-`listen` 方法同 express.js 的 `listen` 方法一样，开启了监听端口。
+`listen` 方法同 express.js 的 `listen` 方法一样，创建了 http 服务器，开启了监听端口。
 
-## 目录结构
+## 代码库
 
 > 版本：Koa v2.13.0
 
@@ -68,6 +68,7 @@ koa app 的实例化和 express 的工厂模式不同，它通过 new 关键字�
 
 Koa 的源代码（不包括依赖）只有大概700行，相比于 express.js 少了大概 1000 行。
 
+koa 的代码被划分为以下四个文件:
 
 ```sh
 lib
@@ -77,40 +78,48 @@ lib
 └── response.js
 ```
 
-koa 的代码被划分为以上四个文件:
-
 application.js 导出的是 Koa Application 类
 context.js 是 context 对象的原型
 request.js 和 response.js 分别是 context.request 和 context.response 对象的原型
 
-## use 
 ![koa structue](https://img10.360buyimg.com/jdphoto/jfs/t1/143072/10/15096/11183/5fb618ccE295c7533/604bf4ee66b82557.png)
 
-Koa 框架的核心在于它实现了一套好用的中间件机制。Koa 的中间件是一个签名为 `(context: Koa.Context, next: Koa.Next) => any;` 的函数，Koa 实例的 `use` 方法用于注册中间件。Koa 实例上维护了一个名为 `middleware` 的队列，用于存储所有的中间件函数。`use` 方法的实现非常简单，以下是精简过的代码：
+
+## use 
+
+Koa 实现了一套强大好用的中间件机制。Koa 的中间件是一个签名为 `(context: Koa.Context, next: Koa.Next) => any;` 的函数，Koa 实例的 `use` 方法用于注册中间件。Koa 实例上维护了一个名为 `middleware` 的队列，用于存储所有的中间件函数。`use` 方法的实现非常简单，以下是精简过的代码：
 
 ```js
+class Application {
+  constructor() {
+    this.middleware = [];
+  }
   use(fn) {
     this.middleware.push(fn);
     return this;
   }
+  ...
+}
 ```
 
 `use` 方法将中间件函数推入队列中，返回 `this`，这让 `use` 可以链式调用。
 
-完成了中间件的注册之后，我们就要创建 http 服务器，开启端口监听。koa 实例的 `listen` 方法就是这个作用，它是怎么实现的呢？
-
 
 ## listen
-Koa 是基于 node.js 网络模块封装出来的框架。在上面的示例中在初始化 koa 实例后，就调用了 `listen` 方法在 3000 端口开始监听请求。它的实现是：
+
+在上面的示例中在初始化 koa 实例，完成中间件的注册之后，就调用了 `listen` 方法在 3000 端口开始监听请求。它的实现是：
 
 ```js
-listen(...args) {
-    const server = http.createServer(this.callback());
-    return server.listen(...args);
+class Application {
+  listen(...args) {
+      const server = http.createServer(this.callback());
+      return server.listen(...args);
+  }
+  ...
 }
 ```
 
-通过查阅 [node.js 文档](https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener) 我们会知道调用`http.createServer` 方法之后会返回一个 `Server` 实例，且这个方法的入参就是一个签名为 `(req: IncomingMessage, res: ServerResponse) => void` 的 `request handler`，这个函数会在 Server 实例每次接收到 [`request` 事件](https://nodejs.org/api/http.html#http_event_request)（即请求进入）时被调用。
+通过查阅 [node.js 文档](https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener) 我们知道调用 `http.createServer` 方法之后会返回一个 `Server` 实例，`http.createServer` 这个方法的入参就是一个签名为 `(req: IncomingMessage, res: ServerResponse) => void` 的 `request handler`，这个函数会在 Server 实例每次接收到 [`request` 事件](https://nodejs.org/api/http.html#http_event_request)（即请求进入）时被调用。
 
 从源码看到 Koa 框架使用的 `request handler` 就是 `this.callback()` 的返回值。所以当请求进入的时候，Koa 是如何应战的？
 
@@ -160,7 +169,7 @@ class Application {
 
 实例方法 `handleRequest` 中实际的代码就是执行了 koa-compose 得到的函数 `fnMiddleware`。
 
-可以看出这是一个 promsise 链，当 `fnMiddleware` 返回的 `promise` 变更为 resolved 状态时，就调用 `handleResponse`这个闭包函数，其内的 `respond` 方法持有对 `ctx` 的引用。其作用就是经过中间件处理后响应客户端；当 `promise` 变更为 rejected 状态时，就会使用 `ctx.onerror` 方法响应给客户端，这个主要是 Koa 框架提供的兜底异常处理。一般业务中我们都会定义自己的异常处理函数。
+可以看出这是一个 promsise 链，当 `fnMiddleware` 返回的 `promise` 变更为 resolved 状态时，就调用 `handleResponse`这个闭包函数，其内的 `respond` 方法持有对 `ctx` 的引用，其作用就是将经过中间件处理后的 ctx 对客户端进行响应；当 `promise` 变更为 rejected 状态时，就会使用 `ctx.onerror` 方法响应给客户端，这个主要是 Koa 框架提供的兜底异常处理。一般业务中我们都会定义自己的异常处理函数。
 
 所以中间件具体是怎么执行的，这就需要查看 koa-compose 模块的执行逻辑。
 
@@ -217,15 +226,15 @@ function compose (middleware) {
 
 ```js
 app.use(async function middleware1(context, next) {
-  console.log('before 1')
+  console.log('pre 1')
   await next()
-  console.log('after 1')
+  console.log('post 1')
 })
 
 app.use(async function middleware2(context, next) {
-  console.log('before 2')
+  console.log('pre 2')
   await next()
-  console.log('after ')
+  console.log('post 2')
 })
 ```
 
@@ -234,13 +243,13 @@ app.use(async function middleware2(context, next) {
 ```js
 
 async function middleware1(context, next) {
-  console.log('before 1')
+  console.log('pre 1')
   await Promise.resolve(async function(context, next) {
-    console.log('before 2')
+    console.log('pre 2')
     await next()
-    console.log('after 2')
+    console.log('post 2')
   }(context, () => Promise.resolve()))
-  console.log('after 1')
+  console.log('post 1')
 }
 
 middleware1({}, undefined)
@@ -248,7 +257,7 @@ middleware1({}, undefined)
 
 中间件的嵌套执行实现了 Koa 的洋葱圈模型。
 
-最后一个值得注意的点是，闭包里维护了一个 index，这是防止 `next` 方法在一个中间件中被多次执行，多次执行就会导致中间件的执行顺序不是串行的而是并行的导致混乱。
+最后一个值得注意的点是，闭包里维护了一个 index，这是防止在一个中间件中 `next` 方法被多次执行，多次执行就会导致中间件的执行顺序不是串行的而是并行的导致混乱。
 
 
 ## context
@@ -275,7 +284,7 @@ context 是一个原型为 `this.context` 的新对象。而 `this.context` 又�
 
 context.app 为 Koa 实例；context.req 是 Node.js IncomingMessage 的实例；context.res 是 Node.js ServerResponse 的实例；context.request 是 Koa 扩展过 IncomingMessage 后的实例；context.request 是 Koa 扩展过 ServerResponse 后的实例；
 
-context 如下大量代理了它的 Koa response (非 Node.js req)和 Koa request (非 Node.js res)上的方法和属性。这就是为什么我们可以使用诸如 `ctx.body = { data: {}}` 的原因。
+context 如下大量代理了它的 Koa response (非 Node.js req)和 Koa request (非 Node.js res)上的方法和属性。这就是为什么我们可以不用写 `ctx.response.body = { data: {}}` 而使用 `ctx.body = { data: {}}` 的原因。
 
 ```js
 delegate(proto, 'response')
@@ -336,7 +345,7 @@ delegate(proto, 'request')
 ## Request & Response
 request.js 和 response.js 分别声明了上面 context.request 和 context.response 对象的原型。
 
-在这些原型上声明了很多语法糖方法。比如 `ctx.status = 200` 和  `const status = ctx.status` 都是我们上面所说的 ctx 对 response 对象的代理。而 `response[set status]` 和 `response[get status]` 实现如下
+在这些原型上声明了很多语法糖方法，比如 `ctx.response.status = 200` 和  `const status = ctx.response.status`。`response[set xxx]` 和 `response[get xxx]` 的一个示例实现如下
 
 ```js
   /**
@@ -369,14 +378,4 @@ request.js 和 response.js 分别声明了上面 context.request 和 context.res
   },
 ```
 
-
-
-
-
-
-
-
-
-
-
-
+koa 扩展性强大，配合第三方中间件可实现丰富的业务特性，实现简洁易懂，值得阅读。

@@ -9,16 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？ 从 官方文档 可以看出它的主要特点或者说和 express.js 的区别主要是  精简 使用 async  koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 no">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Koa 原理">
+<meta property="og:title" content="理解 Koa.js">
 <meta property="og:url" content="http://yoursite.com/2020/10/16/how-koa/index.html">
 <meta property="og:site_name" content="Carpe Diem">
 <meta property="og:description" content="Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？ 从 官方文档 可以看出它的主要特点或者说和 express.js 的区别主要是  精简 使用 async  koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 no">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/127096/30/18199/6516/5faa98eaEd5e002ab/f40c762d5fdd23f8.png">
 <meta property="og:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/143072/10/15096/11183/5fb618ccE295c7533/604bf4ee66b82557.png">
-<meta property="og:updated_time" content="2020-11-20T11:16:36.369Z">
+<meta property="og:updated_time" content="2020-11-23T06:16:49.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Koa 原理">
+<meta name="twitter:title" content="理解 Koa.js">
 <meta name="twitter:description" content="Koa 作为 node.js 的下一代 web framework 和它的前辈 express.js 相比有什么不一样？ 从 官方文档 可以看出它的主要特点或者说和 express.js 的区别主要是  精简 使用 async  koa 只实现了中间件内核，没有 express.js 的重要功能 – 路由，也更没有模板渲染，jsonp等等特性，这些功能都通过三方中间件来实现。所以它可以被看成 no">
 <meta name="twitter:image" content="https://img10.360buyimg.com/jdphoto/jfs/t1/127096/30/18199/6516/5faa98eaEd5e002ab/f40c762d5fdd23f8.png">
     
@@ -40,7 +40,7 @@
         
     
     <!-- title -->
-    <title>Koa 原理</title>
+    <title>理解 Koa.js</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -87,15 +87,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/16/how-koa/&text=Koa 原理"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/16/how-koa/&is_video=false&description=Koa 原理"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Koa 原理&body=Check out this article: http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/16/how-koa/&name=Koa 原理&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/16/how-koa/&text=理解 Koa.js"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/16/how-koa/&is_video=false&description=理解 Koa.js"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=理解 Koa.js&body=Check out this article: http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/16/how-koa/&name=理解 Koa.js&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -112,7 +112,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Koa 原理
+        理解 Koa.js
     </h1>
 
 
@@ -238,15 +238,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/16/how-koa/&text=Koa 原理"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/16/how-koa/&is_video=false&description=Koa 原理"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Koa 原理&body=Check out this article: http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=Koa 原理"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/16/how-koa/&name=Koa 原理&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/10/16/how-koa/&text=理解 Koa.js"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/10/16/how-koa/&is_video=false&description=理解 Koa.js"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=理解 Koa.js&body=Check out this article: http://yoursite.com/2020/10/16/how-koa/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/10/16/how-koa/&title=理解 Koa.js"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/10/16/how-koa/&name=理解 Koa.js&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
